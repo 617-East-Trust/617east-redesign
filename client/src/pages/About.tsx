@@ -110,47 +110,85 @@ export default function About() {
             </div>
 
             <div className="reveal reveal-delay-3">
-              {/* Credentials */}
-              <div
-                className="p-8 mb-6"
-                style={{
-                  background: "oklch(0.10 0.008 240)",
-                  border: "1px solid oklch(0.22 0.008 240)",
-                  borderLeft: "3px solid oklch(0.78 0.12 80)",
-                }}
-              >
-                <span className="section-label">Expertise</span>
-                <div className="gold-rule" />
-                <ul className="space-y-3">
-                  {[
-                    "Commercial Banking",
-                    "SBA 7(a) & 504 Lending",
-                    "Business Formation & Structure",
-                    "Credit Analysis & Repair",
-                    "Small Business Financial Planning",
-                    "Bookkeeping & CFO Advisory",
-                  ].map((item) => (
-                    <li key={item} className="flex items-center gap-3">
-                      <span style={{ color: "oklch(0.78 0.12 80)", fontSize: "0.6rem" }}>◆</span>
-                      <span className="text-sm" style={{ color: "oklch(0.72 0.008 80)" }}>{item}</span>
-                    </li>
-                  ))}
-                </ul>
+              {/* Founder portrait */}
+              <div className="relative">
+                {/* Gold accent frame */}
+                <div
+                  className="absolute -top-3 -left-3 w-full h-full"
+                  style={{ border: "1px solid oklch(0.78 0.12 80 / 0.3)", borderRadius: "2px", zIndex: 0 }}
+                />
+                <div className="relative" style={{ zIndex: 1 }}>
+                  <img
+                    src="/manus-storage/lamont-legrand-founder_d88b26c8.jpg"
+                    alt="Lamont Legrand, Founder of 617 East Trust — commercial banking and SBA lending professional"
+                    className="w-full object-cover"
+                    style={{
+                      aspectRatio: "3/4",
+                      objectPosition: "top center",
+                      filter: "contrast(1.04) brightness(0.97)",
+                    }}
+                  />
+                  {/* Name plate overlay */}
+                  <div
+                    className="absolute bottom-0 left-0 right-0 px-6 py-5"
+                    style={{
+                      background: "linear-gradient(to top, oklch(0.10 0.008 240 / 0.95) 0%, oklch(0.10 0.008 240 / 0.6) 60%, transparent 100%)",
+                    }}
+                  >
+                    <p className="font-display text-lg" style={{ color: "oklch(0.94 0.005 80)" }}>
+                      Lamont Legrand
+                    </p>
+                    <p className="font-mono text-xs mt-0.5" style={{ color: "oklch(0.78 0.12 80)", letterSpacing: "0.08em" }}>
+                      FOUNDER & PRINCIPAL ADVISOR
+                    </p>
+                  </div>
+                </div>
               </div>
+            </div>
+          </div>
 
-              {/* Quote */}
-              <blockquote
-                className="font-display text-xl"
-                style={{
-                  color: "oklch(0.78 0.008 80)",
-                  fontStyle: "italic",
-                  lineHeight: "1.5",
-                  borderLeft: "3px solid oklch(0.78 0.12 80)",
-                  paddingLeft: "1.5rem",
-                }}
-              >
-                "Most people come to us after they've already made a mistake. Our goal is to become the call they make before they make one."
-              </blockquote>
+          {/* Quote + Credentials below the grid */}
+          <div className="grid md:grid-cols-2 gap-10 mt-16">
+            {/* Quote */}
+            <blockquote
+              className="font-display text-xl reveal reveal-delay-2"
+              style={{
+                color: "oklch(0.78 0.008 80)",
+                fontStyle: "italic",
+                lineHeight: "1.6",
+                borderLeft: "3px solid oklch(0.78 0.12 80)",
+                paddingLeft: "1.5rem",
+              }}
+            >
+              "Most people come to us after they've already made a mistake. Our goal is to become the call they make before they make one."
+            </blockquote>
+
+            {/* Credentials */}
+            <div
+              className="p-8 reveal reveal-delay-3"
+              style={{
+                background: "oklch(0.10 0.008 240)",
+                border: "1px solid oklch(0.22 0.008 240)",
+                borderLeft: "3px solid oklch(0.78 0.12 80)",
+              }}
+            >
+              <span className="section-label">Expertise</span>
+              <div className="gold-rule" />
+              <ul className="space-y-3">
+                {[
+                  "Commercial Banking",
+                  "SBA 7(a) & 504 Lending",
+                  "Business Formation & Structure",
+                  "Credit Analysis & Repair",
+                  "Small Business Financial Planning",
+                  "Bookkeeping & CFO Advisory",
+                ].map((item) => (
+                  <li key={item} className="flex items-center gap-3">
+                    <span style={{ color: "oklch(0.78 0.12 80)", fontSize: "0.6rem" }}>◆</span>
+                    <span className="text-sm" style={{ color: "oklch(0.72 0.008 80)" }}>{item}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
         </div>

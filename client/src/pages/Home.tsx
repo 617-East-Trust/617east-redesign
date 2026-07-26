@@ -246,29 +246,45 @@ export default function Home() {
               </Link>
             </div>
 
-            {/* Right: pull quote */}
-            <div
-              className="reveal reveal-delay-2"
-              style={{
-                borderLeft: "3px solid oklch(0.78 0.12 80)",
-                paddingLeft: "2rem",
-              }}
-            >
-              <blockquote
-                className="font-display text-2xl md:text-3xl"
-                style={{ color: "oklch(0.88 0.008 80)", lineHeight: "1.4", fontStyle: "italic", marginBottom: "1.5rem" }}
-              >
-                "Most people come to us after they've already made a mistake. Our goal is to become the call they make before they make one."
-              </blockquote>
-              <cite
-                className="text-sm not-italic"
-                style={{ color: "oklch(0.58 0.010 80)", fontFamily: "'DM Mono', monospace", letterSpacing: "0.06em" }}
-              >
-                — Lamont Legrand, Founder
-              </cite>
-
+            {/* Right: founder portrait + quote */}
+            <div className="reveal reveal-delay-2">
+              {/* Portrait */}
+              <div className="relative mb-8">
+                <div
+                  className="absolute -top-2 -right-2 w-full h-full"
+                  style={{ border: "1px solid oklch(0.78 0.12 80 / 0.25)", borderRadius: "2px", zIndex: 0 }}
+                />
+                <div className="relative" style={{ zIndex: 1 }}>
+                  <img
+                    src="/manus-storage/lamont-legrand-founder_d88b26c8.jpg"
+                    alt="Lamont Legrand, Founder of 617 East Trust — commercial banking and SBA lending professional"
+                    className="w-full object-cover"
+                    style={{ maxHeight: "320px", objectPosition: "top center", filter: "contrast(1.03) brightness(0.96)" }}
+                  />
+                  <div
+                    className="absolute bottom-0 left-0 right-0 px-5 py-4"
+                    style={{ background: "linear-gradient(to top, oklch(0.10 0.008 240 / 0.92) 0%, transparent 100%)" }}
+                  >
+                    <p className="font-mono text-xs" style={{ color: "oklch(0.78 0.12 80)", letterSpacing: "0.08em" }}>
+                      LAMONT LEGRAND — FOUNDER & PRINCIPAL ADVISOR
+                    </p>
+                  </div>
+                </div>
+              </div>
+              {/* Quote */}
+              <div style={{ borderLeft: "3px solid oklch(0.78 0.12 80)", paddingLeft: "1.5rem", marginBottom: "2.5rem" }}>
+                <blockquote
+                  className="font-display text-xl"
+                  style={{ color: "oklch(0.88 0.008 80)", lineHeight: "1.5", fontStyle: "italic", marginBottom: "0.75rem" }}
+                >
+                  "Most people come to us after they've already made a mistake. Our goal is to become the call they make before they make one."
+                </blockquote>
+                <cite className="text-sm not-italic" style={{ color: "oklch(0.58 0.010 80)", fontFamily: "'DM Mono', monospace", letterSpacing: "0.06em" }}>
+                  — Lamont Legrand, Founder
+                </cite>
+              </div>
               {/* Three pillars */}
-              <div className="mt-10 space-y-6">
+              <div className="space-y-6">
                 {[
                   { title: "Accountability", body: "We tell you what we can and can't do. No overpromising." },
                   { title: "Trust", body: "Built over time, through honest advice — including the advice you didn't want to hear." },
