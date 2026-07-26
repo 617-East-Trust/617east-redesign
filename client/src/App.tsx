@@ -44,6 +44,7 @@ function Router() {
         <Route path="/blog" component={Blog} />
         <Route path="/privacy" component={Privacy} />
         <Route path="/terms" component={Terms} />
+        <Route path="/logo-concepts" component={LogoConcepts} />
         <Route path="/404" component={NotFound} />
         <Route component={NotFound} />
       </Switch>
@@ -65,3 +66,4 @@ function App() {
 }
 
 export default App;
+const LogoConcepts = lazy(() => import("./pages/LogoConcepts"));
