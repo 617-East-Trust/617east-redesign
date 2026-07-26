@@ -33,6 +33,19 @@ function CompassMark({ size = 28 }: { size?: number }) {
     </svg>
   );
 }
+// Real 617 East Trust logo mark (circular badge) — for header icon slot
+function LogoMark({ size = 36 }: { size?: number }) {
+  return (
+    <img
+      src="/manus-storage/logo-v1-dark-bg_5d10085c.png"
+      alt=""
+      aria-hidden="true"
+      width={size}
+      height={size}
+      style={{ objectFit: "contain" }}
+    />
+  );
+}
 
 const NAV_LINKS = [
   { href: "/", label: "Home" },
@@ -165,21 +178,13 @@ export default function Layout({ children, pageSchema, title, description, canon
           <div className="flex items-center justify-between h-18" style={{ height: "72px" }}>
             {/* Logo */}
             <Link href="/" className="flex items-center gap-3 group" aria-label="617 East Trust — Home">
-              <CompassMark size={32} />
-              <div className="flex flex-col leading-none">
-                <span
-                  className="font-bold tracking-widest text-sm"
-                  style={{ color: "oklch(0.94 0.005 80)", letterSpacing: "0.12em" }}
-                >
-                  617 EAST TRUST
-                </span>
-                <span
-                  className="text-xs tracking-wider"
-                  style={{ color: "oklch(0.58 0.010 80)", letterSpacing: "0.08em", fontSize: "0.65rem" }}
-                >
-                  Accountability. Trust. Transparency.
-                </span>
-              </div>
+              {/* Full wordmark logo — skyline + pine cone */}
+              <img
+                src="/manus-storage/logo-v2-dark-bg_909154b9.png"
+                alt="617 East Trust"
+                height={52}
+                style={{ height: "52px", width: "auto", objectFit: "contain" }}
+              />
             </Link>
 
             {/* Desktop Nav */}
@@ -285,13 +290,13 @@ export default function Layout({ children, pageSchema, title, description, canon
             {/* Brand */}
             <div className="md:col-span-1">
               <div className="flex items-center gap-3 mb-5">
-                <CompassMark size={28} />
-                <span
-                  className="font-bold tracking-widest text-sm"
-                  style={{ color: "oklch(0.94 0.005 80)", letterSpacing: "0.12em" }}
-                >
-                  617 EAST TRUST
-                </span>
+                <img
+                  src="/manus-storage/logo-v1-dark-bg_5d10085c.png"
+                  alt="617 East Trust"
+                  width={52}
+                  height={52}
+                  style={{ objectFit: "contain" }}
+                />
               </div>
               <p className="text-sm leading-relaxed mb-6" style={{ color: "oklch(0.52 0.008 80)" }}>
                 The advisor who tells you what not to do. Serving founders and individuals across North Carolina.
