@@ -382,3 +382,31 @@
     display: none;
   }
 }
+
+/* ============================================
+   HERO ANIMATION PREVIEW KEYFRAMES
+============================================ */
+@keyframes kenburns-drift {
+  0% { transform: scale(1.08) translateX(2%); }
+  100% { transform: scale(1.0) translateX(0); }
+}
+
+@keyframes cursor-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+@keyframes ambient-breathe {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+
+@keyframes pulse-once {
+  0% { box-shadow: 0 0 0 0 oklch(0.78 0.12 80 / 0.5); }
+  70% { box-shadow: 0 0 0 12px oklch(0.78 0.12 80 / 0); }
+  100% { box-shadow: 0 0 0 0 oklch(0.78 0.12 80 / 0); }
+}
+
+.hero-pulse-once {
+  animation: pulse-once 1s cubic-bezier(0.23, 1, 0.32, 1) 400ms 1;
+}

@@ -13,6 +13,7 @@ const About = lazy(() => import("./pages/About"));
 const Contact = lazy(() => import("./pages/Contact"));
 const Blog = lazy(() => import("./pages/Blog"));
 const BlogPost = lazy(() => import("./pages/BlogPost"));
+const HeroPreviews = lazy(() => import("./pages/HeroPreviews"));
 const Privacy = lazy(() => import("./pages/Privacy"));
 const Terms = lazy(() => import("./pages/Terms"));
 
@@ -47,6 +48,7 @@ function Router() {
         <Route path="/privacy" component={Privacy} />
         <Route path="/terms" component={Terms} />
         <Route path="/logo-concepts" component={LogoConcepts} />
+        <Route path="/hero-previews" component={HeroPreviews} />
         <Route path="/404" component={NotFound} />
         <Route component={NotFound} />
       </Switch>
