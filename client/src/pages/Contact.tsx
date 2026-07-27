@@ -6,6 +6,7 @@
 
 import Layout from "@/components/Layout";
 import { useReveal } from "@/hooks/useReveal";
+import { useHeroEntrance, heroLabelStyle, heroRuleStyle, heroHeadlineOuter, heroHeadlineInner, heroSubtextStyle } from "@/hooks/useHeroEntrance";
 import { useState } from "react";
 
 const CONTACT_SCHEMA = {
@@ -42,6 +43,7 @@ type FormState = "idle" | "submitting" | "success" | "error";
 export default function Contact() {
   const heroRef = useReveal(0.1);
   const formRef = useReveal(0.1);
+  const heroStarted = useHeroEntrance();
 
   const [formState, setFormState] = useState<FormState>("idle");
   const [formData, setFormData] = useState({
@@ -101,18 +103,22 @@ export default function Contact() {
       >
         <div className="absolute inset-0" style={{ background: "oklch(0.10 0.008 240 / 0.92)" }} />
         <div className="container relative z-10" ref={heroRef as React.RefObject<HTMLDivElement>}>
-          <span className="section-label reveal">Get in Touch</span>
-          <div className="gold-rule reveal reveal-delay-1" />
+          <span className="section-label" style={heroLabelStyle(heroStarted)}>Get in Touch</span>
+          <div className="gold-rule" style={heroRuleStyle(heroStarted)} />
           <h1
-            className="font-display text-5xl md:text-6xl reveal reveal-delay-1"
+            className="font-display text-5xl md:text-6xl"
             style={{ color: "oklch(0.94 0.005 80)", lineHeight: "1.1", maxWidth: "560px" }}
           >
-            Stop being processed.{" "}
-            <em style={{ color: "oklch(0.78 0.12 80)" }}>Start being partnered with.</em>
+            <span style={heroHeadlineOuter}>
+              <span style={heroHeadlineInner(heroStarted, 500)}>
+                Stop being processed.{" "}
+                <em style={{ color: "oklch(0.78 0.12 80)" }}>Start being partnered with.</em>
+              </span>
+            </span>
           </h1>
           <p
-            className="text-lg mt-6 reveal reveal-delay-2"
-            style={{ color: "oklch(0.62 0.010 80)", maxWidth: "460px", lineHeight: "1.7" }}
+            className="text-lg mt-6"
+            style={{ color: "oklch(0.62 0.010 80)", maxWidth: "460px", lineHeight: "1.7", ...heroSubtextStyle(heroStarted) }}
           >
             One free consultation. We'll tell you exactly what we can do for your situation — and what we can't.
           </p>

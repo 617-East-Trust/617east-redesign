@@ -7,6 +7,7 @@
 import Layout from "@/components/Layout";
 import { SERVICES } from "@/data/services";
 import { useReveal } from "@/hooks/useReveal";
+import { useHeroEntrance, heroLabelStyle, heroRuleStyle, heroHeadlineOuter, heroHeadlineInner, heroSubtextStyle } from "@/hooks/useHeroEntrance";
 import { Link } from "wouter";
 
 const SERVICES_SCHEMA = {
@@ -25,6 +26,7 @@ const SERVICES_SCHEMA = {
 export default function Services() {
   const heroRef = useReveal(0.1);
   const gridRef = useReveal(0.1);
+  const heroStarted = useHeroEntrance();
 
   return (
     <Layout
@@ -46,18 +48,22 @@ export default function Services() {
           style={{ background: "oklch(0.10 0.008 240 / 0.92)" }}
         />
         <div className="container relative z-10" ref={heroRef as React.RefObject<HTMLDivElement>}>
-          <span className="section-label reveal">Our Services</span>
-          <div className="gold-rule reveal reveal-delay-1" />
+          <span className="section-label" style={heroLabelStyle(heroStarted)}>Our Services</span>
+          <div className="gold-rule" style={heroRuleStyle(heroStarted)} />
           <h1
-            className="font-display text-5xl md:text-6xl reveal reveal-delay-1"
+            className="font-display text-5xl md:text-6xl"
             style={{ color: "oklch(0.94 0.005 80)", lineHeight: "1.1", maxWidth: "600px" }}
           >
-            Six services.{" "}
-            <em style={{ color: "oklch(0.78 0.12 80)" }}>One advisor.</em>
+            <span style={heroHeadlineOuter}>
+              <span style={heroHeadlineInner(heroStarted, 500)}>
+                Six services.{" "}
+                <em style={{ color: "oklch(0.78 0.12 80)" }}>One advisor.</em>
+              </span>
+            </span>
           </h1>
           <p
-            className="text-lg mt-6 reveal reveal-delay-2"
-            style={{ color: "oklch(0.62 0.010 80)", maxWidth: "520px", lineHeight: "1.7" }}
+            className="text-lg mt-6"
+            style={{ color: "oklch(0.62 0.010 80)", maxWidth: "520px", lineHeight: "1.7", ...heroSubtextStyle(heroStarted) }}
           >
             From formation to funding, bookkeeping to credit repair — we handle the financial infrastructure of your business so you can focus on running it.
           </p>
