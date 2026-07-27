@@ -111,7 +111,7 @@ export default function Home() {
         <div
           className="absolute inset-0"
           style={{
-            backgroundImage: `url('/manus-storage/617east-hero-main_75e75405.jpg')`,
+            backgroundImage: `url('/manus-storage/617east-hero-v2_1ca341a7.jpg')`,
             backgroundSize: "cover",
             backgroundPosition: "center right",
             backgroundRepeat: "no-repeat",
