@@ -180,7 +180,7 @@ export default function Layout({ children, pageSchema, title, description, canon
             <Link href="/" className="flex items-center gap-3 group" aria-label="617 East Trust — Home">
               {/* Full wordmark logo — skyline + pine cone */}
               <img
-                src="/manus-storage/logo-v2-dark-bg_909154b9.png"
+                src="/manus-storage/logo-final-B-transparent_bbde9f45.png"
                 alt="617 East Trust"
                 height={52}
                 style={{ height: "52px", width: "auto", objectFit: "contain" }}
@@ -291,7 +291,7 @@ export default function Layout({ children, pageSchema, title, description, canon
             <div className="md:col-span-1">
               <div className="flex items-center gap-3 mb-5">
                 <img
-                  src="/manus-storage/logo-v1-dark-bg_5d10085c.png"
+                  src="/manus-storage/logo-final-B-transparent_bbde9f45.png"
                   alt="617 East Trust"
                   width={52}
                   height={52}

@@ -6,41 +6,8 @@
 
 import Layout from "@/components/Layout";
 import { useReveal } from "@/hooks/useReveal";
-
-const BLOG_POSTS = [
-  {
-    slug: "llc-formation-north-carolina-guide",
-    title: "How to Form an LLC in North Carolina (2026 Step-by-Step Guide)",
-    excerpt: "Everything you need to know about forming an LLC in North Carolina — from choosing a name to filing Articles of Organization, getting your EIN, and staying compliant.",
-    category: "Business Formation",
-    date: "Coming soon",
-    readTime: "12 min read",
-  },
-  {
-    slug: "sba-7a-vs-504-north-carolina",
-    title: "SBA 7(a) vs 504 Loans in NC: Which Fits Your Business?",
-    excerpt: "The two most common SBA loan programs explained — what they're for, how they differ, and how to know which one your business should pursue.",
-    category: "SBA Loans",
-    date: "Coming soon",
-    readTime: "10 min read",
-  },
-  {
-    slug: "credit-repair-timeline-nc",
-    title: "Credit Repair Timeline in NC: What to Expect Month by Month",
-    excerpt: "A realistic, month-by-month breakdown of what happens during credit repair — what changes, what doesn't, and what you need to do on your end.",
-    category: "Credit Repair",
-    date: "Coming soon",
-    readTime: "8 min read",
-  },
-  {
-    slug: "fractional-cfo-vs-bookkeeper-nc",
-    title: "Fractional CFO vs Bookkeeper: When to Hire Which (NC Guide)",
-    excerpt: "The difference between a bookkeeper, accountant, and CFO — and how to know when your business has outgrown its current financial support.",
-    category: "Financial Advisory",
-    date: "Coming soon",
-    readTime: "9 min read",
-  },
-];
+import { BLOG_POSTS } from "@/data/blog";
+import { Link } from "wouter";
 
 export default function Blog() {
   const heroRef = useReveal(0.1);
@@ -86,9 +53,10 @@ export default function Blog() {
         <div className="container">
           <div className="grid md:grid-cols-2 gap-px" style={{ background: "oklch(0.22 0.008 240)" }}>
             {BLOG_POSTS.map((post, i) => (
-              <div
+              <Link
                 key={post.slug}
-                className={`p-10 reveal reveal-delay-${Math.min(i + 1, 4)}`}
+                href={`/blog/${post.slug}`}
+                className={`p-10 block reveal reveal-delay-${Math.min(i + 1, 4)} service-card`}
                 style={{ background: "oklch(0.13 0.009 240)" }}
               >
                 <div className="flex items-center justify-between mb-4">
@@ -99,7 +67,7 @@ export default function Blog() {
                     {post.category.toUpperCase()}
                   </span>
                   <span className="text-xs" style={{ color: "oklch(0.40 0.006 80)" }}>
-                    {post.date}
+                    {post.publishDate}
                   </span>
                 </div>
                 <h2
@@ -109,15 +77,14 @@ export default function Blog() {
                   {post.title}
                 </h2>
                 <p className="text-sm leading-relaxed mb-5" style={{ color: "oklch(0.52 0.008 80)" }}>
-                  {post.excerpt}
+                  {post.intro.slice(0, 160)}…
                 </p>
-                <span
-                  className="text-xs font-mono"
-                  style={{ color: "oklch(0.40 0.006 80)" }}
-                >
-                  {post.readTime} · Publishing soon
-                </span>
-              </div>
+                <div className="flex items-center gap-2" style={{ color: "oklch(0.78 0.12 80)" }}>
+                  <span className="text-xs font-medium">{post.readTime}</span>
+                  <span className="text-xs" style={{ color: "oklch(0.40 0.006 80)" }}>·</span>
+                  <span className="text-xs font-medium">Read article →</span>
+                </div>
+              </Link>
             ))}
           </div>
         </div>
