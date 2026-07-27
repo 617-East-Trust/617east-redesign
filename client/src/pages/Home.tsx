@@ -106,6 +106,7 @@ export default function Home() {
   const heroSectionRef = useRef<HTMLElement>(null);
   const heroBgRef = useRef<HTMLDivElement>(null);
   const heroContentRef = useRef<HTMLDivElement>(null);
+  const scrollHintRef = useRef<HTMLButtonElement>(null);
 
   // Entrance sequence on load (Concept 01)
   useEffect(() => {
@@ -139,6 +140,12 @@ export default function Home() {
         // Content: drifts up faster + fades as user scrolls away
         content.style.transform = `translateY(${p * -40}px)`;
         content.style.opacity = String(1 - p * 1.4);
+        // Scroll hint: dissolves quickly once the user starts scrolling
+        const hint = scrollHintRef.current;
+        if (hint) {
+          hint.style.opacity = p > 0.02 ? "0" : "";
+          hint.style.pointerEvents = p > 0.02 ? "none" : "";
+        }
       });
     };
     window.addEventListener("scroll", onScroll, { passive: true });
@@ -304,17 +311,43 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Scroll indicator */}
-        <div
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
-          style={{ color: "oklch(0.40 0.008 80)" }}
+        {/* Animated scroll-down arrow */}
+        <button
+          ref={scrollHintRef}
+          onClick={() => {
+            const section = heroSectionRef.current;
+            if (section) {
+              window.scrollTo({ top: section.offsetHeight - 60, behavior: "smooth" });
+            }
+          }}
+          aria-label="Scroll down to explore"
+          className="absolute bottom-7 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-10"
+          style={{
+            background: "transparent",
+            border: "none",
+            color: "oklch(0.52 0.010 80)",
+            opacity: heroStarted ? 1 : 0,
+            transition: "opacity 900ms ease 2800ms",
+          }}
         >
-          <span className="text-xs tracking-widest" style={{ fontSize: "0.6rem", letterSpacing: "0.2em" }}>SCROLL</span>
-          <div
-            className="w-px h-8 animate-pulse"
-            style={{ background: "linear-gradient(to bottom, oklch(0.78 0.12 80), transparent)" }}
-          />
-        </div>
+          <span
+            className="text-xs tracking-widest"
+            style={{ fontSize: "0.6rem", letterSpacing: "0.24em" }}
+          >
+            SCROLL
+          </span>
+          <span className="scroll-arrow-bob flex flex-col items-center">
+            <svg width="18" height="26" viewBox="0 0 18 26" fill="none" aria-hidden="true">
+              <path
+                d="M9 2v18M3 15l6 6 6-6"
+                stroke="oklch(0.78 0.12 80)"
+                strokeWidth="1.4"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </span>
+        </button>
       </section>
 
       {/* ── PHILOSOPHY ──────────────────────────────────────── */}

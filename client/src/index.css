@@ -410,3 +410,19 @@
 .hero-pulse-once {
   animation: pulse-once 1s cubic-bezier(0.23, 1, 0.32, 1) 400ms 1;
 }
+
+/* Animated scroll-down arrow — gentle bob */
+@keyframes scroll-arrow-bob {
+  0%, 100% { transform: translateY(0); opacity: 0.85; }
+  50% { transform: translateY(7px); opacity: 1; }
+}
+
+.scroll-arrow-bob {
+  animation: scroll-arrow-bob 2.2s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-arrow-bob {
+    animation: none;
+  }
+}
