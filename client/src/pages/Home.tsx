@@ -8,6 +8,7 @@
 import Layout from "@/components/Layout";
 import { useReveal } from "@/hooks/useReveal";
 import { Link } from "wouter";
+import { useEffect, useRef, useState } from "react";
 
 const HOME_SCHEMA = {
   "@context": "https://schema.org",
@@ -100,21 +101,75 @@ export default function Home() {
   const processRef = useReveal(0.1);
   const ctaRef = useReveal(0.15);
 
+  // ── Hybrid hero animation (Concepts 01 + 03) ──
+  const [heroStarted, setHeroStarted] = useState(false);
+  const heroSectionRef = useRef<HTMLElement>(null);
+  const heroBgRef = useRef<HTMLDivElement>(null);
+  const heroContentRef = useRef<HTMLDivElement>(null);
+
+  // Entrance sequence on load (Concept 01)
+  useEffect(() => {
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduced) {
+      setHeroStarted(true);
+      return;
+    }
+    const t = setTimeout(() => setHeroStarted(true), 120);
+    return () => clearTimeout(t);
+  }, []);
+
+  // Scroll-linked parallax + fade (Concept 03)
+  useEffect(() => {
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduced) return;
+    let raf = 0;
+    const onScroll = () => {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => {
+        const section = heroSectionRef.current;
+        const bg = heroBgRef.current;
+        const content = heroContentRef.current;
+        if (!section || !bg || !content) return;
+        const rect = section.getBoundingClientRect();
+        const h = rect.height || 1;
+        // progress: 0 when hero top at viewport top, 1 when hero fully scrolled past
+        const p = Math.min(Math.max(-rect.top / h, 0), 1);
+        // Background parallax: drifts up slower than scroll + slight zoom continues
+        bg.style.transform = `translateY(${p * 60}px) scale(${1.0 + p * 0.04})`;
+        // Content: drifts up faster + fades as user scrolls away
+        content.style.transform = `translateY(${p * -40}px)`;
+        content.style.opacity = String(1 - p * 1.4);
+      });
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      cancelAnimationFrame(raf);
+    };
+  }, []);
+
+  const heroWords = ["The", "most", "important", "thing", "we", "do", "is", "tell", "you"];
+
   return (
     <Layout pageSchema={HOME_SCHEMA}>
       {/* ── HERO ────────────────────────────────────────────── */}
       <section
+        ref={heroSectionRef}
         className="relative min-h-screen flex items-center overflow-hidden"
         style={{ paddingTop: "72px" }}
       >
         {/* Background image */}
         <div
+          ref={heroBgRef}
           className="absolute inset-0"
           style={{
             backgroundImage: `url('/manus-storage/617east-hero-v2_1ca341a7.jpg')`,
             backgroundSize: "cover",
             backgroundPosition: "center right",
             backgroundRepeat: "no-repeat",
+            animation: heroStarted ? "kenburns-drift 24s cubic-bezier(0.23, 1, 0.32, 1) forwards" : "none",
+            willChange: "transform",
           }}
         />
         {/* Gradient overlay — left-heavy for text legibility */}
@@ -125,17 +180,29 @@ export default function Home() {
           }}
         />
 
-        <div className="container relative z-10 py-24">
+        <div className="container relative z-10 py-24" ref={heroContentRef} style={{ willChange: "transform, opacity" }}>
           <div className="max-w-2xl" ref={heroRef as React.RefObject<HTMLDivElement>}>
             {/* Section label */}
-            <span className="section-label reveal">
+            <span
+              className="section-label"
+              style={{
+                opacity: heroStarted ? 1 : 0,
+                transition: "opacity 600ms ease 200ms",
+              }}
+            >
               Business Formation & Financial Advisory — North Carolina
             </span>
-            <div className="gold-rule reveal reveal-delay-1" />
+            <div
+              className="gold-rule"
+              style={{
+                width: heroStarted ? undefined : "0px",
+                transition: "width 600ms cubic-bezier(0.23,1,0.32,1) 400ms",
+              }}
+            />
 
             {/* Hero headline — display font */}
             <h1
-              className="font-display reveal reveal-delay-1"
+              className="font-display"
               style={{
                 fontSize: "clamp(2.8rem, 6vw, 5rem)",
                 lineHeight: "1.08",
@@ -145,21 +212,53 @@ export default function Home() {
                 letterSpacing: "-0.01em",
               }}
             >
-              The most important thing we do is tell you{" "}
-              <em style={{ color: "oklch(0.78 0.12 80)", fontStyle: "italic" }}>
+              {heroWords.map((w, i) => (
+                <span
+                  key={i}
+                  className="inline-block mr-[0.26em]"
+                  style={{
+                    opacity: heroStarted ? 1 : 0,
+                    transform: heroStarted ? "translateY(0)" : "translateY(16px)",
+                    transition: `opacity 550ms cubic-bezier(0.23,1,0.32,1) ${450 + i * 65}ms, transform 550ms cubic-bezier(0.23,1,0.32,1) ${450 + i * 65}ms`,
+                  }}
+                >
+                  {w}
+                </span>
+              ))}
+              <em
+                className="block mt-1"
+                style={{
+                  color: "oklch(0.78 0.12 80)",
+                  fontStyle: "italic",
+                  opacity: heroStarted ? 1 : 0,
+                  transform: heroStarted ? "translateY(0)" : "translateY(20px)",
+                  transition: "opacity 750ms cubic-bezier(0.23,1,0.32,1) 1300ms, transform 750ms cubic-bezier(0.23,1,0.32,1) 1300ms",
+                }}
+              >
                 what not to do.
               </em>
             </h1>
 
             <p
-              className="text-lg leading-relaxed reveal reveal-delay-2"
-              style={{ color: "oklch(0.72 0.008 80)", maxWidth: "520px", marginBottom: "2.5rem" }}
+              className="text-lg leading-relaxed"
+              style={{
+                color: "oklch(0.72 0.008 80)", maxWidth: "520px", marginBottom: "2.5rem",
+                opacity: heroStarted ? 1 : 0,
+                transition: "opacity 800ms ease 1750ms",
+              }}
             >
               617 East Trust is a North Carolina advisory firm for founders and individuals who want a partner — not a processor. We handle LLC formation, SBA loans, credit repair, bookkeeping, and more.
             </p>
 
             {/* CTAs */}
-            <div className="flex flex-wrap gap-4 reveal reveal-delay-3">
+            <div
+              className="flex flex-wrap gap-4"
+              style={{
+                opacity: heroStarted ? 1 : 0,
+                transform: heroStarted ? "scale(1)" : "scale(0.96)",
+                transition: "opacity 500ms cubic-bezier(0.23,1,0.32,1) 2050ms, transform 500ms cubic-bezier(0.23,1,0.32,1) 2050ms",
+              }}
+            >
               <a
                 href="/contact"
                 className="btn-gold px-7 py-3.5 rounded-sm text-sm inline-flex items-center gap-2"
@@ -182,11 +281,19 @@ export default function Home() {
 
             {/* Trust indicators */}
             <div
-              className="flex flex-wrap gap-6 mt-10 reveal reveal-delay-4"
+              className="flex flex-wrap gap-6 mt-10"
               style={{ borderTop: "1px solid oklch(0.22 0.008 240)", paddingTop: "1.5rem" }}
             >
-              {["NC Registered", "Banking Background", "No Automated Filers", "Real Advisor"].map((item) => (
-                <div key={item} className="flex items-center gap-2">
+              {["NC Registered", "Banking Background", "No Automated Filers", "Real Advisor"].map((item, i) => (
+                <div
+                  key={item}
+                  className="flex items-center gap-2"
+                  style={{
+                    opacity: heroStarted ? 1 : 0,
+                    transform: heroStarted ? "translateX(0)" : "translateX(-14px)",
+                    transition: `opacity 500ms cubic-bezier(0.23,1,0.32,1) ${2300 + i * 90}ms, transform 500ms cubic-bezier(0.23,1,0.32,1) ${2300 + i * 90}ms`,
+                  }}
+                >
                   <span style={{ color: "oklch(0.78 0.12 80)", fontSize: "0.7rem" }}>◆</span>
                   <span className="text-xs tracking-wide" style={{ color: "oklch(0.58 0.010 80)" }}>
                     {item}
