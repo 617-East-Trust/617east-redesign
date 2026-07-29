@@ -49,7 +49,7 @@ export default function About() {
       <section
         className="relative pt-32 pb-20 overflow-hidden"
         style={{
-          backgroundImage: `url('/manus-storage/617east-about-hero_58b6f866.jpg')`,
+          backgroundImage: `url('/images/617east-about-hero_58b6f866.jpg')`,
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
@@ -136,7 +136,7 @@ export default function About() {
                 />
                 <div className="relative" style={{ zIndex: 1 }}>
                   <img
-                    src="/manus-storage/lamont-legrand-founder_d88b26c8.jpg"
+                    src="/images/lamont-legrand-founder_d88b26c8.jpg"
                     alt="Lamont Legrand, Founder of 617 East Trust — commercial banking and SBA lending professional"
                     className="w-full object-cover"
                     style={{

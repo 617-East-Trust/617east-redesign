@@ -38,7 +38,7 @@ export default function Services() {
       <section
         className="relative pt-32 pb-20 overflow-hidden"
         style={{
-          backgroundImage: `url('/manus-storage/617east-services-bg_e2c7bd98.jpg')`,
+          backgroundImage: `url('/images/617east-services-bg_e2c7bd98.jpg')`,
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}

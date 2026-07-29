@@ -127,7 +127,7 @@ export default function BlogPost() {
           {/* Author */}
           <div className="flex items-center gap-4 mt-8 pt-8 reveal reveal-delay-3" style={{ borderTop: "1px solid oklch(0.18 0.008 240)" }}>
             <img
-              src="/manus-storage/lamont-legrand-founder_d88b26c8.jpg"
+              src="/images/lamont-legrand-founder_d88b26c8.jpg"
               alt="Lamont Legrand"
               className="rounded-full object-cover flex-shrink-0"
               style={{ width: "44px", height: "44px", objectPosition: "top center" }}

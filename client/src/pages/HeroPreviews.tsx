@@ -6,8 +6,8 @@
 
 import { useEffect, useRef, useState } from "react";
 
-const HERO_IMG = "/manus-storage/617east-hero-v2_1ca341a7.jpg";
-const LOGO = "/manus-storage/logo-final-B-transparent_bbde9f45.png";
+const HERO_IMG = "/images/617east-hero-v2_1ca341a7.jpg";
+const LOGO = "/images/logo-final-B-transparent_bbde9f45.png";
 
 /* ============================================================
    SHARED PIECES

@@ -96,7 +96,7 @@ export default function Contact() {
       <section
         className="relative pt-32 pb-20 overflow-hidden"
         style={{
-          backgroundImage: `url('/manus-storage/617east-contact-bg_0da87a4e.jpg')`,
+          backgroundImage: `url('/images/617east-contact-bg_0da87a4e.jpg')`,
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}

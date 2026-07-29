@@ -171,7 +171,7 @@ export default function Home() {
           ref={heroBgRef}
           className="absolute inset-0"
           style={{
-            backgroundImage: `url('/manus-storage/617east-hero-v2_1ca341a7.jpg')`,
+            backgroundImage: `url('/images/617east-hero-v2_1ca341a7.jpg')`,
             backgroundSize: "cover",
             backgroundPosition: "center right",
             backgroundRepeat: "no-repeat",
@@ -396,7 +396,7 @@ export default function Home() {
                 />
                 <div className="relative" style={{ zIndex: 1 }}>
                   <img
-                    src="/manus-storage/lamont-legrand-founder_d88b26c8.jpg"
+                    src="/images/lamont-legrand-founder_d88b26c8.jpg"
                     alt="Lamont Legrand, Founder of 617 East Trust — commercial banking and SBA lending professional"
                     className="w-full object-cover"
                     style={{ maxHeight: "320px", objectPosition: "top center", filter: "contrast(1.03) brightness(0.96)" }}

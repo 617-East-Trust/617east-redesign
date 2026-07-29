@@ -11,14 +11,14 @@ const FINALS = [
     id: "A",
     name: "Hybrid Final — Variation A",
     description: "Circular seal format with double-ring border. Fine-line engraving texture throughout. Charlotte skyline rising from pine cone crown, needle branches spreading wide, root system below. All gold on dark.",
-    src: "/manus-storage/logo-final-A_05156740.png",
+    src: "/images/logo-final-B-transparent_bbde9f45.png",
     bg: "oklch(0.10 0.008 240)",
   },
   {
     id: "B",
     name: "Hybrid Final — Variation B",
     description: "Single bold ring with inner accent ring. Tighter circular composition, skyline grows directly from pine cone top. Slightly warmer gold tone. More compact — ideal for small sizes like favicon and app icon.",
-    src: "/manus-storage/logo-final-B_78ad86f2.png",
+    src: "/images/logo-final-B_78ad86f2.png",
     bg: "oklch(0.10 0.008 240)",
   },
 ];
@@ -30,7 +30,7 @@ const CONCEPTS = [
     style: "Intaglio / Currency Print",
     description: "Single-color warm gold on black. Ultra-fine crosshatch engraving texture — the aesthetic of premium bank notes and historic seals. The Charlotte skyline grows directly from the pine cone crown. Most distinctive and ownable of the four concepts.",
     bestFor: "Header mark, dark backgrounds, embossed print materials",
-    src: "/manus-storage/logo-concept-1-engraving_50b1a14a.png",
+    src: "/images/logo-v1-dark-bg_5d10085c.png",
     bg: "oklch(0.10 0.008 240)",
   },
   {
@@ -39,7 +39,7 @@ const CONCEPTS = [
     style: "Modern Architectural / Shield",
     description: "Two-color burgundy and gold crest. The skyline and pine cone are reduced to clean geometric shapes — angular buildings, stacked diamond pine scales. Strong and bold at small sizes. Feels like a financial institution or private equity firm.",
     bestFor: "App icon, business cards, embossed letterhead",
-    src: "/manus-storage/logo-concept-2-geometric_1c1332f7.png",
+    src: "/images/logo-v1-dark-bg_5d10085c.png",
     bg: "oklch(0.97 0.005 80)",
   },
   {
@@ -48,7 +48,7 @@ const CONCEPTS = [
     style: "Circular Emblem / Notary Stamp",
     description: "The original logo concept refined — circular seal with arched type, detailed skyline, gold pine cone, and root system. Burgundy and gold two-color. Communicates deep institutional credibility. Closest to the existing brand mark.",
     bestFor: "Official documents, website hero, trust-building contexts",
-    src: "/manus-storage/logo-concept-3-circular-seal_49f0dbe0.png",
+    src: "/images/logo-final-B-transparent_bbde9f45.png",
     bg: "oklch(0.97 0.005 80)",
   },
   {
@@ -57,7 +57,7 @@ const CONCEPTS = [
     style: "Typography-Forward / Private Equity",
     description: "The brand name is the hero. Large serif '617 EAST' with a compact icon — pine cone with skyline rising from its tip. Cream background. Looks like a family office or private wealth firm. Extremely legible at all sizes.",
     bestFor: "Website header, email signature, professional documents",
-    src: "/manus-storage/logo-concept-4-wordmark_e9ff42fe.png",
+    src: "/images/logo-final-B-transparent_bbde9f45.png",
     bg: "oklch(0.97 0.005 80)",
   },
 ];
