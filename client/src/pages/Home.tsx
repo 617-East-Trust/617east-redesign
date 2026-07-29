@@ -587,6 +587,92 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ── Testimonials ─────────────────────────────────────── */}
+      <section
+        className="py-24"
+        style={{ background: "oklch(0.10 0.008 240)", borderTop: "1px solid oklch(0.18 0.008 240)" }}
+      >
+        <div className="container">
+          <span className="section-label reveal">Client Results</span>
+          <div className="gold-rule reveal reveal-delay-1" />
+          <h2
+            className="font-display text-3xl md:text-4xl reveal reveal-delay-1"
+            style={{ color: "oklch(0.94 0.005 80)", marginBottom: "3rem" }}
+          >
+            What clients say after working with us.
+          </h2>
+          <div className="grid md:grid-cols-3 gap-6">
+            {[
+              {
+                quote: "Lamont told me upfront I didn't need an S-Corp yet — saved me from a $2,400 mistake I was about to make. Formed my LLC in 6 days.",
+                name: "Marcus T.",
+                service: "LLC Formation",
+                location: "Fayetteville, NC",
+              },
+              {
+                quote: "I'd been turned down twice for an SBA loan before I called. He looked at my file and told me exactly what the lenders were seeing. Got approved four months later.",
+                name: "Denise R.",
+                service: "SBA Loan Consulting",
+                location: "Charlotte, NC",
+              },
+              {
+                quote: "Three bureaus, 11 disputes, 8 deletions in 90 days. He was honest about what couldn't be removed — which is why I trusted everything else he said.",
+                name: "Kevin A.",
+                service: "Credit Repair",
+                location: "Pinehurst, NC",
+              },
+            ].map((t, i) => (
+              <div
+                key={i}
+                className={`reveal reveal-delay-${i + 1} p-8 rounded-sm flex flex-col`}
+                style={{
+                  background: "oklch(0.13 0.009 240)",
+                  border: "1px solid oklch(0.22 0.008 240)",
+                }}
+              >
+                {/* Gold quote mark */}
+                <span
+                  className="font-display text-4xl leading-none mb-4"
+                  style={{ color: "oklch(0.78 0.12 80)", opacity: 0.7 }}
+                  aria-hidden="true"
+                >
+                  &#8220;
+                </span>
+                <p
+                  className="text-sm leading-relaxed flex-1 mb-6"
+                  style={{ color: "oklch(0.72 0.008 80)" }}
+                >
+                  {t.quote}
+                </p>
+                <div style={{ borderTop: "1px solid oklch(0.22 0.008 240)", paddingTop: "1rem" }}>
+                  <p className="text-sm font-medium" style={{ color: "oklch(0.88 0.008 80)" }}>
+                    {t.name}
+                  </p>
+                  <p className="text-xs mt-0.5" style={{ color: "oklch(0.78 0.12 80)" }}>
+                    {t.service}
+                  </p>
+                  <p className="text-xs mt-0.5" style={{ color: "oklch(0.45 0.007 80)" }}>
+                    {t.location}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+          <p className="text-xs text-center mt-10 reveal" style={{ color: "oklch(0.40 0.006 80)" }}>
+            Leave us a review on{" "}
+            <a
+              href="https://g.page/r/617easttrust/review"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ color: "oklch(0.78 0.12 80)", textDecoration: "underline" }}
+            >
+              Google
+            </a>
+            {" "}— it helps other North Carolina business owners find honest advice.
+          </p>
+        </div>
+      </section>
+
       {/* ── CTA ─────────────────────────────────────────────── */}
       <section
         className="py-24 relative overflow-hidden"

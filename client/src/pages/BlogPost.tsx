@@ -59,6 +59,21 @@ export default function BlogPost() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
+      {/* BreadcrumbList schema */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://617east.com/" },
+              { "@type": "ListItem", "position": 2, "name": "Resources", "item": "https://617east.com/blog" },
+              { "@type": "ListItem", "position": 3, "name": post.title, "item": post.canonical },
+            ]
+          })
+        }}
+      />
 
       {/* Hero */}
       <section
@@ -138,27 +153,64 @@ export default function BlogPost() {
             {/* Main content */}
             <article className="md:col-span-3">
               {post.sections.map((section, i) => (
-                <div
-                  key={i}
-                  className={`mb-12 reveal reveal-delay-${Math.min(i + 1, 4)}`}
-                  style={{ borderTop: i > 0 ? "1px solid oklch(0.18 0.008 240)" : "none", paddingTop: i > 0 ? "2.5rem" : 0 }}
-                >
-                  <h2
-                    className="text-xl font-semibold mb-4"
-                    style={{ color: "oklch(0.92 0.006 80)", lineHeight: "1.3" }}
+                <>
+                  <div
+                    key={i}
+                    className={`mb-12 reveal reveal-delay-${Math.min(i + 1, 4)}`}
+                    style={{ borderTop: i > 0 ? "1px solid oklch(0.18 0.008 240)" : "none", paddingTop: i > 0 ? "2.5rem" : 0 }}
                   >
-                    {section.heading}
-                  </h2>
-                  {section.body.split("\n\n").map((para, j) => (
-                    <p
-                      key={j}
-                      className="text-base leading-relaxed mb-4"
-                      style={{ color: "oklch(0.65 0.010 80)", lineHeight: "1.85" }}
+                    <h2
+                      className="text-xl font-semibold mb-4"
+                      style={{ color: "oklch(0.92 0.006 80)", lineHeight: "1.3" }}
                     >
-                      {para}
-                    </p>
-                  ))}
-                </div>
+                      {section.heading}
+                    </h2>
+                    {section.body.split("\n\n").map((para, j) => (
+                      <p
+                        key={j}
+                        className="text-base leading-relaxed mb-4"
+                        style={{ color: "oklch(0.65 0.010 80)", lineHeight: "1.85" }}
+                      >
+                        {para}
+                      </p>
+                    ))}
+                  </div>
+                  {/* Inline mid-article CTA — renders after the halfway section */}
+                  {i === Math.floor(post.sections.length / 2) - 1 && (
+                    <div
+                      className="my-10 p-6 rounded-sm reveal"
+                      style={{
+                        background: "oklch(0.10 0.008 240)",
+                        border: "1px solid oklch(0.28 0.010 80 / 0.5)",
+                      }}
+                    >
+                      <p
+                        className="text-sm font-medium mb-3"
+                        style={{ color: "oklch(0.88 0.008 80)" }}
+                      >
+                        Have questions about your specific situation?
+                      </p>
+                      <p className="text-sm leading-relaxed mb-4" style={{ color: "oklch(0.58 0.010 80)" }}>
+                        {post.ctaBody}
+                      </p>
+                      <div className="flex flex-wrap gap-3">
+                        <a
+                          href="/contact"
+                          className="btn-gold px-5 py-2.5 rounded-sm text-sm inline-flex items-center gap-2"
+                        >
+                          Book Free Consultation
+                        </a>
+                        <a
+                          href="tel:9103151800"
+                          className="text-sm"
+                          style={{ color: "oklch(0.78 0.12 80)", lineHeight: "2.5rem" }}
+                        >
+                          or call (910) 315-1800
+                        </a>
+                      </div>
+                    </div>
+                  )}
+                </>
               ))}
 
               {/* FAQ */}

@@ -36,6 +36,21 @@ export default function ServiceDetail() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
+      {/* BreadcrumbList schema */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://617east.com/" },
+              { "@type": "ListItem", "position": 2, "name": "Services", "item": "https://617east.com/services" },
+              { "@type": "ListItem", "position": 3, "name": service.title, "item": service.canonical },
+            ]
+          })
+        }}
+      />
 
       {/* Hero */}
       <section
@@ -180,6 +195,66 @@ export default function ServiceDetail() {
           </div>
         </div>
       </section>
+
+      {/* Why Not LegalZoom? — objection handling for LLC formation */}
+      {service.slug === "llc-formation-north-carolina" && (
+        <section
+          className="py-16"
+          style={{ background: "oklch(0.13 0.009 240)", borderTop: "1px solid oklch(0.22 0.008 240)" }}
+        >
+          <div className="container max-w-3xl">
+            <span className="section-label">The Honest Comparison</span>
+            <div className="gold-rule" />
+            <h2
+              className="font-display text-2xl mb-4"
+              style={{ color: "oklch(0.94 0.005 80)" }}
+            >
+              Why not just use LegalZoom?
+            </h2>
+            <p className="text-sm leading-relaxed mb-8" style={{ color: "oklch(0.65 0.010 80)" }}>
+              LegalZoom is a legitimate service. If you know exactly what you need, have no questions, and
+              want the cheapest possible filing, it may be the right choice. Here is the honest comparison:
+            </p>
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm" style={{ borderCollapse: "collapse" }}>
+                <thead>
+                  <tr style={{ borderBottom: "1px solid oklch(0.28 0.010 80 / 0.4)" }}>
+                    <th className="text-left py-3 pr-6 text-xs font-mono" style={{ color: "oklch(0.45 0.007 80)", letterSpacing: "0.1em" }}>WHAT YOU GET</th>
+                    <th className="text-center py-3 px-4 text-xs font-mono" style={{ color: "oklch(0.45 0.007 80)", letterSpacing: "0.1em" }}>LEGALZOOM</th>
+                    <th className="text-center py-3 pl-4 text-xs font-mono" style={{ color: "oklch(0.78 0.12 80)", letterSpacing: "0.1em" }}>617 EAST TRUST</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {[
+                    ["Articles of Organization filed", "✓", "✓"],
+                    ["Registered agent (Year 1)", "✓ (then $299/yr)", "✓ (included)"],
+                    ["Custom operating agreement", "Upsell ($99+)", "✓ included"],
+                    ["EIN (Employer ID Number)", "Upsell ($79)", "✓ included"],
+                    ["BOI report (FinCEN)", "Not included", "✓ included"],
+                    ["Annual report reminder", "Not included", "✓ included"],
+                    ["Honest advice on structure", "Not included", "✓ included"],
+                    ["Human you can call with questions", "Call center", "Direct line"],
+                    ["Total first-year cost", "~$600–900+", "$499 total"],
+                  ].map(([feature, lz, et], i) => (
+                    <tr
+                      key={i}
+                      style={{ borderBottom: "1px solid oklch(0.18 0.008 240)" }}
+                    >
+                      <td className="py-3 pr-6" style={{ color: "oklch(0.72 0.008 80)" }}>{feature}</td>
+                      <td className="py-3 px-4 text-center text-xs" style={{ color: lz.startsWith("✓") ? "oklch(0.65 0.010 80)" : "oklch(0.42 0.006 80)" }}>{lz}</td>
+                      <td className="py-3 pl-4 text-center text-xs font-medium" style={{ color: "oklch(0.78 0.12 80)" }}>{et}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <p className="text-xs mt-6" style={{ color: "oklch(0.40 0.006 80)" }}>
+              LegalZoom pricing based on their published rates as of 2026. Prices subject to change.
+              We are not affiliated with LegalZoom.
+            </p>
+          </div>
+        </section>
+      )}
 
       {/* CROA Consumer Rights Disclosure — required by 15 U.S.C. § 1679b */}
       {service.slug === "credit-repair-north-carolina" && (

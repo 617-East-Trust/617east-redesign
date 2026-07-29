@@ -323,6 +323,66 @@ export default function Contact() {
           </div>
         </div>
       </section>
+
+      {/* Calendly scheduling widget */}
+      <section
+        className="py-20"
+        style={{ background: "oklch(0.13 0.009 240)", borderTop: "1px solid oklch(0.18 0.008 240)" }}
+      >
+        <div className="container max-w-4xl">
+          <span className="section-label reveal">Schedule Directly</span>
+          <div className="gold-rule reveal reveal-delay-1" />
+          <h2
+            className="font-display text-3xl reveal reveal-delay-1"
+            style={{ color: "oklch(0.94 0.005 80)", marginBottom: "0.75rem" }}
+          >
+            Prefer to pick a time now?
+          </h2>
+          <p className="text-sm reveal reveal-delay-2" style={{ color: "oklch(0.58 0.010 80)", marginBottom: "2rem" }}>
+            Book directly on the calendar below. Availability is limited to 5 new consultations per week.
+          </p>
+          {/* Calendly inline embed */}
+          <div
+            className="calendly-inline-widget reveal reveal-delay-2"
+            data-url="https://calendly.com/617easttrust/free-consultation?hide_gdpr_banner=1&background_color=1a1f2e&text_color=d4c9a8&primary_color=c9a84c"
+            style={{ minWidth: "320px", height: "700px" }}
+          />
+          <script
+            type="text/javascript"
+            src="https://assets.calendly.com/assets/external/widget.js"
+            async
+          />
+        </div>
+      </section>
+
+      {/* Sticky mobile CTA bar */}
+      <div
+        className="fixed bottom-0 left-0 right-0 md:hidden z-40 flex"
+        style={{
+          background: "oklch(0.10 0.008 240 / 0.97)",
+          borderTop: "1px solid oklch(0.22 0.008 240)",
+          backdropFilter: "blur(12px)",
+          padding: "0.75rem 1rem",
+          gap: "0.75rem",
+        }}
+      >
+        <a
+          href="/contact"
+          className="btn-gold flex-1 py-3 rounded-sm text-sm text-center font-medium"
+        >
+          Free Consultation
+        </a>
+        <a
+          href="tel:9103151800"
+          className="btn-ghost-gold px-4 py-3 rounded-sm text-sm flex items-center gap-2"
+          aria-label="Call 617 East Trust"
+        >
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M13.5 10.5c-.8-.8-1.8-1.3-2.8-1.3-.5 0-1 .1-1.4.4L8 10.9C6.6 9.8 5.2 8.4 4.1 7L5.4 5.7c.3-.4.4-.9.4-1.4 0-1-.5-2-1.3-2.8L3.3 1C3 .7 2.6.5 2.2.5 1.3.5.5 1.3.5 2.2c0 7.3 6 13.3 13.3 13.3.9 0 1.7-.8 1.7-1.7 0-.4-.2-.8-.5-1.1l-1.5-1.2z" fill="currentColor"/>
+          </svg>
+          Call
+        </a>
+      </div>
     </Layout>
   );
 }
