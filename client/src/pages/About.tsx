@@ -104,14 +104,25 @@ export default function About() {
 
               <div className="space-y-5 reveal reveal-delay-2">
                 <p className="text-base leading-relaxed" style={{ color: "oklch(0.62 0.010 80)" }}>
-                  Lamont Legrand spent years inside commercial banking and SBA lending — reviewing loan applications, assessing business viability, and watching founders make the same preventable mistakes over and over.
+                  Lamont Legrand spent years inside commercial banking and SBA lending — reviewing loan applications, underwriting business credit, assessing business viability, and watching founders make the same preventable mistakes over and over. He has sat on both sides of the table: as the person deciding whether to approve a loan, and as the advisor helping clients prepare to ask for one.
                 </p>
                 <p className="text-base leading-relaxed" style={{ color: "oklch(0.62 0.010 80)" }}>
-                  He founded 617 East Trust to be the advisor he wished those founders had access to before they walked into a bank. Someone who could tell them what the lender was actually looking for. What their credit profile said about them. Whether their LLC structure would hold up. What to fix before they applied.
+                  He founded 617 East Trust to be the advisor he wished those founders had access to before they walked into a bank. Someone who could tell them what the lender was actually looking for. What their credit profile said about them. Whether their LLC structure would hold up. What to fix before they applied — and when not to apply at all.
                 </p>
                 <p className="text-base leading-relaxed" style={{ color: "oklch(0.62 0.010 80)" }}>
-                  The name "617 East" reflects the directional nature of the work: we help you find your bearing, understand where you are, and navigate toward where you want to go — without wasting time on paths that won't get you there.
+                  The name "617 East" reflects the directional nature of the work: we help you find your bearing, understand where you are, and navigate toward where you want to go — without wasting time on paths that will not get you there.
                 </p>
+              </div>
+              <div className="mt-8 reveal reveal-delay-3">
+                <a
+                  href="/how-we-work"
+                  className="btn-ghost-gold px-6 py-3 rounded-sm text-sm inline-flex items-center gap-2"
+                >
+                  See how we work with clients
+                  <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                    <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </a>
               </div>
             </div>
 

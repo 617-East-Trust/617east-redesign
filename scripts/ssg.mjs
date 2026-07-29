@@ -146,6 +146,64 @@ const ROUTES = [
     canonical: "https://617east.com/blog/fractional-cfo-vs-bookkeeper-north-carolina",
     schema: { "@context": "https://schema.org", "@type": "Article", "headline": "Fractional CFO vs Bookkeeper NC", "author": { "@type": "Person", "name": "Lamont Legrand" }, "publisher": { "@type": "Organization", "name": "617 East Trust" } }
   },
+  // ── Wave 3: New blog posts ────────────────────────────────────────────────────
+  {
+    path: "/blog/north-carolina-llc-annual-report-guide",
+    title: "NC LLC Annual Report 2026: Due Date, Cost & How to File | 617 East Trust",
+    description: "North Carolina LLC annual report guide: $200 fee, April 15 deadline, and what happens if you miss it. How to file and how to avoid administrative dissolution.",
+    canonical: "https://617east.com/blog/north-carolina-llc-annual-report-guide",
+    schema: { "@context": "https://schema.org", "@type": "Article", "headline": "NC LLC Annual Report 2026: Complete Guide", "author": { "@type": "Person", "name": "Lamont Legrand" }, "publisher": { "@type": "Organization", "name": "617 East Trust" } }
+  },
+  {
+    path: "/blog/what-is-a-registered-agent-north-carolina",
+    title: "Registered Agent North Carolina: What It Is & Why You Need One | 617 East Trust",
+    description: "What is a registered agent in North Carolina? Requirements, costs, and whether you can be your own. Complete guide for NC LLC owners.",
+    canonical: "https://617east.com/blog/what-is-a-registered-agent-north-carolina",
+    schema: { "@context": "https://schema.org", "@type": "Article", "headline": "What Is a Registered Agent in North Carolina?", "author": { "@type": "Person", "name": "Lamont Legrand" }, "publisher": { "@type": "Organization", "name": "617 East Trust" } }
+  },
+  {
+    path: "/blog/sba-loan-requirements-north-carolina-2026",
+    title: "SBA Loan Requirements NC 2026: What Lenders Look For | 617 East Trust",
+    description: "SBA loan requirements in North Carolina for 2026. Credit score, time in business, revenue, collateral, and the real reasons applications get denied.",
+    canonical: "https://617east.com/blog/sba-loan-requirements-north-carolina-2026",
+    schema: { "@context": "https://schema.org", "@type": "Article", "headline": "SBA Loan Requirements in North Carolina (2026)", "author": { "@type": "Person", "name": "Lamont Legrand" }, "publisher": { "@type": "Organization", "name": "617 East Trust" } }
+  },
+  {
+    path: "/blog/how-to-build-business-credit-north-carolina",
+    title: "How to Build Business Credit NC: Step-by-Step Guide 2026 | 617 East Trust",
+    description: "How to build business credit in North Carolina. EIN, DUNS number, business bank account, net-30 accounts, and business credit cards. A practical step-by-step guide.",
+    canonical: "https://617east.com/blog/how-to-build-business-credit-north-carolina",
+    schema: { "@context": "https://schema.org", "@type": "Article", "headline": "How to Build Business Credit in North Carolina", "author": { "@type": "Person", "name": "Lamont Legrand" }, "publisher": { "@type": "Organization", "name": "617 East Trust" } }
+  },
+  {
+    path: "/blog/bookkeeping-mistakes-small-business-north-carolina",
+    title: "5 Bookkeeping Mistakes NC Small Businesses Make | 617 East Trust",
+    description: "The 5 most common bookkeeping mistakes North Carolina small businesses make — and how to fix them before they cost you an SBA loan or a tax penalty.",
+    canonical: "https://617east.com/blog/bookkeeping-mistakes-small-business-north-carolina",
+    schema: { "@context": "https://schema.org", "@type": "Article", "headline": "5 Bookkeeping Mistakes That Cost NC Small Businesses Money", "author": { "@type": "Person", "name": "Lamont Legrand" }, "publisher": { "@type": "Organization", "name": "617 East Trust" } }
+  },
+  {
+    path: "/blog/credit-score-needed-for-sba-loan-north-carolina",
+    title: "Credit Score for SBA Loan NC: Minimums & How to Improve | 617 East Trust",
+    description: "What credit score do you need for an SBA loan in North Carolina? Minimums by loan type, what else lenders look at, and how to improve your score before applying.",
+    canonical: "https://617east.com/blog/credit-score-needed-for-sba-loan-north-carolina",
+    schema: { "@context": "https://schema.org", "@type": "Article", "headline": "What Credit Score Do You Need for an SBA Loan in NC?", "author": { "@type": "Person", "name": "Lamont Legrand" }, "publisher": { "@type": "Organization", "name": "617 East Trust" } }
+  },
+  {
+    path: "/blog/north-carolina-business-formation-guide-2026",
+    title: "NC Business Formation 2026: LLC vs S-Corp vs C-Corp | 617 East Trust",
+    description: "North Carolina business formation guide for 2026. Compare LLC, S-Corp, and C-Corp structures. Costs, taxes, liability, and which is right for your situation.",
+    canonical: "https://617east.com/blog/north-carolina-business-formation-guide-2026",
+    schema: { "@context": "https://schema.org", "@type": "Article", "headline": "NC Business Formation Guide 2026: LLC vs S-Corp vs C-Corp", "author": { "@type": "Person", "name": "Lamont Legrand" }, "publisher": { "@type": "Organization", "name": "617 East Trust" } }
+  },
+  // ── Wave 3: New pages ─────────────────────────────────────────────────────────
+  {
+    path: "/how-we-work",
+    title: "How We Work | 617 East Trust — Our Process",
+    description: "How 617 East Trust works with North Carolina business owners. Free consultation, honest assessment, defined engagement, and ongoing partnership. No surprises.",
+    canonical: "https://617east.com/how-we-work",
+    schema: { "@context": "https://schema.org", "@type": "WebPage", "name": "How We Work — 617 East Trust", "url": "https://617east.com/how-we-work" }
+  },
   {
     path: "/privacy",
     title: "Privacy Policy | 617 East Trust",

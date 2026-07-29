@@ -357,6 +357,47 @@ export default function ServiceDetail() {
         </div>
       </section>
 
+      {/* Geo service area section */}
+      {service.geoSection && (
+        <section
+          className="py-16"
+          style={{ background: "oklch(0.10 0.008 240)", borderTop: "1px solid oklch(0.18 0.008 240)" }}
+        >
+          <div className="container max-w-3xl">
+            <span className="section-label">Service Area</span>
+            <div className="gold-rule" />
+            <h2
+              className="font-display text-2xl mb-4"
+              style={{ color: "oklch(0.94 0.005 80)" }}
+            >
+              {service.geoSection.heading}
+            </h2>
+            <p className="text-sm leading-relaxed mb-8" style={{ color: "oklch(0.65 0.010 80)" }}>
+              {service.geoSection.intro}
+            </p>
+            <div className="grid sm:grid-cols-2 gap-4">
+              {service.geoSection.cities.map((city, i) => (
+                <div
+                  key={i}
+                  className="p-5 rounded-sm"
+                  style={{
+                    background: "oklch(0.13 0.009 240)",
+                    border: "1px solid oklch(0.22 0.008 240)",
+                  }}
+                >
+                  <p className="text-sm font-medium mb-1" style={{ color: "oklch(0.88 0.008 80)" }}>
+                    {city.name}
+                  </p>
+                  <p className="text-xs leading-relaxed" style={{ color: "oklch(0.52 0.008 80)" }}>
+                    {city.note}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* Related services */}
       <section
         className="py-16"
