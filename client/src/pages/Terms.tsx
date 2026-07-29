@@ -47,6 +47,10 @@ export default function Terms() {
                 body: "Service fees are disclosed prior to engagement. Monthly retainer services (bookkeeping, credit repair, fractional CFO) are billed monthly and may be cancelled with 30 days written notice. Project-based fees are due per the agreed payment schedule."
               },
               {
+                title: "Credit Repair Services — Special Terms (CROA Compliance)",
+                body: "The following terms apply specifically to credit repair services and are required by the Credit Repair Organizations Act (CROA), 15 U.S.C. \u00a7 1679 et seq., and the North Carolina Credit Repair Services Act, N.C. Gen. Stat. \u00a7 66-220 et seq. (1) Right to Cancel: You have the right to cancel your credit repair service agreement within 3 business days of signing, without penalty or obligation. Cancellation must be submitted in writing to info@617east.com. (2) No Advance Fees: 617 East Trust will not charge or collect any payment for credit repair services before those services have been fully performed for the applicable billing period. Monthly fees are collected after services are delivered for that month, not in advance. (3) Written Contract: A written service agreement will be provided before any credit repair work begins. The agreement will describe the services to be performed, the total cost, the estimated timeline, and your full cancellation rights. (4) No Guaranteed Results: Under the CROA, no credit repair organization may guarantee the removal of accurate, timely information from your credit report. 617 East Trust makes no such guarantee."
+              },
+              {
                 title: "Confidentiality",
                 body: "We treat all client information as confidential and do not share it with third parties except as required to provide our services (e.g., filing with the NC Secretary of State) or as required by law."
               },

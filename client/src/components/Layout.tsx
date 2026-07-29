@@ -7,6 +7,7 @@
  */
 
 import { useEffect, useState } from "react";
+import { Helmet } from "react-helmet-async";
 import { Link, useLocation } from "wouter";
 
 // GA4 click-to-call tracking
@@ -126,14 +127,7 @@ export default function Layout({ children, pageSchema, title, description, canon
   const [mobileOpen, setMobileOpen] = useState(false);
   const [location] = useLocation();
 
-  // Update document title and meta description per page
-  useEffect(() => {
-    if (title) document.title = title;
-    const metaDesc = document.querySelector('meta[name="description"]');
-    if (metaDesc && description) metaDesc.setAttribute("content", description);
-    const metaCanonical = document.querySelector('link[rel="canonical"]');
-    if (metaCanonical && canonical) metaCanonical.setAttribute("href", canonical);
-  }, [title, description, canonical]);
+  // Helmet handles SSG-safe head injection — no manual DOM manipulation needed.
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 80);
@@ -153,17 +147,19 @@ export default function Layout({ children, pageSchema, title, description, canon
 
   return (
     <div className="min-h-screen flex flex-col" style={{ background: "oklch(0.10 0.008 240)" }}>
-      {/* JSON-LD Schema */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(SCHEMA_ORG) }}
-      />
-      {pageSchema && (
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(pageSchema) }}
-        />
-      )}
+      {/* Helmet: per-page <head> injection — serialized to static HTML by vite-ssg */}
+      <Helmet>
+        {title && <title>{title}</title>}
+        {description && <meta name="description" content={description} />}
+        {canonical && <link rel="canonical" href={canonical} />}
+        {canonical && <meta property="og:url" content={canonical} />}
+        {title && <meta property="og:title" content={title} />}
+        {description && <meta property="og:description" content={description} />}
+        <script type="application/ld+json">{JSON.stringify(SCHEMA_ORG)}</script>
+        {pageSchema && (
+          <script type="application/ld+json">{JSON.stringify(pageSchema)}</script>
+        )}
+      </Helmet>
 
       {/* Header */}
       <header

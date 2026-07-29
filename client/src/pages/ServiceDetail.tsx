@@ -181,6 +181,65 @@ export default function ServiceDetail() {
         </div>
       </section>
 
+      {/* CROA Consumer Rights Disclosure — required by 15 U.S.C. § 1679b */}
+      {service.slug === "credit-repair-north-carolina" && (
+        <section
+          className="py-16"
+          style={{ background: "oklch(0.10 0.008 240)", borderTop: "1px solid oklch(0.22 0.008 240)" }}
+        >
+          <div className="container max-w-3xl">
+            <span className="section-label">YOUR LEGAL RIGHTS</span>
+            <div className="gold-rule" />
+            <h2
+              className="font-display text-2xl mb-6"
+              style={{ color: "oklch(0.94 0.005 80)" }}
+            >
+              Consumer Credit File Rights Under State and Federal Law
+            </h2>
+            <div
+              className="p-6 rounded-sm text-sm leading-relaxed space-y-4"
+              style={{
+                background: "oklch(0.13 0.009 240)",
+                border: "1px solid oklch(0.28 0.010 80 / 0.5)",
+                color: "oklch(0.65 0.010 80)",
+              }}
+            >
+              <p>
+                You have a right to dispute inaccurate information in your credit report by contacting the credit
+                bureau directly, at no charge. You do not need to pay anyone to dispute information on your behalf.
+              </p>
+              <p>
+                Any credit repair company you hire must give you a copy of{" "}
+                <em>Consumer Credit File Rights Under State and Federal Law</em> before you sign a contract.
+                You are receiving this disclosure now, before any contract is signed, as required by federal law.
+              </p>
+              <p>
+                <strong style={{ color: "oklch(0.88 0.008 80)" }}>
+                  You have the right to cancel your contract with 617 East Trust for any reason within 3 business
+                  days from the date you signed it
+                </strong>{" "}
+                — without penalty or obligation. Cancellation must be submitted in writing to{" "}
+                <a href="mailto:info@617east.com" style={{ color: "oklch(0.78 0.12 80)" }}>info@617east.com</a>.
+              </p>
+              <p>
+                617 East Trust will not charge or collect any money from you before the promised services for that
+                billing period have been fully performed. Monthly fees are collected after services are delivered
+                for that month, not in advance.
+              </p>
+              <p>
+                617 East Trust will provide you with a written service agreement before any work begins. The
+                agreement will describe the services to be performed, the total cost, the estimated timeline, and
+                your full cancellation rights.
+              </p>
+              <p className="text-xs pt-2" style={{ color: "oklch(0.40 0.006 80)", borderTop: "1px solid oklch(0.22 0.008 240)" }}>
+                Disclosure provided pursuant to the Credit Repair Organizations Act, 15 U.S.C. § 1679 et seq.,
+                and the North Carolina Credit Repair Services Act, N.C. Gen. Stat. § 66-220 et seq.
+              </p>
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* FAQ */}
       <section
         className="py-20"

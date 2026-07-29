@@ -203,6 +203,27 @@ function vitePluginStorageProxy(): Plugin {
   };
 }
 
+// ─── All static routes for SSG pre-rendering ─────────────────────────────────
+export const SSG_ROUTES = [
+  "/",
+  "/services",
+  "/services/llc-formation-north-carolina",
+  "/services/sba-loans-north-carolina",
+  "/services/credit-repair-north-carolina",
+  "/services/bookkeeping-north-carolina",
+  "/services/fractional-cfo",
+  "/services/web-design-seo",
+  "/about",
+  "/contact",
+  "/blog",
+  "/blog/how-to-form-an-llc-in-north-carolina",
+  "/blog/sba-7a-vs-504-loans-north-carolina",
+  "/blog/credit-repair-timeline-north-carolina",
+  "/blog/fractional-cfo-vs-bookkeeper-north-carolina",
+  "/privacy",
+  "/terms",
+];
+
 const plugins = [react(), tailwindcss(), jsxLocPlugin(), vitePluginManusRuntime(), vitePluginManusDebugCollector(), vitePluginStorageProxy()];
 
 export default defineConfig({

@@ -47,8 +47,16 @@ export default function Privacy() {
                 body: "Information submitted through our contact form is transmitted to our internal systems via a secure webhook. This data is used solely to respond to your inquiry and is not shared with third parties."
               },
               {
-                title: "Analytics",
-                body: "We use privacy-respecting analytics to understand how visitors use our website. This data is aggregated and does not identify individual visitors."
+                title: "Analytics and Tracking",
+                body: "We use Google Analytics 4 (provided by Google LLC) and Microsoft Clarity (provided by Microsoft Corporation) to understand how visitors use this website. Google Analytics collects anonymized usage data including pages visited, time on site, and traffic sources. Microsoft Clarity records session replays and heatmaps to identify usability issues. Neither tool is used to identify individual visitors or to sell personal data. Analytics scripts are loaded only after you have provided cookie consent. You may opt out of Google Analytics at any time by visiting https://tools.google.com/dlpage/gaoptout. You may opt out of Microsoft Clarity by visiting https://privacy.microsoft.com."
+              },
+              {
+                title: "Cookies and Consent",
+                body: "This website uses cookies for analytics purposes only (Google Analytics and Microsoft Clarity). A consent banner is displayed on your first visit. If you decline, no analytics cookies are set and no tracking scripts are loaded. Your consent preference is stored in your browser's localStorage and expires when you clear your browser data. You may change your preference at any time by clearing your browser's localStorage for 617east.com."
+              },
+              {
+                title: "California Residents (CCPA)",
+                body: "If you are a California resident, you have the right to know what personal information we collect, the right to delete your personal information, and the right to opt out of the sale of personal information. 617 East Trust does not sell personal information. To exercise your rights under the California Consumer Privacy Act, contact us at info@617east.com."
               },
               {
                 title: "Data Retention",
