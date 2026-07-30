@@ -345,7 +345,25 @@ async function run() {
   }
 
   console.log(`\n🎉 SSG complete — ${count} routes pre-rendered.`);
-  console.log(`\nVerification:\n  curl -s http://localhost:3000/services/llc-formation-north-carolina | grep "<title>"`);
+
+  // ─── Sitemap generation ────────────────────────────────────────────────────────
+
+  const sitemapUrl = "https://617east.com";
+  const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${ROUTES.map(r => `  <url>
+    <loc>${r.canonical}</loc>
+    <changefreq>weekly</changefreq>
+    <priority>${r.path === "/" ? "1.0" : r.path.startsWith("/services/") || r.path.startsWith("/blog/") ? "0.8" : "0.6"}</priority>
+  </url>`).join("\n")}
+</urlset>`;
+
+  const sitemapPath = path.resolve(DIST, "sitemap.xml");
+  fs.writeFileSync(sitemapPath, sitemap, "utf-8");
+  const sitemapUrlCount = ROUTES.length;
+  console.log(`\n✅ sitemap.xml → ${sitemapPath} (${sitemapUrlCount} URLs)\n`);
+
+  console.log(`\nVerification:`);
 }
 
 run().catch((err) => {
