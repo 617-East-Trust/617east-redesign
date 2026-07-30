@@ -38,7 +38,7 @@ function CompassMark({ size = 28 }: { size?: number }) {
 function LogoMark({ size = 36 }: { size?: number }) {
   return (
     <img
-      src="/images/logo-v1-dark-bg_5d10085c.png"
+      src="/images/logo-seal.svg"
       alt=""
       aria-hidden="true"
       width={size}
@@ -176,7 +176,7 @@ export default function Layout({ children, pageSchema, title, description, canon
             <Link href="/" className="flex items-center gap-3 group" aria-label="617 East Trust — Home">
               {/* Full wordmark logo — skyline + pine cone */}
               <img
-                src="/images/logo-final-B-transparent_bbde9f45.png"
+                src="/images/logo-wordmark.svg"
                 alt="617 East Trust"
                 height={52}
                 style={{ height: "52px", width: "auto", objectFit: "contain" }}
@@ -287,7 +287,7 @@ export default function Layout({ children, pageSchema, title, description, canon
             <div className="md:col-span-1">
               <div className="flex items-center gap-3 mb-5">
                 <img
-                  src="/images/logo-final-B-transparent_bbde9f45.png"
+                  src="/images/logo-seal.svg"
                   alt="617 East Trust"
                   width={52}
                   height={52}
