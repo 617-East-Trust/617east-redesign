@@ -13,6 +13,9 @@ const ANALYTICS_ENDPOINT = process.env.ANALYTICS_ENDPOINT || "";
 const ANALYTICS_WEBSITE_ID = process.env.ANALYTICS_WEBSITE_ID || "";
 const ANALYTICS_ENABLED = !!(ANALYTICS_ENDPOINT && ANALYTICS_WEBSITE_ID);
 
+// n8n webhook URL for contact form submissions
+const N8N_WEBHOOK_URL = process.env.N8N_WEBHOOK_URL || "https://n8n.617east.com/webhook/617east-contact";
+
 function rateLimitWindow(ms: number, max: number) {
   const hits = new Map<string, number[]>();
   return (ip: string): boolean => {
@@ -42,15 +45,15 @@ async function startServer() {
       "max-age=63072000; includeSubDomains; preload"
     );
     res.setHeader("Permissions-Policy", "camera=(), microphone=(), geolocation=(), interest-cohort=()");
-    // CSP: allow self, Calendly widget, Google Fonts, images media and Umami analytics
+    // CSP: allow self, Calendly widget, Umami analytics, n8n webhook
     res.setHeader(
       "Content-Security-Policy",
       [
         "default-src 'self'",
-        "script-src 'self' 'unsafe-inline' https://assets.calendly.com https://fonts.googleapis.com https://www.googletagmanager.com https://www.clarity.ms https://*.umami.is https://analytics.617east.com",
+        "script-src 'self' 'unsafe-inline' https://assets.calendly.com https://*.umami.is https://analytics.617east.com",
         "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://assets.calendly.com",
-        "img-src 'self' data: blob: https://*.clarity.ms https://www.google-analytics.com https://analytics.617east.com",
-        "connect-src 'self' https://n8n.617east.com https://*.clarity.ms https://www.google-analytics.com https://analytics.617east.com https://calendly.com",
+        "img-src 'self' data: blob: https://analytics.617east.com",
+        "connect-src 'self' https://n8n.617east.com https://analytics.617east.com https://calendly.com",
         "frame-src 'self' https://calendly.com https://assets.calendly.com",
         "font-src 'self' https://fonts.gstatic.com",
         "manifest-src 'self'",
@@ -148,7 +151,7 @@ async function startServer() {
     }
 
     try {
-      const n8nResp = await fetch("https://n8n.617east.com/webhook/617east-contact", {
+      const n8nResp = await fetch(N8N_WEBHOOK_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
