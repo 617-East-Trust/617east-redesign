@@ -1,16 +1,14 @@
 /*
  * 617 EAST TRUST — COOKIE CONSENT BANNER
+ * Umami only, self-hosted, no cookies for tracking.
+ * Consent stored in localStorage; banner suppressed on return visits.
  * GDPR / CCPA compliant.
- * - Names Google Analytics and Microsoft Clarity explicitly (anti-slop requirement).
- * - Analytics scripts fire ONLY after consent is granted.
- * - Consent stored in localStorage; banner suppressed on return visits.
- * - Matches Midnight Ledger design system (dark/gold).
  */
 
 import { useEffect, useState } from "react";
 
 const CONSENT_KEY = "617east_cookie_consent";
-const CONSENT_VERSION = "1"; // Bump to re-prompt after policy changes
+const CONSENT_VERSION = "2";
 
 type ConsentState = "granted" | "denied" | null;
 
@@ -34,28 +32,16 @@ function saveConsent(state: ConsentState) {
 
 function initAnalytics() {
   if (typeof window === "undefined") return;
-  // Google Analytics 4 — fire only after consent
-  const gaId = (window as any).__GA_ID__ || "";
-  if (gaId && !(window as any).gaInitialized) {
+  const endpoint = (window as any).__UMAMI_ENDPOINT__ || "";
+  const id = (window as any).__UMAMI_WEBSITE_ID__ || "";
+  if (endpoint && id && !(window as any).umamiLoaded) {
     const script = document.createElement("script");
     script.async = true;
-    script.src = `https://www.googletagmanager.com/gtag/js?id=${gaId}`;
+    script.defer = true;
+    script.src = endpoint;
+    script.setAttribute("data-website-id", id);
     document.head.appendChild(script);
-    (window as any).dataLayer = (window as any).dataLayer || [];
-    (window as any).gtag = function () { (window as any).dataLayer.push(arguments); };
-    (window as any).gtag("js", new Date());
-    (window as any).gtag("config", gaId);
-    (window as any).gaInitialized = true;
-  }
-  // Microsoft Clarity — fire only after consent
-  const clarityId = (window as any).__CLARITY_ID__ || "";
-  if (clarityId && !(window as any).clarityInitialized) {
-    (function (c: any, l: any, a: any, r: any, i: any) {
-      c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments); };
-      const t = l.createElement(r); t.async = 1; t.src = "https://www.clarity.ms/tag/" + i;
-      const y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
-    })(window, document, "clarity", "script", clarityId);
-    (window as any).clarityInitialized = true;
+    (window as any).umamiLoaded = true;
   }
 }
 
@@ -69,7 +55,6 @@ export default function CookieConsent() {
     if (stored === "granted") {
       initAnalytics();
     }
-    // Show banner after 800ms if no prior consent
     if (stored === null) {
       const timer = setTimeout(() => setVisible(true), 800);
       return () => clearTimeout(timer);
@@ -114,11 +99,11 @@ export default function CookieConsent() {
         className="text-sm leading-relaxed mb-4"
         style={{ color: "oklch(0.65 0.010 80)" }}
       >
-        We use{" "}
-        <strong style={{ color: "oklch(0.88 0.008 80)" }}>Google Analytics</strong> and{" "}
-        <strong style={{ color: "oklch(0.88 0.008 80)" }}>Microsoft Clarity</strong> to
-        understand how visitors use this site. No personal data is sold. You can decline
-        and the site will work normally.{" "}
+        We use self-hosted{" "}
+        <strong style={{ color: "oklch(0.88 0.008 80)" }}>Umami Analytics</strong>{" "}
+        to understand aggregate usage patterns. Umami does not track individuals,
+        does not use cookies for tracking, and collects no personal data. You can
+        decline and the site will work normally.{" "}
         <a
           href="/privacy"
           style={{ color: "oklch(0.78 0.12 80)", textDecoration: "underline" }}

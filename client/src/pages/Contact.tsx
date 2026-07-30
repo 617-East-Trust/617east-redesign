@@ -62,20 +62,13 @@ export default function Contact() {
     e.preventDefault();
     setFormState("submitting");
     try {
-      const res = await fetch("https://n8n.617east.com/webhook/617east-contact", {
+      const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
       if (res.ok) {
         setFormState("success");
-        // GA4 conversion event
-        if (typeof window !== "undefined" && (window as any).gtag) {
-          (window as any).gtag("event", "generate_lead", {
-            form_name: "contact",
-            service_interest: formData.service,
-          });
-        }
         setFormData({ name: "", email: "", phone: "", service: "", message: "" });
       } else {
         setFormState("error");
