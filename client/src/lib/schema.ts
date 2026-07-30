@@ -166,10 +166,10 @@ export function contactPageSchema() {
       contactPoint: {
         "@type": "ContactPoint",
         telephone: "+19103151800",
-        contactType: "sales",
-        email: "hello@617east.com",
+        contactType: "customer support",
+        email: "info@617east.com",
+        areaServed: ["Sandhills", "Charlotte", "Fayetteville", "Pinehurst", "Southern Pines", "Raleigh", "NC"],
         availableLanguage: ["English"],
-        areaServed: AREA_SERVED,
       },
     },
   };
