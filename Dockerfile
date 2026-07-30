@@ -1,36 +1,45 @@
-FROM node:22-alpine AS builder
-WORKDIR /build
+FROM node:22-alpine AS base
 
 # Install pnpm
-RUN corepack enable && corepack prepare pnpm@10.4.1 --activate
+RUN corepack enable && corepack prepare pnpm@latest --activate
 
-# Copy dependency manifests
-COPY package.json pnpm-lock.yaml pnpm-workspace.yaml .npmrc patches /build/
-COPY patches /build/patches
+WORKDIR /app
 
-# Install dependencies (no prepare scripts — avoid build-time side effects)
-RUN pnpm install --frozen-lockfile --ignore-scripts
+# Copy lock and manifest for dependency installation
+COPY pnpm-lock.yaml ./
+COPY package.json ./
 
-# Copy source files
-COPY client /build/client
-COPY server /build/server
-COPY shared /build/shared
-COPY scripts /build/scripts
-COPY tsconfig.json tsconfig.node.json vite.config.ts /build/
+# Install dependencies
+RUN pnpm install --frozen-lockfile --ignore-scripts && \
+    # Rebuild platform-specific deps
+    pnpm rebuild
 
-# Build the Vite frontend (outputs to dist/public)
-RUN pnpm vite build
+# Copy all source files
+COPY client/ ./client/
+COPY server/ ./server/
+COPY scripts/ ./scripts/
+COPY shared/ ./shared/
+COPY attached_assets/ ./attached_assets/
+COPY tsconfig.json ./
+COPY vite.config.ts ./
+COPY components.json ./
+COPY patches/ ./patches/
+COPY template.json ./
 
-# Build the Node server (outputs to dist/index.js)
-RUN pnpm esbuild server/index.ts --platform=node --packages=external --bundle --format=esm --outfile=dist/index.js
+# Build: Vite frontend → dist/public/ + SSG + esbuild server → dist/index.js
+RUN pnpm build
 
-# --- Runtime stage ---
+# Runtime stage
 FROM node:22-alpine
+
 WORKDIR /app
 
 # Copy production build artifacts
-COPY --from=builder /build/dist ./dist
+COPY --from=base /app/dist ./dist
+COPY --from=base /app/package.json ./
+COPY --from=base /app/pnpm-lock.yaml ./
 
 ENV NODE_ENV=production
 EXPOSE 3000
+
 CMD ["node", "dist/index.js"]
