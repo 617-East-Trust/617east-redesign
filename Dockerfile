@@ -19,7 +19,6 @@ COPY client/ ./client/
 COPY server/ ./server/
 COPY scripts/ ./scripts/
 COPY shared/ ./shared/
-COPY attached_assets/ ./attached_assets/
 COPY tsconfig.json ./
 COPY vite.config.ts ./
 COPY components.json ./
