@@ -6,6 +6,8 @@ services:
       - "3000:3000"
     environment:
       - NODE_ENV=production
+      - PORT=3000
       - ANALYTICS_ENDPOINT
       - ANALYTICS_WEBSITE_ID
+      - N8N_WEBHOOK_URL
     restart: unless-stopped

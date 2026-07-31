@@ -5,9 +5,10 @@ RUN corepack enable && corepack prepare pnpm@latest --activate
 
 WORKDIR /app
 
-# Copy lock and manifest for dependency installation
+# Copy lock, manifest, and patches for dependency installation
 COPY pnpm-lock.yaml ./
 COPY package.json ./
+COPY patches/ ./patches/
 
 # Install dependencies
 RUN pnpm install --frozen-lockfile --ignore-scripts && \
@@ -22,7 +23,6 @@ COPY shared/ ./shared/
 COPY tsconfig.json ./
 COPY vite.config.ts ./
 COPY components.json ./
-COPY patches/ ./patches/
 COPY template.json ./
 
 # Build: Vite frontend → dist/public/ + SSG + esbuild server → dist/index.js
