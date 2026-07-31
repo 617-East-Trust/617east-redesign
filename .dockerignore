@@ -3,7 +3,4 @@ dist
 .git
 *.md
 .gitignore
-patches/
-scripts/
-shared/
 
