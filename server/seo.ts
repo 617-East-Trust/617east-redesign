@@ -24,6 +24,8 @@ export type InjectionOptions = {
   analyticsEnabled: boolean;
   analyticsEndpoint: string;
   analyticsWebsiteId: string;
+  ga4Id?: string;
+  clarityId?: string;
 };
 
 const BASE = "https://617east.com";
@@ -378,6 +380,7 @@ export function injectSeoIntoHtml(
   }
 
   // Analytics injection: replace placeholders with actual values
+  // Umami analytics
   const analyticsMarkup = opts?.analyticsEnabled
     ? `      src="/__analytics__/umami"\n      data-website-id="${escapeHtml(opts.analyticsWebsiteId)}"></script>`
     : `      src="/__analytics__/umami"\n      data-website-id="">`;
@@ -385,6 +388,36 @@ export function injectSeoIntoHtml(
     /src="\/__analytics__\/umami"\s+data-website-id="[^"]*"><\/script>/,
     analyticsMarkup,
   );
+
+  // GA4 snippet — only inject when a real GA4_ID is provided
+  const ga4Id = opts?.ga4Id;
+  if (ga4Id) {
+    const ga4Script = `<!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=${escapeHtml(ga4Id)}"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', '${escapeHtml(ga4Id)}');
+    </script>`;
+    result = result.replace("</head>", `${ga4Script}
+  </head>`);
+  }
+
+  // Microsoft Clarity snippet — only inject when a real CLARITY_ID is provided
+  const clarityId = opts?.clarityId;
+  if (clarityId) {
+    const clarityScript = `<!-- Microsoft Clarity -->
+    <script type="text/javascript">
+      (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+      })(window, document, "clarity", "script", "${escapeHtml(clarityId)}");
+    </script>`;
+    result = result.replace("</head>", `${clarityScript}
+  </head>`);
+  }
 
   return result;
 }

@@ -9,16 +9,13 @@
 import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { Link, useLocation } from "wouter";
-import {
-  Breadcrumb,
-  BreadcrumbList,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbSeparator,
-  BreadcrumbPage,
-} from "@/components/ui/breadcrumb";
 
-// GA4 click-to-call tracking — removed; Umami-only analytics.
+// GA4 click-to-call tracking
+function trackCall() {
+  if (typeof window !== "undefined" && (window as any).gtag) {
+    (window as any).gtag("event", "click_to_call", { phone: "+19103151800" });
+  }
+}
 
 // Compass rose SVG mark — 8-point star, gold
 function CompassMark({ size = 28 }: { size?: number }) {
@@ -67,63 +64,6 @@ const SERVICE_LINKS = [
   { href: "/services/fractional-cfo", label: "Fractional CFO" },
   { href: "/services/web-design-seo", label: "Web Design & SEO" },
 ];
-
-// ── Breadcrumb resolution ──────────────────────────────────────────
-function Breadcrumbs() {
-  const [location] = useLocation();
-  if (location === "/") return null;
-
-  const segments = location.split("/").filter(Boolean);
-
-  // Build crumb trails: /services/llc-formation-north-carolina → Services → LLC Formation
-  const crumbMap: Record<string, string> = {
-    services: "Services",
-    about: "About",
-    contact: "Contact",
-    blog: "Resources",
-    privacy: "Privacy Policy",
-    terms: "Terms of Service",
-    "consumer-rights": "Consumer Rights",
-    "llc-formation-north-carolina": "LLC Formation",
-    "sba-loans-north-carolina": "SBA Loans",
-    "credit-repair-north-carolina": "Credit Repair",
-    bookkeeping: "Bookkeeping",
-    "fractional-cfo": "Fractional CFO",
-    "web-design-seo": "Web Design & SEO",
-  };
-
-  const crumbs: { href: string; label: string; isLast: boolean }[] = [];
-
-  for (let i = 0; i < segments.length; i++) {
-    const path = "/" + segments.slice(0, i + 1).join("/");
-    const slug = segments[i];
-    const label = crumbMap[slug] || slug.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
-    crumbs.push({ href: path, label, isLast: i === segments.length - 1 });
-  }
-
-  return (
-    <Breadcrumb className="container pt-4 pb-0">
-      <BreadcrumbList>
-        <BreadcrumbItem>
-          <BreadcrumbLink href="/">Home</BreadcrumbLink>
-        </BreadcrumbItem>
-        <BreadcrumbSeparator />
-        {crumbs.map((crumb, i) => (
-          <BreadcrumbItem key={crumb.href}>
-            {crumb.isLast ? (
-              <BreadcrumbPage>{crumb.label}</BreadcrumbPage>
-            ) : (
-              <>
-                <BreadcrumbLink href={crumb.href}>{crumb.label}</BreadcrumbLink>
-                <BreadcrumbSeparator />
-              </>
-            )}
-          </BreadcrumbItem>
-        ))}
-      </BreadcrumbList>
-    </Breadcrumb>
-  );
-}
 
 // Global ProfessionalService schema
 const SCHEMA_ORG = {
@@ -328,14 +268,11 @@ export default function Layout({ children, pageSchema, title, description, canon
         )}
       </header>
 
-      {/* Breadcrumb navigation */}
-      <Breadcrumbs />
-
       {/* Main content */}
       <main className="flex-1">{children}</main>
 
       {/* Mobile floating phone CTA */}
-      <a href="tel:9103151800" className="phone-bar md:hidden" aria-label="Call 617 East Trust">
+      <a href="tel:9103151800" className="phone-bar md:hidden" aria-label="Call 617 East Trust" onClick={trackCall}>
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
           <path d="M2 2.5A1.5 1.5 0 013.5 1h1.879a1 1 0 01.958.713l.9 3a1 1 0 01-.27 1.02L5.5 7.207a9.03 9.03 0 004.293 4.293l1.474-1.467a1 1 0 011.02-.27l3 .9A1 1 0 0116 11.62V13.5A1.5 1.5 0 0114.5 15C7.044 15 1 8.956 1 1.5A1.5 1.5 0 012.5 0H3" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
         </svg>
@@ -361,13 +298,14 @@ export default function Layout({ children, pageSchema, title, description, canon
                 The advisor who tells you what not to do. Serving founders and individuals across North Carolina.
               </p>
               <div className="flex flex-col gap-2">
-                <a
-                  href="tel:9103151800"
-                  className="text-sm font-medium transition-colors"
-                  style={{ color: "oklch(0.78 0.12 80)" }}
-                >
-                  (910) 315-1800
-                </a>
+              <a
+                href="tel:9103151800"
+                className="text-sm font-medium transition-colors"
+                style={{ color: "oklch(0.78 0.12 80)" }}
+                onClick={trackCall}
+              >
+                (910) 315-1800
+              </a>
                 <a
                   href="mailto:info@617east.com"
                   className="text-sm transition-colors"
