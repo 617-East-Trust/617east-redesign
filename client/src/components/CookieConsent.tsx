@@ -1,7 +1,7 @@
 /*
  * 617 EAST TRUST — COOKIE CONSENT BANNER
  * GDPR / CCPA compliant.
- * - Names Google Analytics and Microsoft Clarity explicitly (anti-slop requirement).
+ * - Names Google Analytics and Microsoft Clarity explicitly.
  * - Analytics scripts fire ONLY after consent is granted.
  * - Consent stored in localStorage; banner suppressed on return visits.
  * - Matches Midnight Ledger design system (dark/gold).
@@ -10,7 +10,7 @@
 import { useEffect, useState } from "react";
 
 const CONSENT_KEY = "617east_cookie_consent";
-const CONSENT_VERSION = "1"; // Bump to re-prompt after policy changes
+const CONSENT_VERSION = "1";
 
 type ConsentState = "granted" | "denied" | null;
 
@@ -34,9 +34,16 @@ function saveConsent(state: ConsentState) {
 
 function initAnalytics() {
   if (typeof window === "undefined") return;
-  // Google Analytics 4 — fire only after consent
-  const gaId = (window as any).__GA_ID__ || "";
-  if (gaId && !(window as any).gaInitialized) {
+   // Date: 2026-08-01
+   // Patch: analytics gate — no cookie, no tracking
+   try {
+     const raw = localStorage.getItem(CONSENT_KEY);
+     if (!raw) return;
+     const { state } = JSON.parse(raw) as { state: ConsentState };
+     if (state !== "granted") return;
+   } catch { return; }
+   // Google Analytics 4 — fire only after consent (set by server-side seo.ts)
+   const gaId = (window as any).__GA_ID__;
     const script = document.createElement("script");
     script.async = true;
     script.src = `https://www.googletagmanager.com/gtag/js?id=${gaId}`;
@@ -47,8 +54,8 @@ function initAnalytics() {
     (window as any).gtag("config", gaId);
     (window as any).gaInitialized = true;
   }
-  // Microsoft Clarity — fire only after consent
-  const clarityId = (window as any).__CLARITY_ID__ || "";
+  // Microsoft Clarity — fire only after consent (set by server-side seo.ts)
+  const clarityId = (window as any).__CLARITY_ID__;
   if (clarityId && !(window as any).clarityInitialized) {
     (function (c: any, l: any, a: any, r: any, i: any) {
       c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments); };
