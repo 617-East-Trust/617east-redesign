@@ -21,6 +21,8 @@ function priorityForPath(p) {
   if (p === "/about") return "0.8";
   if (p === "/contact") return "0.8";
   if (p === "/how-it-works") return "0.8";
+  if (p === "/locations") return "0.8";
+  if (p.startsWith("/locations/")) return "0.75";
   if (p === "/blog") return "0.7";
   if (p.startsWith("/services/")) return "0.8";
   if (p.startsWith("/blog/")) return "0.7";

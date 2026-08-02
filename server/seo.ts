@@ -176,23 +176,35 @@ export const ROUTES: RouteMeta[] = [
     title: "Contact 617 East Trust — Free Consultation",
     description: "Contact 617 East Trust for a free consultation on business formation, SBA loans, credit repair, bookkeeping, or fractional CFO services.",
     canonical: `${BASE}/contact`,
-    jsonLd: {
-      "@context": "https://schema.org",
-      "@type": "ContactPage",
-      "name": "Contact 617 East Trust",
-      "description": "Free consultation for business formation, SBA loans, credit repair, bookkeeping, or fractional CFO services in North Carolina.",
-      "mainEntity": {
-        "@type": "ContactPoint",
-        "telephone": "+19103151800",
-        "email": "info@617east.com",
-        "contactType": "customer service",
-        "areaServed": "NC",
-        "availableLanguage": "English",
-        "hoursAvailable": { "@type": "OpeningHoursSpecification", "description": "By appointment, 7 days. Response within 24 hours." }
-      }
-    },
+    jsonLd: [
+      {
+        "@context": "https://schema.org",
+        "@type": "ContactPage",
+        "name": "Contact 617 East Trust",
+        "description": "Free consultation for business formation, SBA loans, credit repair, bookkeeping, or fractional CFO services in North Carolina.",
+        "mainEntity": {
+          "@type": "ContactPoint",
+          "telephone": "+19103151800",
+          "email": "info@617east.com",
+          "contactType": "customer service",
+          "areaServed": "NC",
+          "availableLanguage": "English",
+          "hoursAvailable": { "@type": "OpeningHoursSpecification", "description": "By appointment, 7 days. Response within 24 hours." }
+        }
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": `${BASE}/` },
+          { "@type": "ListItem", "position": 2, "name": "Contact", "item": `${BASE}/contact` },
+        ],
+      },
+    ],
     noscriptH1: "Contact 617 East Trust",
-    noscriptBody: "Call (910) 315-1800 or email info@617east.com. By appointment, 7 days a week. Free consultation."
+    noscriptBody:
+      "Book a free consultation: use the contact form on this page (name, email, service, message) or schedule online at https://calendly.com/617easttrust/30min. " +
+      "Call (910) 315-1800 or email info@617east.com. By appointment, 7 days a week. Response within 24 hours."
   },
   {
     path: "/consumer-rights",
@@ -284,11 +296,19 @@ const CROA_CREDIT_NOSCRIPT =
   "(5) Accurate disclosures; no guaranteed score increases or removal of accurate, timely information. " +
   "Violations may be reported to the CFPB or FTC. Full rights: https://617east.com/consumer-rights. Call (910) 315-1800.";
 
-const SERVICE_TITLES: Record<string, { title: string; desc: string; serviceName: string }> = {
+const SERVICE_TITLES: Record<
+  string,
+  { title: string; desc: string; serviceName: string; offer?: { price: string; priceCurrency: string; description: string } }
+> = {
   "llc-formation-north-carolina": {
     title: "LLC Formation North Carolina | 617 East Trust — $499 Total",
     desc: "Form your North Carolina LLC with registered agent, operating agreement, and EIN for $499 total (includes $125 state fee). We tell you what structure actually fits.",
     serviceName: "LLC Formation in North Carolina",
+    offer: {
+      price: "499",
+      priceCurrency: "USD",
+      description: "Total cost including $125 NC state filing fee, first-year registered agent, operating agreement, EIN",
+    },
   },
   "sba-loans-north-carolina": {
     title: "SBA Loan Consultant North Carolina | 617 East Trust",
@@ -299,21 +319,41 @@ const SERVICE_TITLES: Record<string, { title: string; desc: string; serviceName:
     title: "Credit Repair North Carolina | 617 East Trust — Honest, CROA-Compliant",
     desc: "CROA-compliant credit repair in North Carolina. No advance fees, written contract, 3-day cancellation right, no guarantees of outcomes.",
     serviceName: "Credit Repair in North Carolina",
+    offer: {
+      price: "199",
+      priceCurrency: "USD",
+      description: "Starting monthly fee after services for the billing period are fully performed (CROA-compliant; no advance fees)",
+    },
   },
   "bookkeeping-north-carolina": {
     title: "Bookkeeping Services North Carolina | 617 East Trust",
     desc: "Monthly bookkeeping for North Carolina small businesses. Clean books, real numbers, no surprises at tax time.",
     serviceName: "Bookkeeping Services",
+    offer: {
+      price: "199",
+      priceCurrency: "USD",
+      description: "Monthly bookkeeping starting at $199/month",
+    },
   },
   "fractional-cfo-north-carolina": {
     title: "Fractional CFO Services North Carolina | 617 East Trust",
     desc: "Part-time CFO guidance for NC businesses that need strategy, not just bookkeeping. Cash flow, forecasting, and growth planning.",
     serviceName: "Fractional CFO Services",
+    offer: {
+      price: "1200",
+      priceCurrency: "USD",
+      description: "Monthly fractional CFO engagement starting at $1,200/month",
+    },
   },
   "web-design-seo-north-carolina": {
     title: "Web Design & SEO North Carolina | 617 East Trust",
     desc: "Conversion-focused web design and SEO for NC small businesses. Built to rank and convert, not just to look pretty.",
     serviceName: "Web Design & SEO",
+    offer: {
+      price: "1500",
+      priceCurrency: "USD",
+      description: "Web design and SEO projects from $1,500",
+    },
   },
 };
 
@@ -332,28 +372,169 @@ function breadcrumbForService(slug: string, name: string) {
 for (const slug of SERVICE_SLUGS) {
   const meta = SERVICE_TITLES[slug];
   const isCredit = slug === "credit-repair-north-carolina";
+  const serviceLd: Record<string, unknown> = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": meta.serviceName,
+    "serviceType": meta.serviceName,
+    "description": meta.desc,
+    "provider": { "@type": "ProfessionalService", "name": "617 East Trust", "url": BASE, "telephone": "+19103151800" },
+    "areaServed": [
+      { "@type": "City", "name": "Pinehurst", "addressRegion": "NC" },
+      { "@type": "City", "name": "Southern Pines", "addressRegion": "NC" },
+      { "@type": "City", "name": "Charlotte", "addressRegion": "NC" },
+      { "@type": "City", "name": "Fayetteville", "addressRegion": "NC" },
+      { "@type": "City", "name": "Raleigh", "addressRegion": "NC" },
+    ],
+    "url": `${BASE}/services/${slug}`,
+  };
+  if (meta.offer) {
+    serviceLd.offers = {
+      "@type": "Offer",
+      "price": meta.offer.price,
+      "priceCurrency": meta.offer.priceCurrency,
+      "description": meta.offer.description,
+      "url": `${BASE}/services/${slug}`,
+    };
+  }
   ROUTES.push({
     path: `/services/${slug}`,
     title: meta.title,
     description: meta.desc,
     canonical: `${BASE}/services/${slug}`,
     jsonLd: [
-      {
-        "@context": "https://schema.org",
-        "@type": "Service",
-        "name": meta.serviceName,
-        "serviceType": meta.serviceName,
-        "provider": { "@type": "ProfessionalService", "name": "617 East Trust", "url": BASE },
-        "areaServed": "NC",
-        "url": `${BASE}/services/${slug}`,
-      },
+      serviceLd,
       breadcrumbForService(slug, meta.serviceName),
       ...(isCredit ? [CROA_DISCLOSURE_SCHEMA] : []),
     ],
     noscriptH1: meta.serviceName + " — 617 East Trust",
     noscriptBody: isCredit
       ? meta.desc + " " + CROA_CREDIT_NOSCRIPT
-      : meta.desc + " Call (910) 315-1800 to schedule a consultation.",
+      : meta.desc +
+        " Service areas: Pinehurst, Southern Pines, Charlotte, Fayetteville, Raleigh NC. " +
+        "Call (910) 315-1800 or book at https://617east.com/contact#schedule.",
+  });
+}
+
+/** City / area landing pages (local SEO). */
+const LOCATION_PAGES: Array<{
+  slug: string;
+  city: string;
+  title: string;
+  desc: string;
+  intro: string;
+}> = [
+  {
+    slug: "pinehurst-nc",
+    city: "Pinehurst",
+    title: "Business Consulting Pinehurst NC | 617 East Trust",
+    desc: "LLC formation, SBA loans, credit repair, bookkeeping, and fractional CFO services in Pinehurst, NC. Local advisor based in the Sandhills — free consultation.",
+    intro:
+      "Sandhills home market. LLC formation, SBA consulting, credit repair, bookkeeping, and fractional CFO for Pinehurst founders.",
+  },
+  {
+    slug: "southern-pines-nc",
+    city: "Southern Pines",
+    title: "Business Consulting Southern Pines NC | 617 East Trust",
+    desc: "Business formation, SBA loan consulting, credit repair, and bookkeeping for Southern Pines, NC. Sandhills-based advisor. Free consultation — (910) 315-1800.",
+    intro:
+      "Southern Pines business advisory: formation, loans, credit, and books with a Sandhills-based partner.",
+  },
+  {
+    slug: "charlotte-nc",
+    city: "Charlotte",
+    title: "Business Consulting Charlotte NC | LLC, SBA & Credit | 617 East Trust",
+    desc: "LLC formation, SBA loan consulting, credit repair, bookkeeping, and fractional CFO services for Charlotte, NC businesses. Remote-first with NC filings handled end-to-end.",
+    intro:
+      "Charlotte NC business consulting: honest formation, SBA packaging, credit repair, and financial clarity.",
+  },
+  {
+    slug: "fayetteville-nc",
+    city: "Fayetteville",
+    title: "Business Consulting Fayetteville NC | 617 East Trust",
+    desc: "LLC formation, SBA loans, credit repair, and bookkeeping for Fayetteville and Fort Liberty-area entrepreneurs. Honest NC business advisory — free consultation.",
+    intro:
+      "Fayetteville and Fort Liberty corridor: entity formation, credit readiness, and SBA packaging for serious operators.",
+  },
+  {
+    slug: "raleigh-nc",
+    city: "Raleigh",
+    title: "Business Consulting Raleigh NC | LLC, SBA & CFO | 617 East Trust",
+    desc: "Business formation, SBA consulting, credit repair, bookkeeping, and fractional CFO services for Raleigh and Triangle founders. Advisor-led — free consultation.",
+    intro:
+      "Raleigh and Triangle founders: correct structure, bankable numbers, and advisor-led SBA and CFO support.",
+  },
+];
+
+ROUTES.push({
+  path: "/locations",
+  title: "Service Areas North Carolina | 617 East Trust",
+  description:
+    "617 East Trust serves Pinehurst, Southern Pines, Charlotte, Fayetteville, Raleigh, and the Sandhills region with business formation, SBA loans, credit repair, and more.",
+  canonical: `${BASE}/locations`,
+  jsonLd: {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Service Areas — 617 East Trust",
+    "url": `${BASE}/locations`,
+    "mainEntity": {
+      "@type": "ItemList",
+      "itemListElement": LOCATION_PAGES.map((loc, i) => ({
+        "@type": "ListItem",
+        "position": i + 1,
+        "name": `${loc.city}, NC`,
+        "url": `${BASE}/locations/${loc.slug}`,
+      })),
+    },
+  },
+  noscriptH1: "Service Areas — 617 East Trust",
+  noscriptBody:
+    "We serve Pinehurst, Southern Pines, Charlotte, Fayetteville, and Raleigh, North Carolina. " +
+    "LLC formation, SBA loans, credit repair, bookkeeping, fractional CFO, web design & SEO. Call (910) 315-1800.",
+});
+
+for (const loc of LOCATION_PAGES) {
+  ROUTES.push({
+    path: `/locations/${loc.slug}`,
+    title: loc.title,
+    description: loc.desc,
+    canonical: `${BASE}/locations/${loc.slug}`,
+    jsonLd: [
+      {
+        "@context": "https://schema.org",
+        "@type": "ProfessionalService",
+        "name": "617 East Trust",
+        "url": BASE,
+        "telephone": "+19103151800",
+        "email": "info@617east.com",
+        "areaServed": { "@type": "City", "name": loc.city, "addressRegion": "NC", "addressCountry": "US" },
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Sandhills",
+          "addressRegion": "NC",
+          "addressCountry": "US",
+        },
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": `${BASE}/` },
+          { "@type": "ListItem", "position": 2, "name": "Service Areas", "item": `${BASE}/locations` },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": `${loc.city}, NC`,
+            "item": `${BASE}/locations/${loc.slug}`,
+          },
+        ],
+      },
+    ],
+    noscriptH1: `Business Consulting in ${loc.city}, NC — 617 East Trust`,
+    noscriptBody:
+      loc.intro +
+      " Call (910) 315-1800 or book at https://617east.com/contact#schedule. " +
+      "Services: LLC formation, SBA loans, credit repair, bookkeeping, fractional CFO, web design & SEO.",
   });
 }
 
@@ -437,18 +618,37 @@ for (const post of BLOG_ROUTES) {
     title: post.title,
     description: post.desc,
     canonical: `${BASE}${post.path}`,
-    jsonLd: {
-      "@context": "https://schema.org",
-      "@type": "BlogPosting",
-      "headline": headline,
-      "description": post.desc,
-      "url": `${BASE}${post.path}`,
-      "author": { "@type": "Person", "name": "Lamont Legrand" },
-      "publisher": { "@type": "Organization", "name": "617 East Trust", "url": BASE },
-      "mainEntityOfPage": `${BASE}${post.path}`,
-    },
+    jsonLd: [
+      {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": headline,
+        "description": post.desc,
+        "url": `${BASE}${post.path}`,
+        "author": {
+          "@type": "Person",
+          "name": "Lamont Legrand",
+          "jobTitle": "Founder & Principal Advisor",
+          "worksFor": { "@type": "Organization", "name": "617 East Trust" },
+        },
+        "publisher": { "@type": "Organization", "name": "617 East Trust", "url": BASE },
+        "mainEntityOfPage": `${BASE}${post.path}`,
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": `${BASE}/` },
+          { "@type": "ListItem", "position": 2, "name": "Resources", "item": `${BASE}/blog` },
+          { "@type": "ListItem", "position": 3, "name": headline, "item": `${BASE}${post.path}` },
+        ],
+      },
+    ],
     noscriptH1: headline,
-    noscriptBody: post.desc + " More at https://617east.com/blog. Call (910) 315-1800.",
+    noscriptBody:
+      post.desc +
+      " Author: Lamont Legrand, Founder & Principal Advisor, 617 East Trust. " +
+      "More at https://617east.com/blog. Call (910) 315-1800.",
   });
 }
 

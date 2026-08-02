@@ -130,7 +130,7 @@ const SCHEMA_ORG = {
 
 interface LayoutProps {
   children: React.ReactNode;
-  pageSchema?: object;
+  pageSchema?: object | object[];
   title?: string;
   description?: string;
   canonical?: string;
@@ -171,9 +171,20 @@ export default function Layout({ children, pageSchema, title, description, canon
         {description && <meta property="og:description" content={description} />}
         <script type="application/ld+json">{JSON.stringify(SCHEMA_ORG)}</script>
         {pageSchema && (
-          <script type="application/ld+json">{JSON.stringify(pageSchema)}</script>
+          Array.isArray(pageSchema) ? (
+            pageSchema.map((block, i) => (
+              <script key={i} type="application/ld+json">{JSON.stringify(block)}</script>
+            ))
+          ) : (
+            <script type="application/ld+json">{JSON.stringify(pageSchema)}</script>
+          )
         )}
       </Helmet>
+
+      {/* Skip link — keyboard / a11y */}
+      <a href="#main-content" className="skip-link">
+        Skip to main content
+      </a>
 
       {/* Header */}
       <header
@@ -232,7 +243,9 @@ export default function Layout({ children, pageSchema, title, description, canon
             <button
               className="md:hidden p-2"
               onClick={() => setMobileOpen(!mobileOpen)}
-              aria-label="Toggle menu"
+              aria-label={mobileOpen ? "Close menu" : "Open menu"}
+              aria-expanded={mobileOpen}
+              aria-controls="mobile-nav"
               style={{ color: "oklch(0.78 0.12 80)" }}
             >
               {mobileOpen ? (
@@ -251,7 +264,10 @@ export default function Layout({ children, pageSchema, title, description, canon
         {/* Mobile nav */}
         {mobileOpen && (
           <div
+            id="mobile-nav"
             className="md:hidden"
+            role="navigation"
+            aria-label="Mobile navigation"
             style={{
               background: "oklch(0.10 0.008 240)",
               borderTop: "1px solid oklch(0.22 0.008 240)",
@@ -283,7 +299,9 @@ export default function Layout({ children, pageSchema, title, description, canon
       </header>
 
       {/* Main content */}
-      <main className="flex-1">{children}</main>
+      <main id="main-content" className="flex-1" tabIndex={-1}>
+        {children}
+      </main>
 
       {/* Sticky mobile CTA: schedule + call (Wave 2.5) */}
       <div
@@ -437,9 +455,30 @@ export default function Layout({ children, pageSchema, title, description, canon
             <div>
               <span className="section-label">Service Area</span>
               <ul className="space-y-2">
-                {["Sandhills Region", "Pinehurst, NC", "Southern Pines, NC", "Charlotte, NC", "Fayetteville, NC", "Raleigh, NC"].map((city) => (
-                  <li key={city} className="text-sm" style={{ color: "oklch(0.52 0.008 80)" }}>
-                    {city}
+                <li>
+                  <Link
+                    href="/locations"
+                    className="text-sm transition-colors"
+                    style={{ color: "oklch(0.52 0.008 80)" }}
+                  >
+                    All service areas
+                  </Link>
+                </li>
+                {[
+                  { href: "/locations/pinehurst-nc", label: "Pinehurst, NC" },
+                  { href: "/locations/southern-pines-nc", label: "Southern Pines, NC" },
+                  { href: "/locations/charlotte-nc", label: "Charlotte, NC" },
+                  { href: "/locations/fayetteville-nc", label: "Fayetteville, NC" },
+                  { href: "/locations/raleigh-nc", label: "Raleigh, NC" },
+                ].map(({ href, label }) => (
+                  <li key={href}>
+                    <Link
+                      href={href}
+                      className="text-sm transition-colors"
+                      style={{ color: "oklch(0.52 0.008 80)" }}
+                    >
+                      {label}
+                    </Link>
                   </li>
                 ))}
               </ul>

@@ -31,7 +31,7 @@ Zo workspace  ──edit/commit/push──►  GitHub repo  ──pull/build─�
 - Calendly event URL: `https://calendly.com/617easttrust/30min` (not `/free-consultation` — that 404s)
 - Wave 3: all services geo-slugged; `/how-it-works`; sitemap **29** URLs; +3 priority posts
 - Wave 4: GTM/GA4/Clarity/CallRail consent-gated hooks; engagement events; NAP + LinkedIn footer; CSP for GTM/CallRail
-- **Measurement IDs (VPS `.env`, 2026-08-02):** `GTM_ID=GTM-WXLXT7FV`, `CLARITY_ID=xw4guexwib`, `CALLRAIL_SWAP_ID=691070475/f396…` (from CallRail `script_url`). `GA4_ID` empty — configure GA4 Measurement ID (`G-…`) inside GTM; numeric `543882709` is a property ref only. CallRail `ctrk_…` is API key (not browser swap id).
+- **Measurement IDs (VPS `.env`, 2026-08-02):** `GTM_ID=GTM-WXLXT7FV`, `CLARITY_ID=xw4guexwib`, `CALLRAIL_SWAP_ID=691070475/f396…` (from CallRail `script_url`). **`GA4_ID` left empty by design (principal: leave GA4 empty for now)** — no direct gtag load; do not set numeric property `543882709` as `GA4_ID` (not a Measurement ID). Optional later: add GA4 Measurement ID (`G-…`) inside GTM UI, not env. CallRail `ctrk_…` is API key (not browser swap id).
 
 VPS-only (not in git): `.env` secrets; local `compose.yaml` pin of `N8N_WEBHOOK_URL` value (repo has the var name only).
 

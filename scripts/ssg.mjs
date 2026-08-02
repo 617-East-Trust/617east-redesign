@@ -225,6 +225,43 @@ export const ROUTES = [
     canonical: "https://617east.com/how-it-works",
     schema: { "@context": "https://schema.org", "@type": "WebPage", "name": "How It Works — 617 East Trust", "url": "https://617east.com/how-it-works" }
   },
+  // ── Wave 5: Location / local SEO pages ──────────────────────────────────────
+  {
+    path: "/locations",
+    title: "Service Areas North Carolina | 617 East Trust",
+    description: "617 East Trust serves Pinehurst, Southern Pines, Charlotte, Fayetteville, Raleigh, and the Sandhills region with business formation, SBA loans, credit repair, and more.",
+    canonical: "https://617east.com/locations",
+  },
+  {
+    path: "/locations/pinehurst-nc",
+    title: "Business Consulting Pinehurst NC | 617 East Trust",
+    description: "LLC formation, SBA loans, credit repair, bookkeeping, and fractional CFO services in Pinehurst, NC. Local advisor based in the Sandhills — free consultation.",
+    canonical: "https://617east.com/locations/pinehurst-nc",
+  },
+  {
+    path: "/locations/southern-pines-nc",
+    title: "Business Consulting Southern Pines NC | 617 East Trust",
+    description: "Business formation, SBA loan consulting, credit repair, and bookkeeping for Southern Pines, NC. Sandhills-based advisor. Free consultation — (910) 315-1800.",
+    canonical: "https://617east.com/locations/southern-pines-nc",
+  },
+  {
+    path: "/locations/charlotte-nc",
+    title: "Business Consulting Charlotte NC | LLC, SBA & Credit | 617 East Trust",
+    description: "LLC formation, SBA loan consulting, credit repair, bookkeeping, and fractional CFO services for Charlotte, NC businesses. Remote-first with NC filings handled end-to-end.",
+    canonical: "https://617east.com/locations/charlotte-nc",
+  },
+  {
+    path: "/locations/fayetteville-nc",
+    title: "Business Consulting Fayetteville NC | 617 East Trust",
+    description: "LLC formation, SBA loans, credit repair, and bookkeeping for Fayetteville and Fort Liberty-area entrepreneurs. Honest NC business advisory — free consultation.",
+    canonical: "https://617east.com/locations/fayetteville-nc",
+  },
+  {
+    path: "/locations/raleigh-nc",
+    title: "Business Consulting Raleigh NC | LLC, SBA & CFO | 617 East Trust",
+    description: "Business formation, SBA consulting, credit repair, bookkeeping, and fractional CFO services for Raleigh and Triangle founders. Advisor-led — free consultation.",
+    canonical: "https://617east.com/locations/raleigh-nc",
+  },
   {
     path: "/consumer-rights",
     title: "Consumer Rights & CROA Disclosures — 617 East Trust",

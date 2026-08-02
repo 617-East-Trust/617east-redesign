@@ -151,5 +151,5 @@ docker compose build --no-cache app && docker compose up -d app
 | `GTM_ID` | `GTM-WXLXT7FV` | Live container |
 | `CLARITY_ID` | `xw4guexwib` | Direct load after consent |
 | `CALLRAIL_SWAP_ID` | `691070475/f396…` | From CallRail company `script_url` |
-| `GA4_ID` | empty | Use GTM → GA4 tag; property ref `543882709` is **not** a Measurement ID |
+| `GA4_ID` | empty (intentional) | Leave empty for now per principal. Property ref `543882709` is **not** a Measurement ID; do not put it in env. Optional later: GA4 tag inside GTM with a real `G-…` ID |
 | CallRail API | `ctrk_…` | Ops only — not a site env for browser tags |

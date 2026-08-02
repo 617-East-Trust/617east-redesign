@@ -241,17 +241,20 @@ export default function Contact() {
                     </p>
                   </div>
                 ) : (
-                  <form onSubmit={handleSubmit} className="space-y-5">
+                  <form onSubmit={handleSubmit} className="space-y-5" noValidate={false} aria-label="Contact consultation form">
                     <div>
-                      <label className="text-xs font-mono block mb-2" style={{ color: "oklch(0.52 0.008 80)", letterSpacing: "0.08em" }}>
+                      <label htmlFor="contact-name" className="text-xs font-mono block mb-2" style={{ color: "oklch(0.52 0.008 80)", letterSpacing: "0.08em" }}>
                         NAME *
                       </label>
                       <input
+                        id="contact-name"
                         type="text"
                         name="name"
                         value={formData.name}
                         onChange={handleChange}
                         required
+                        autoComplete="name"
+                        aria-required="true"
                         placeholder="Your full name"
                         className="form-input w-full px-4 py-3 rounded-sm text-sm"
                       />
@@ -259,28 +262,33 @@ export default function Contact() {
 
                     <div className="grid grid-cols-2 gap-4">
                       <div>
-                        <label className="text-xs font-mono block mb-2" style={{ color: "oklch(0.52 0.008 80)", letterSpacing: "0.08em" }}>
+                        <label htmlFor="contact-email" className="text-xs font-mono block mb-2" style={{ color: "oklch(0.52 0.008 80)", letterSpacing: "0.08em" }}>
                           EMAIL *
                         </label>
                         <input
+                          id="contact-email"
                           type="email"
                           name="email"
                           value={formData.email}
                           onChange={handleChange}
                           required
+                          autoComplete="email"
+                          aria-required="true"
                           placeholder="you@example.com"
                           className="form-input w-full px-4 py-3 rounded-sm text-sm"
                         />
                       </div>
                       <div>
-                        <label className="text-xs font-mono block mb-2" style={{ color: "oklch(0.52 0.008 80)", letterSpacing: "0.08em" }}>
+                        <label htmlFor="contact-phone" className="text-xs font-mono block mb-2" style={{ color: "oklch(0.52 0.008 80)", letterSpacing: "0.08em" }}>
                           PHONE
                         </label>
                         <input
+                          id="contact-phone"
                           type="tel"
                           name="phone"
                           value={formData.phone}
                           onChange={handleChange}
+                          autoComplete="tel"
                           placeholder="(910) 000-0000"
                           className="form-input w-full px-4 py-3 rounded-sm text-sm"
                         />
@@ -288,14 +296,16 @@ export default function Contact() {
                     </div>
 
                     <div>
-                      <label className="text-xs font-mono block mb-2" style={{ color: "oklch(0.52 0.008 80)", letterSpacing: "0.08em" }}>
+                      <label htmlFor="contact-service" className="text-xs font-mono block mb-2" style={{ color: "oklch(0.52 0.008 80)", letterSpacing: "0.08em" }}>
                         SERVICE INTEREST *
                       </label>
                       <select
+                        id="contact-service"
                         name="service"
                         value={formData.service}
                         onChange={handleChange}
                         required
+                        aria-required="true"
                         className="form-input w-full px-4 py-3 rounded-sm text-sm"
                       >
                         <option value="" style={{ background: "oklch(0.17 0.010 240)", color: "oklch(0.94 0.005 80)" }}>Select a service</option>
@@ -306,14 +316,16 @@ export default function Contact() {
                     </div>
 
                     <div>
-                      <label className="text-xs font-mono block mb-2" style={{ color: "oklch(0.52 0.008 80)", letterSpacing: "0.08em" }}>
+                      <label htmlFor="contact-message" className="text-xs font-mono block mb-2" style={{ color: "oklch(0.52 0.008 80)", letterSpacing: "0.08em" }}>
                         MESSAGE *
                       </label>
                       <textarea
+                        id="contact-message"
                         name="message"
                         value={formData.message}
                         onChange={handleChange}
                         required
+                        aria-required="true"
                         rows={4}
                         placeholder="Tell us about your situation..."
                         className="form-input w-full px-4 py-3 rounded-sm text-sm resize-none"
@@ -321,7 +333,7 @@ export default function Contact() {
                     </div>
 
                     {formState === "error" && (
-                      <p className="text-sm" style={{ color: "oklch(0.65 0.18 27)" }}>
+                      <p className="text-sm" role="alert" style={{ color: "oklch(0.65 0.18 27)" }}>
                         Something went wrong. Please call us at (910) 315-1800.
                       </p>
                     )}
@@ -329,6 +341,7 @@ export default function Contact() {
                     <button
                       type="submit"
                       disabled={formState === "submitting"}
+                      aria-busy={formState === "submitting"}
                       className="btn-gold w-full py-4 rounded-sm text-sm flex items-center justify-center gap-2"
                     >
                       {formState === "submitting" ? (

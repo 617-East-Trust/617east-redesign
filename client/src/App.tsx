@@ -19,6 +19,8 @@ const BlogPost = lazy(() => import("./pages/BlogPost"));
 const Privacy = lazy(() => import("./pages/Privacy"));
 const Terms = lazy(() => import("./pages/Terms"));
 const ConsumerRights = lazy(() => import("./pages/ConsumerRights"));
+const LocationsHub = lazy(() => import("./pages/LocationsHub"));
+const LocationPage = lazy(() => import("./pages/LocationPage"));
 
 function PageLoader() {
   return (
@@ -53,6 +55,8 @@ function Router() {
         <Route path="/consumer-rights" component={ConsumerRights} />
         <Route path="/how-it-works" component={HowWeWork} />
         <Route path="/how-we-work" component={HowWeWork} />
+        <Route path="/locations" component={LocationsHub} />
+        <Route path="/locations/:slug" component={LocationPage} />
         <Route path="/404" component={NotFound} />
         <Route component={NotFound} />
       </Switch>

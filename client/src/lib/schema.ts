@@ -173,7 +173,6 @@ export function contactPageSchema() {
     url: "https://617east.com/contact",
     description: "Book a free consultation with 617 East Trust.",
     mainEntity: {
-      "@type": "Organization",
       ...ORGANIZATION,
       areaServed: AREA_SERVED,
       contactPoint: {

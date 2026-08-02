@@ -260,6 +260,54 @@ export default function BlogPost() {
                   ))}
                 </div>
               </div>
+
+              {/* Author bio — E-E-A-T */}
+              <aside
+                className="mt-16 p-8"
+                aria-label="About the author"
+                style={{
+                  background: "oklch(0.10 0.008 240)",
+                  border: "1px solid oklch(0.22 0.008 240)",
+                }}
+              >
+                <span className="section-label">About the author</span>
+                <div className="gold-rule" />
+                <div className="flex flex-col sm:flex-row gap-6 items-start">
+                  <img
+                    src="/images/lamont-legrand-founder_d88b26c8.jpg"
+                    alt="Lamont Legrand, founder of 617 East Trust"
+                    className="rounded-full object-cover flex-shrink-0"
+                    width={88}
+                    height={88}
+                    style={{ width: "88px", height: "88px", objectPosition: "top center" }}
+                  />
+                  <div>
+                    <h2 className="text-lg font-semibold mb-1" style={{ color: "oklch(0.94 0.005 80)" }}>
+                      Lamont Legrand
+                    </h2>
+                    <p
+                      className="text-xs font-mono mb-3"
+                      style={{ color: "oklch(0.78 0.12 80)", letterSpacing: "0.06em" }}
+                    >
+                      FOUNDER &amp; PRINCIPAL ADVISOR · 617 EAST TRUST
+                    </p>
+                    <p className="text-sm leading-relaxed mb-4" style={{ color: "oklch(0.62 0.010 80)" }}>
+                      Former commercial banking and SBA lending professional. Lamont founded 617 East Trust
+                      to give North Carolina operators an advisor who will tell them what not to do —
+                      formation structure, loan readiness, credit disputes, and financial clarity without
+                      the processing mill.
+                    </p>
+                    <div className="flex flex-wrap gap-4 text-sm">
+                      <a href="/about" style={{ color: "oklch(0.78 0.12 80)" }}>
+                        Full bio →
+                      </a>
+                      <a href="/contact#schedule" style={{ color: "oklch(0.78 0.12 80)" }}>
+                        Book a consultation →
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </aside>
             </article>
 
             {/* Sidebar */}
