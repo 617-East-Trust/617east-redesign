@@ -70,6 +70,11 @@ export default function CookieConsent() {
  const [visible, setVisible] = useState(false);
 
  useEffect(() => {
+ // Hide crawl-only static cookie strip once interactive banner can take over
+ try {
+   document.getElementById("cookie-consent-static")?.remove();
+ } catch { /* ignore */ }
+
  const stored = loadConsent();
  setConsent(stored);
  if (stored === "granted") {

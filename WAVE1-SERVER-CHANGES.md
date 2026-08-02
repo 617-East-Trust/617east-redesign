@@ -4,6 +4,18 @@
 
 ---
 
+## Live status (2026-08-02)
+
+| Item | Status |
+|------|--------|
+| 1.3 www → apex 301 | **Done** — `https://www.617east.com/` → `https://617east.com/` |
+| 1.4a SPF `-all` | Pending — still `~all` |
+| 1.4b DMARC quarantine | Pending — still Ionos CNAME `p=none` |
+
+Full runbook: `Records/617east_SPF_DMARC_runbook_20260802.md`
+
+---
+
 ## 1.3 — www → Apex 301 Redirect (Caddy)
 
 **File:** `/opt/n8n/Caddyfile` (or wherever Caddy config lives on the production server)
@@ -90,6 +102,6 @@ dig TXT _dmarc.617east.com
 
 | Item | Location | Action | Status |
 |---|---|---|---|
-| 1.3 www redirect | Caddyfile on server | Add `redir` block | ⬜ Pending |
+| 1.3 www redirect | Caddyfile on server | Add `redir` block | ✅ Done 2026-08-02 (live 301) |
 | 1.4a SPF `-all` | Ionos DNS TXT | Change `~all` → `-all` | ⬜ Pending |
 | 1.4b DMARC quarantine | Ionos DNS TXT | Replace CNAME with `p=quarantine` | ⬜ Pending |

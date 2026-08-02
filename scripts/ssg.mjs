@@ -34,7 +34,7 @@ const DIST = path.resolve(__dirname, "../dist/public");
 
 // ─── Route SEO data ───────────────────────────────────────────────────────────
 // Mirrors the data in client/src/data/services.ts and client/src/data/blog.ts
-const ROUTES = [
+export const ROUTES = [
   {
     path: "/",
     title: "617 East Trust | Business Formation & SBA Loans — NC",
@@ -205,15 +205,28 @@ const ROUTES = [
     schema: { "@context": "https://schema.org", "@type": "WebPage", "name": "How We Work — 617 East Trust", "url": "https://617east.com/how-we-work" }
   },
   {
+    path: "/consumer-rights",
+    title: "Consumer Rights & CROA Disclosures — 617 East Trust",
+    description: "Your federal credit-repair rights: no advance fees, written contract, 3-day cancellation right, and full disclosure under the Credit Repair Organizations Act.",
+    canonical: "https://617east.com/consumer-rights",
+    schema: {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "Consumer Rights & CROA Disclosures — 617 East Trust",
+      "description": "Your federal credit-repair rights under the Credit Repair Organizations Act.",
+      "url": "https://617east.com/consumer-rights"
+    }
+  },
+  {
     path: "/privacy",
     title: "Privacy Policy | 617 East Trust",
-    description: "Privacy policy for 617east.com. How we collect, use, and protect your information.",
+    description: "Privacy policy for 617east.com. How we collect, use, and protect your information. Names Google Analytics, Microsoft Clarity, and CCPA rights.",
     canonical: "https://617east.com/privacy",
   },
   {
     path: "/terms",
     title: "Terms of Service | 617 East Trust",
-    description: "Terms of service for 617east.com and 617 East Trust advisory services.",
+    description: "Terms of service for 617east.com and 617 East Trust advisory services, including CROA compliance.",
     canonical: "https://617east.com/terms",
   },
 ];

@@ -3,7 +3,12 @@ import { createServer } from "http";
 import path from "path";
 import fs from "fs";
 import { fileURLToPath } from "url";
-import { injectSeoIntoHtml, findRoute } from "./seo.js";
+import {
+  injectSeoIntoHtml,
+  findRoute,
+  normalizePath,
+  serviceRedirectTarget,
+} from "./seo.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname  = path.dirname(__filename);
@@ -35,6 +40,27 @@ async function startServer() {
     return indexTemplate;
   }
 
+  /** Prefer SSG per-route HTML when present (dist/public/<route>/index.html). */
+  function tryReadSsgHtml(pathname: string): string | null {
+    const normalized = normalizePath(pathname);
+    if (normalized === "/") return null;
+    const rel = normalized.replace(/^\//, "");
+    const candidates = [
+      path.join(staticPath, rel, "index.html"),
+      path.join(staticPath, `${rel}.html`),
+    ];
+    for (const candidate of candidates) {
+      try {
+        if (fs.existsSync(candidate) && fs.statSync(candidate).isFile()) {
+          return fs.readFileSync(candidate, "utf-8");
+        }
+      } catch {
+        /* continue */
+      }
+    }
+    return null;
+  }
+
   // ── Umami analytics proxy ────────────────────────────────────────────────────
   app.get("/__analytics__/umami", async (req, res) => {
     if (!ANALYTICS_ENABLED) {
@@ -64,8 +90,6 @@ async function startServer() {
   });
 
   // ── Consent event recorder (fire-and-forget webhook) ─────────────────────────
-  // CookieConsent.tsx POSTs here on accept/decline so external dashboards can
-  // log consent events without blocking the user's navigation.
   app.use(express.json({ limit: "8kb" }));
   app.post("/__analytics__/consent", async (req, res) => {
     if (!CONSENT_RECORDER_URL) {
@@ -90,12 +114,25 @@ async function startServer() {
   });
 
   // ── Static assets ────────────────────────────────────────────────────────────
-  app.use(express.static(staticPath, { index: false }));
+  // redirect:false — directory routes (e.g. /services/foo/) must NOT 301 before
+  // our SEO catch-all; default express.static redirect broke crawlable titles.
+  app.use(express.static(staticPath, { index: false, redirect: false }));
 
   // ── Client-side routing with injected SEO + analytics ────────────────────────
   app.get("*", (req, res) => {
+    // Short service slugs → long canonical (avoid duplicate URL sets)
+    const redirectTo = serviceRedirectTarget(req.path);
+    if (redirectTo) {
+      res.redirect(301, redirectTo);
+      return;
+    }
+
     const route = findRoute(req.path);
-    const html  = injectSeoIntoHtml(getIndexTemplate(), route, {
+    const ssgHtml = tryReadSsgHtml(req.path);
+    // Always re-inject route meta so production never ships homepage titles
+    // even when SSG files exist or are stale.
+    const baseHtml = ssgHtml || getIndexTemplate();
+    const html = injectSeoIntoHtml(baseHtml, route, {
       analyticsEnabled:   ANALYTICS_ENABLED,
       analyticsEndpoint:  ANALYTICS_ENDPOINT,
       analyticsWebsiteId: ANALYTICS_WEBSITE_ID,

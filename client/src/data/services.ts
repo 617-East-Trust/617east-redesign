@@ -369,6 +369,14 @@ export const SERVICES: ServiceData[] = [
   }
 ];
 
+/** Short URL aliases → canonical long slugs (server 301s; client resolves content). */
+const SLUG_ALIASES: Record<string, string> = {
+  "sba-loans": "sba-loans-north-carolina",
+  "credit-repair": "credit-repair-north-carolina",
+  "bookkeeping": "bookkeeping-north-carolina",
+};
+
 export function getServiceBySlug(slug: string): ServiceData | undefined {
-  return SERVICES.find(s => s.slug === slug);
+  const canonical = SLUG_ALIASES[slug] || slug;
+  return SERVICES.find(s => s.slug === canonical);
 }
