@@ -4,13 +4,15 @@ services:
     container_name: 617east-web
     ports:
       - "3000:3000"
+    env_file:
+      - .env
     environment:
       - NODE_ENV=production
       - PORT=3000
+      # Explicit Wave 4 keys (also loaded via env_file when present)
       - ANALYTICS_ENDPOINT
       - ANALYTICS_WEBSITE_ID
       - N8N_WEBHOOK_URL
-      # Wave 4 measurement (consent-gated client load)
       - GA4_ID
       - CLARITY_ID
       - GTM_ID
