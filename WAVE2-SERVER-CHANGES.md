@@ -43,7 +43,7 @@ curl -sI https://617east.com/contact | grep -i content-security-policy
 ```
 
 **Fallback if embed still blocked:** page already links to
-`https://calendly.com/617easttrust/free-consultation` in a new tab.
+`https://calendly.com/617easttrust/30min` in a new tab (event slug verified 2026-08-02; `/free-consultation` 404s).
 
 ---
 

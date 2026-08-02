@@ -151,7 +151,7 @@ export default function HowWeWork() {
             including when we are not the right fit. Here is exactly how we work.
           </p>
           <div className="flex flex-wrap gap-4 reveal reveal-delay-3">
-            <Link href="/contact" className="btn-gold px-8 py-4 rounded-sm text-sm inline-flex items-center gap-2">
+            <Link href="/contact#schedule" className="btn-gold px-8 py-4 rounded-sm text-sm inline-flex items-center gap-2">
               Start with a Free Consultation
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                 <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
@@ -425,7 +425,7 @@ export default function HowWeWork() {
             One free consultation. We will tell you exactly what we can do for your situation — and what we cannot.
           </p>
           <div className="flex flex-wrap gap-4 justify-center reveal reveal-delay-3">
-            <Link href="/contact" className="btn-gold px-8 py-4 rounded-sm text-sm inline-flex items-center gap-2">
+            <Link href="/contact#schedule" className="btn-gold px-8 py-4 rounded-sm text-sm inline-flex items-center gap-2">
               Book Free Consultation
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                 <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />

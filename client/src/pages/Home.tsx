@@ -269,7 +269,7 @@ export default function Home() {
               }}
             >
               <a
-                href="/contact"
+                href="/contact#schedule"
                 className="btn-gold px-7 py-3.5 rounded-sm text-sm inline-flex items-center gap-2"
               >
                 Book a Free Consultation
@@ -617,7 +617,7 @@ export default function Home() {
             One free consultation. No commitment. We'll tell you exactly what we can do for your situation — and what we can't.
           </p>
           <div className="flex flex-wrap gap-4 justify-center reveal reveal-delay-3">
-            <a href="/contact" className="btn-gold px-8 py-4 rounded-sm text-sm inline-flex items-center gap-2">
+            <a href="/contact#schedule" className="btn-gold px-8 py-4 rounded-sm text-sm inline-flex items-center gap-2">
               Book Free Consultation
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                 <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />

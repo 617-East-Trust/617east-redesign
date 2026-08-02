@@ -139,12 +139,17 @@ export default function Services() {
           <p className="text-base mb-8" style={{ color: "oklch(0.58 0.010 80)" }}>
             Start with a free consultation. We'll assess your situation and tell you exactly what makes sense — including if nothing does right now.
           </p>
-          <a href="/contact" className="btn-gold px-8 py-4 rounded-sm text-sm inline-flex items-center gap-2">
-            Book Free Consultation
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-              <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </a>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+            <a href="/contact#schedule" className="btn-gold px-8 py-4 rounded-sm text-sm inline-flex items-center gap-2">
+              Schedule Free Consultation
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </a>
+            <a href="tel:9103151800" className="btn-ghost-gold px-8 py-4 rounded-sm text-sm inline-flex items-center gap-2">
+              (910) 315-1800
+            </a>
+          </div>
         </div>
       </section>
     </Layout>

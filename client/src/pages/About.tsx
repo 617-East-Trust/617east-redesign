@@ -285,8 +285,8 @@ export default function About() {
           <p className="text-base mb-8" style={{ color: "oklch(0.58 0.010 80)" }}>
             Start with a free consultation. No commitment. No sales pitch.
           </p>
-          <a href="/contact" className="btn-gold px-8 py-4 rounded-sm text-sm inline-flex items-center gap-2">
-            Book Free Consultation
+          <a href="/contact#schedule" className="btn-gold px-8 py-4 rounded-sm text-sm inline-flex items-center gap-2">
+            Schedule Free Consultation
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
               <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
             </svg>

@@ -178,10 +178,10 @@ export default function ServiceDetail() {
                   Start with a free consultation. We'll assess your situation and tell you exactly what we can do — and what we can't.
                 </p>
                 <a
-                  href="/contact"
+                  href="/contact#schedule"
                   className="btn-gold w-full py-3.5 rounded-sm text-sm flex items-center justify-center gap-2 mb-4"
                 >
-                  Book Free Consultation
+                  Schedule Free Consultation
                 </a>
                 <a
                   href="tel:9103151800"

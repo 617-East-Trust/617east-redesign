@@ -10,8 +10,10 @@ import { useHeroEntrance, heroLabelStyle, heroRuleStyle, heroHeadlineOuter, hero
 import { trackLead } from "@/lib/analytics";
 import { useEffect, useState } from "react";
 
+// Live event slug is `30min` (Calendly "30 Minute Meeting"). `/free-consultation` 404s.
+const CALENDLY_EVENT_URL = "https://calendly.com/617easttrust/30min";
 const CALENDLY_URL =
-  "https://calendly.com/617easttrust/free-consultation?hide_gdpr_banner=1&background_color=1a1f2e&text_color=d4c9a8&primary_color=c9a84c";
+  `${CALENDLY_EVENT_URL}?hide_gdpr_banner=1&background_color=1a1f2e&text_color=d4c9a8&primary_color=c9a84c`;
 const CALENDLY_SCRIPT = "https://assets.calendly.com/assets/external/widget.js";
 
 const CONTACT_SCHEMA = {
@@ -379,7 +381,7 @@ export default function Contact() {
           <p className="text-xs mt-4 reveal" style={{ color: "oklch(0.40 0.006 80)" }}>
             Widget not loading?{" "}
             <a
-              href="https://calendly.com/617easttrust/free-consultation"
+              href={CALENDLY_EVENT_URL}
               target="_blank"
               rel="noopener noreferrer"
               style={{ color: "oklch(0.78 0.12 80)", textDecoration: "underline" }}

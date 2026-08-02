@@ -28,6 +28,7 @@ Zo workspace  ──edit/commit/push──►  GitHub repo  ──pull/build─�
 - Live: `https://617east.com` → HTTP 200 via Caddy → `617east-web:3000`
 - Wave 1: long service URLs + blogs unique titles; CROA/privacy/cookie curl-visible
 - Wave 2: testimonials, Calendly `#schedule`, blog CTAs, Schedule sticky CTA; CSP allows calendly.com
+- Calendly event URL: `https://calendly.com/617easttrust/30min` (not `/free-consultation` — that 404s)
 - Wave 3: all services geo-slugged; `/how-it-works`; sitemap **29** URLs; +3 priority posts
 - Wave 4: GTM/GA4/Clarity/CallRail consent-gated hooks; engagement events; NAP + LinkedIn footer; CSP for GTM/CallRail
 - **VPS `.env` still needs real `GTM_ID` / `GA4_ID` / `CLARITY_ID` values** (keys present, values empty as of Wave 4 deploy)

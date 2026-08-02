@@ -102,8 +102,8 @@ export default function Blog() {
           <p className="text-base mb-8" style={{ color: "oklch(0.58 0.010 80)" }}>
             Skip the articles. Book a free consultation and get a direct answer about your situation.
           </p>
-          <a href="/contact" className="btn-gold px-8 py-4 rounded-sm text-sm inline-flex items-center gap-2">
-            Book Free Consultation
+          <a href="/contact#schedule" className="btn-gold px-8 py-4 rounded-sm text-sm inline-flex items-center gap-2">
+            Schedule Free Consultation
           </a>
         </div>
       </section>

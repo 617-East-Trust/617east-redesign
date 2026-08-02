@@ -277,7 +277,7 @@ export default function BlogPost() {
                   {post.ctaBody}
                 </p>
                 <a
-                  href="/contact"
+                  href="/contact#schedule"
                   className="btn-gold w-full py-3 rounded-sm text-sm flex items-center justify-center gap-2 mb-3"
                 >
                   Free Consultation
@@ -306,7 +306,7 @@ export default function BlogPost() {
           <p className="text-base mb-8" style={{ color: "oklch(0.58 0.010 80)" }}>
             {post.ctaBody}
           </p>
-          <a href="/contact" className="btn-gold px-8 py-4 rounded-sm text-sm inline-flex items-center gap-2">
+          <a href="/contact#schedule" className="btn-gold px-8 py-4 rounded-sm text-sm inline-flex items-center gap-2">
             Book Free Consultation
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
               <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
