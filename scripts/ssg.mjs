@@ -315,6 +315,45 @@ async function run() {
     count++;
   }
 
+  // Keep sitemap.xml in lockstep with ROUTES (was lagging at 17 URLs)
+  const today = new Date().toISOString().slice(0, 10);
+  const priority = (p) => {
+    if (p === "/") return "1.0";
+    if (p === "/services") return "0.9";
+    if (p.startsWith("/services/")) return "0.8";
+    if (p === "/contact" || p === "/about" || p === "/how-we-work") return "0.8";
+    if (p === "/blog" || p.startsWith("/blog/")) return "0.7";
+    if (p === "/privacy" || p === "/terms" || p === "/consumer-rights") return "0.3";
+    return "0.5";
+  };
+  const changefreq = (p) => {
+    if (p === "/" || p === "/blog") return "weekly";
+    if (p.startsWith("/blog/")) return "monthly";
+    return "monthly";
+  };
+  const urls = ROUTES.map((r) => {
+    const loc = r.path === "/" ? "https://617east.com/" : `https://617east.com${r.path}`;
+    return `  <url>
+    <loc>${loc}</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>${changefreq(r.path)}</changefreq>
+    <priority>${priority(r.path)}</priority>
+  </url>`;
+  }).join("\n");
+  const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${urls}
+</urlset>
+`;
+  const sitemapPath = path.join(DIST, "sitemap.xml");
+  fs.writeFileSync(sitemapPath, sitemap, "utf-8");
+  // Also refresh source-of-truth public copy when present
+  const publicSitemap = path.resolve(__dirname, "../client/public/sitemap.xml");
+  try {
+    fs.writeFileSync(publicSitemap, sitemap, "utf-8");
+  } catch { /* optional */ }
+  console.log(`✅ sitemap.xml → ${sitemapPath} (${ROUTES.length} URLs)`);
+
   console.log(`\n🎉 SSG complete — ${count} routes pre-rendered.`);
   console.log(`\nVerification:\n  curl -s http://localhost:3000/services/llc-formation-north-carolina | grep "<title>"`);
 }

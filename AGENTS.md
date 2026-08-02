@@ -22,10 +22,11 @@ Zo workspace  ──edit/commit/push──►  GitHub repo  ──pull/build─�
 - Zo paths: `Projects/617east-site`, `Projects/617east-rebuild`, `Projects/_backup_617east_*`, `Projects/Web/617-trust`
 
 ## Current alignment (verified 2026-08-02)
-- Workspace HEAD = `c61f9ca`
-- GitHub `origin/main` = `c61f9ca`
-- VPS `/opt/617east-redesign` HEAD = `c61f9ca`
+- Workspace HEAD = `4ec9feb`
+- GitHub `origin/main` = `4ec9feb`
+- VPS `/opt/617east-redesign` HEAD = `4ec9feb`
 - Live: `https://617east.com` → HTTP 200 via Caddy → `617east-web:3000`
+- Wave 1 SEO slug fix live: long service URLs + blogs have unique titles; CROA/privacy/cookie curl-visible
 
 VPS-only (not in git): `.env` secrets; local `compose.yaml` pin of `N8N_WEBHOOK_URL` value (repo has the var name only).
 
