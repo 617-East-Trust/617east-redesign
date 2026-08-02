@@ -51,6 +51,9 @@ Ionos path: Domains → 617east.com → DNS → TXT records.
 
 ## GBP (Google Business Profile) — principal action
 
+**Business Profile ID (saved 2026-08-02):** `8360-7639-2608-2674-046`  
+Detail: `Projects/Infrastructure/gbp-617east.md`
+
 1. Claim/verify listing for **617 East Trust** (Sandhills / service-area business if no storefront).
 2. Categories: Business consultant; Secondary: Credit counseling service / Website designer as accurate.
 3. NAP must match site:
@@ -61,7 +64,7 @@ Ionos path: Domains → 617east.com → DNS → TXT records.
    - Service area: Pinehurst, Southern Pines, Charlotte, Fayetteville, Raleigh, Sandhills NC
 4. Add 10+ photos (founder, workspace, docs-with-consent, logo).
 5. Weekly Google post for 4 weeks.
-6. Solicit reviews from real clients only — link: set in `GOOGLE_REVIEW_URL` / footer.
+6. Solicit reviews from real clients only — link: `https://g.page/r/CXfFFmoLNC7sEBI/review` (set in `GOOGLE_REVIEW_URL` / footer).
 7. **Only after ≥5 real Google reviews** consider `AggregateRating` schema wired to live rating (never invent).
 
 ## Citation kit (exact NAP)

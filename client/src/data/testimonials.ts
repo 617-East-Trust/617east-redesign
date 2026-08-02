@@ -124,4 +124,4 @@ export function getHomepageTestimonials(limit = 3): Testimonial[] {
   return HOME_TESTIMONIALS.slice(0, limit);
 }
 
-export const GOOGLE_REVIEW_URL = "https://g.page/r/617easttrust/review";
+export const GOOGLE_REVIEW_URL = "https://g.page/r/CXfFFmoLNC7sEBI/review";

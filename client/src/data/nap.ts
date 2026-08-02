@@ -59,7 +59,7 @@ export const HOURS_NOTE = "By appointment. Response within 24 hours.";
  * Empty strings are omitted from schema.
  */
 export const SOCIAL = {
-  googleBusiness: "https://g.page/r/617easttrust/review",
+  googleBusiness: "https://g.page/r/CXfFFmoLNC7sEBI/review",
   linkedinCompany:
     (typeof import.meta !== "undefined" &&
       (import.meta as unknown as { env?: Record<string, string> }).env?.VITE_LINKEDIN_COMPANY) ||

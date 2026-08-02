@@ -51,7 +51,7 @@ curl -sI https://617east.com/contact | grep -i content-security-policy
 
 | Item | Owner | Action |
 |------|-------|--------|
-| 2.1c Google review campaign | Principal | Email past clients → `https://g.page/r/617easttrust/review` — target 10 in 30 days |
+| 2.1c Google review campaign | Principal | Email past clients → `https://g.page/r/CXfFFmoLNC7sEBI/review` — target 10 in 30 days |
 | 2.1d AggregateRating schema | Code after reviews | Add only when GBP shows real rating + count |
 | 2.2a–e GBP polish | Principal | Website → apex; hours by appointment; description + photos |
 | GA4 / Clarity IDs | VPS `.env` | Measurement pillar (Wave 4 adjacency) |
