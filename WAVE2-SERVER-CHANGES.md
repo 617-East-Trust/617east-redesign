@@ -8,9 +8,9 @@
 
 | Item | Status |
 |------|--------|
-| 2.5 Calendly on `/contact#schedule` | Code shipped — **blocked live until CSP update** |
-| CSP `frame-src` includes calendly.com | Pending VPS Caddy edit |
-| CSP `script-src` includes assets.calendly.com | Pending VPS Caddy edit |
+| 2.5 Calendly on `/contact#schedule` | **Live** (`f3c15f8` + CSP reload) |
+| CSP `frame-src` includes calendly.com | **Done** 2026-08-02 |
+| CSP `script-src` includes assets.calendly.com | **Done** 2026-08-02 |
 
 ---
 
