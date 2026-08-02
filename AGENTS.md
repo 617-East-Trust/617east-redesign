@@ -22,9 +22,9 @@ Zo workspace  ──edit/commit/push──►  GitHub repo  ──pull/build─�
 - Zo paths: `Projects/617east-site`, `Projects/617east-rebuild`, `Projects/_backup_617east_*`, `Projects/Web/617-trust`
 
 ## Current alignment (verified 2026-08-02)
-- Workspace HEAD = `9a784a4`
-- GitHub `origin/main` = `9a784a4`
-- VPS `/opt/617east-redesign` HEAD = `9a784a4`
+- Workspace HEAD = `d3ab238`
+- GitHub `origin/main` = `d3ab238`
+- VPS `/opt/617east-redesign` HEAD = `d3ab238` (code ship `9a784a4` + docs)
 - Live: `https://617east.com` → HTTP 200 via Caddy → `617east-web:3000`
 - Wave 1: long service URLs + blogs unique titles; CROA/privacy/cookie curl-visible
 - Wave 2: testimonials, Calendly `#schedule`, blog CTAs, Schedule sticky CTA; CSP allows calendly.com
