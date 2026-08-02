@@ -217,6 +217,20 @@ export const ROUTES = [
     canonical: "https://617east.com/blog/bookkeeping-vs-accounting-north-carolina",
     schema: { "@context": "https://schema.org", "@type": "Article", "headline": "Bookkeeping vs Accounting: What NC Small Businesses Actually Need", "author": { "@type": "Person", "name": "Lamont Legrand" }, "publisher": { "@type": "Organization", "name": "617 East Trust" } }
   },
+  {
+    path: "/blog/north-carolina-llc-sales-tax-nexus",
+    title: "NC LLC Sales Tax & Nexus Guide (2026) | 617 East Trust",
+    description: "When does a new North Carolina LLC need a sales tax account? Nexus, remote sellers, marketplaces, and how to avoid preventable DOR problems.",
+    canonical: "https://617east.com/blog/north-carolina-llc-sales-tax-nexus",
+    schema: { "@context": "https://schema.org", "@type": "Article", "headline": "NC Sales Tax & Nexus for New LLCs (What Founders Miss)", "author": { "@type": "Person", "name": "Lamont Legrand" }, "publisher": { "@type": "Organization", "name": "617 East Trust" } }
+  },
+  {
+    path: "/blog/veteran-owned-business-formation-north-carolina",
+    title: "Veteran-Owned Business Formation NC (2026) | 617 East Trust",
+    description: "How veterans form LLCs in North Carolina: structure, SBA readiness, credit, certifications order of operations — Fayetteville and Sandhills focused.",
+    canonical: "https://617east.com/blog/veteran-owned-business-formation-north-carolina",
+    schema: { "@context": "https://schema.org", "@type": "Article", "headline": "Veteran-Owned Business Formation in North Carolina", "author": { "@type": "Person", "name": "Lamont Legrand" }, "publisher": { "@type": "Organization", "name": "617 East Trust" } }
+  },
   // ── Wave 3: Process page ──────────────────────────────────────────────────────
   {
     path: "/how-it-works",

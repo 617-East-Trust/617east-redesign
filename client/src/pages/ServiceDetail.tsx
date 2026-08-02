@@ -9,7 +9,7 @@ import Testimonials from "@/components/Testimonials";
 import { getServiceBySlug } from "@/data/services";
 import { getTestimonialForService } from "@/data/testimonials";
 import { useReveal } from "@/hooks/useReveal";
-import { useParams } from "wouter";
+import { Link, useParams } from "wouter";
 import NotFound from "./NotFound";
 
 export default function ServiceDetail() {
@@ -392,23 +392,41 @@ export default function ServiceDetail() {
               {service.geoSection.intro}
             </p>
             <div className="grid sm:grid-cols-2 gap-4">
-              {service.geoSection.cities.map((city, i) => (
-                <div
-                  key={i}
-                  className="p-5 rounded-sm"
-                  style={{
-                    background: "oklch(0.13 0.009 240)",
-                    border: "1px solid oklch(0.22 0.008 240)",
-                  }}
-                >
-                  <p className="text-sm font-medium mb-1" style={{ color: "oklch(0.88 0.008 80)" }}>
-                    {city.name}
-                  </p>
-                  <p className="text-xs leading-relaxed" style={{ color: "oklch(0.52 0.008 80)" }}>
-                    {city.note}
-                  </p>
-                </div>
-              ))}
+              {service.geoSection.cities.map((city, i) => {
+                const body = (
+                  <>
+                    <p className="text-sm font-medium mb-1" style={{ color: "oklch(0.88 0.008 80)" }}>
+                      {city.name}
+                      {city.href ? (
+                        <span className="ml-2 text-xs" style={{ color: "oklch(0.78 0.12 80)" }}>
+                          View area →
+                        </span>
+                      ) : null}
+                    </p>
+                    <p className="text-xs leading-relaxed" style={{ color: "oklch(0.52 0.008 80)" }}>
+                      {city.note}
+                    </p>
+                  </>
+                );
+                const cardStyle = {
+                  background: "oklch(0.13 0.009 240)",
+                  border: "1px solid oklch(0.22 0.008 240)",
+                } as const;
+                return city.href ? (
+                  <Link
+                    key={i}
+                    href={city.href}
+                    className="p-5 rounded-sm block transition-colors hover:border-opacity-80"
+                    style={cardStyle}
+                  >
+                    {body}
+                  </Link>
+                ) : (
+                  <div key={i} className="p-5 rounded-sm" style={cardStyle}>
+                    {body}
+                  </div>
+                );
+              })}
             </div>
           </div>
         </section>

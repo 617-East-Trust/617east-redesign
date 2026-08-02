@@ -22,7 +22,7 @@ export interface ServiceData {
   geoSection?: {
     heading: string;
     intro: string;
-    cities: { name: string; note: string }[];
+    cities: { name: string; note: string; href?: string }[];
   };
 }
 
@@ -98,10 +98,10 @@ export const SERVICES: ServiceData[] = [
       heading: "LLC Formation Across North Carolina",
       intro: "We form LLCs for clients throughout North Carolina. Whether you are in the Sandhills, Charlotte, or the Triangle, the process is the same: one flat fee, no surprises, and a human you can call with questions.",
       cities: [
-        { name: "Pinehurst & Southern Pines", note: "Home base. Same-day response, in-person consultation available." },
-        { name: "Fayetteville, NC", note: "Serving Fort Bragg-area entrepreneurs and veteran-owned businesses." },
-        { name: "Charlotte, NC", note: "Remote formation. Registered agent service covers your Charlotte address." },
-        { name: "Raleigh & Research Triangle", note: "Tech founders, consultants, and solo practitioners." },
+        { name: "Pinehurst & Southern Pines", note: "Home base. Same-day response, in-person consultation available.", href: "/locations/pinehurst-nc" },
+        { name: "Fayetteville, NC", note: "Serving Fort Bragg-area entrepreneurs and veteran-owned businesses.", href: "/locations/fayetteville-nc" },
+        { name: "Charlotte, NC", note: "Remote formation. Registered agent service covers your Charlotte address.", href: "/locations/charlotte-nc" },
+        { name: "Raleigh & Research Triangle", note: "Tech founders, consultants, and solo practitioners.", href: "/locations/raleigh-nc" },
         { name: "Wilmington & Coastal NC", note: "Remote formation. All filings handled electronically." },
       ],
     },
@@ -144,10 +144,10 @@ export const SERVICES: ServiceData[] = [
       heading: "SBA Loan Consulting Across North Carolina",
       intro: "SBA lending requirements are the same statewide, but the lender landscape varies by market. We know which SBA-preferred lenders are active in your area and which ones are worth your time.",
       cities: [
-        { name: "Pinehurst & Southern Pines", note: "Local banking relationships in the Sandhills Region. In-person meetings available." },
-        { name: "Fayetteville, NC", note: "Strong SBA lender presence. Veteran-owned business programs available." },
-        { name: "Charlotte, NC", note: "Largest SBA lending market in NC. Multiple preferred lenders and CDCs." },
-        { name: "Raleigh & Durham", note: "Active SBA market for tech, professional services, and healthcare businesses." },
+        { name: "Pinehurst & Southern Pines", note: "Local banking relationships in the Sandhills Region. In-person meetings available.", href: "/locations/pinehurst-nc" },
+        { name: "Fayetteville, NC", note: "Strong SBA lender presence. Veteran-owned business programs available.", href: "/locations/fayetteville-nc" },
+        { name: "Charlotte, NC", note: "Largest SBA lending market in NC. Multiple preferred lenders and CDCs.", href: "/locations/charlotte-nc" },
+        { name: "Raleigh & Durham", note: "Active SBA market for tech, professional services, and healthcare businesses.", href: "/locations/raleigh-nc" },
         { name: "Wilmington, NC", note: "Growing coastal market. Tourism, hospitality, and real estate-adjacent businesses." },
       ],
     },
@@ -203,10 +203,10 @@ export const SERVICES: ServiceData[] = [
       heading: "Credit Repair Services Across North Carolina",
       intro: "Credit repair is governed by federal law — the FCRA and CROA apply the same way in every state. What varies is the local credit landscape and the types of negative items we see most often in each market.",
       cities: [
-        { name: "Pinehurst & Southern Pines", note: "Home base. Serving Sandhills residents and military families." },
-        { name: "Fayetteville, NC", note: "High volume of military-related credit issues: deployment errors, identity theft, and medical collections." },
-        { name: "Charlotte, NC", note: "Serving Charlotte entrepreneurs and professionals rebuilding after business setbacks." },
-        { name: "Raleigh & Durham", note: "Tech workers and professionals with complex credit profiles." },
+        { name: "Pinehurst & Southern Pines", note: "Home base. Serving Sandhills residents and military families.", href: "/locations/pinehurst-nc" },
+        { name: "Fayetteville, NC", note: "High volume of military-related credit issues: deployment errors, identity theft, and medical collections.", href: "/locations/fayetteville-nc" },
+        { name: "Charlotte, NC", note: "Serving Charlotte entrepreneurs and professionals rebuilding after business setbacks.", href: "/locations/charlotte-nc" },
+        { name: "Raleigh & Durham", note: "Tech workers and professionals with complex credit profiles.", href: "/locations/raleigh-nc" },
         { name: "Statewide", note: "All services delivered remotely. We work with clients across North Carolina." },
       ],
     },
@@ -255,10 +255,10 @@ export const SERVICES: ServiceData[] = [
       heading: "Bookkeeping Services Across North Carolina",
       intro: "Clean books are the foundation of every financial decision you will make. We provide remote bookkeeping for North Carolina small businesses — the same quality whether you are in the Sandhills or Charlotte.",
       cities: [
-        { name: "Pinehurst & Southern Pines", note: "Home base. Serving Sandhills small businesses across all industries." },
-        { name: "Fayetteville, NC", note: "Military contractors, retail, and service businesses." },
-        { name: "Charlotte, NC", note: "Professional services, real estate, and e-commerce businesses." },
-        { name: "Raleigh & Research Triangle", note: "Tech startups, consultants, and healthcare practices." },
+        { name: "Pinehurst & Southern Pines", note: "Home base. Serving Sandhills small businesses across all industries.", href: "/locations/pinehurst-nc" },
+        { name: "Fayetteville, NC", note: "Military contractors, retail, and service businesses.", href: "/locations/fayetteville-nc" },
+        { name: "Charlotte, NC", note: "Professional services, real estate, and e-commerce businesses.", href: "/locations/charlotte-nc" },
+        { name: "Raleigh & Research Triangle", note: "Tech startups, consultants, and healthcare practices.", href: "/locations/raleigh-nc" },
         { name: "Statewide", note: "All bookkeeping delivered remotely via QuickBooks Online or Xero." },
       ],
     },
@@ -307,10 +307,10 @@ export const SERVICES: ServiceData[] = [
       heading: "Fractional CFO Services Across North Carolina",
       intro: "Fractional CFO work is inherently remote — financial strategy does not require physical presence. We serve North Carolina businesses at every stage of growth.",
       cities: [
-        { name: "Pinehurst & Southern Pines", note: "Home base. In-person strategy sessions available for Sandhills clients." },
-        { name: "Charlotte, NC", note: "Serving growth-stage businesses, real estate operators, and professional service firms." },
-        { name: "Raleigh & Durham", note: "Tech companies, SaaS businesses, and funded startups preparing for their next round." },
-        { name: "Fayetteville, NC", note: "Defense contractors, veteran-owned businesses, and government service providers." },
+        { name: "Pinehurst & Southern Pines", note: "Home base. In-person strategy sessions available for Sandhills clients.", href: "/locations/pinehurst-nc" },
+        { name: "Charlotte, NC", note: "Serving growth-stage businesses, real estate operators, and professional service firms.", href: "/locations/charlotte-nc" },
+        { name: "Raleigh & Durham", note: "Tech companies, SaaS businesses, and funded startups preparing for their next round.", href: "/locations/raleigh-nc" },
+        { name: "Fayetteville, NC", note: "Defense contractors, veteran-owned businesses, and government service providers.", href: "/locations/fayetteville-nc" },
         { name: "Statewide & Remote", note: "All CFO advisory delivered remotely. We work with businesses across NC and beyond." },
       ],
     },
@@ -359,10 +359,10 @@ export const SERVICES: ServiceData[] = [
       heading: "Web Design & SEO Services Across North Carolina",
       intro: "We build websites for North Carolina businesses that need to rank on Google and convert visitors. Every project is delivered remotely — no location limitations.",
       cities: [
-        { name: "Pinehurst & Southern Pines", note: "Home base. Local businesses, hospitality, and professional services." },
-        { name: "Charlotte, NC", note: "Competitive market. We build sites that outrank generic template sites." },
-        { name: "Raleigh & Durham", note: "Tech and professional services. SEO-first builds for competitive keywords." },
-        { name: "Fayetteville, NC", note: "Military community businesses, retail, and service providers." },
+        { name: "Pinehurst & Southern Pines", note: "Home base. Local businesses, hospitality, and professional services.", href: "/locations/pinehurst-nc" },
+        { name: "Charlotte, NC", note: "Competitive market. We build sites that outrank generic template sites.", href: "/locations/charlotte-nc" },
+        { name: "Raleigh & Durham", note: "Tech and professional services. SEO-first builds for competitive keywords.", href: "/locations/raleigh-nc" },
+        { name: "Fayetteville, NC", note: "Military community businesses, retail, and service providers.", href: "/locations/fayetteville-nc" },
         { name: "Statewide", note: "All web design and SEO work delivered remotely. We serve businesses across NC." },
       ],
     },

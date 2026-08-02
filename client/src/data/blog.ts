@@ -630,6 +630,114 @@ export const BLOG_POSTS: BlogPost[] = [
       href: "/services/bookkeeping-north-carolina",
       label: "Monthly Bookkeeping for NC small businesses",
     },
+  },
+  {
+    slug: "north-carolina-llc-sales-tax-nexus",
+    title: "NC Sales Tax & Nexus for New LLCs (What Founders Miss)",
+    seoTitle: "NC LLC Sales Tax & Nexus Guide (2026) | 617 East Trust",
+    metaDescription: "When does a new North Carolina LLC need a sales tax account? Nexus, remote sellers, marketplace facilitators, and how to avoid preventable DOR problems.",
+    canonical: "https://617east.com/blog/north-carolina-llc-sales-tax-nexus",
+    h1: "NC Sales Tax & Nexus for New LLCs (What Founders Miss)",
+    category: "Business Formation",
+    readTime: "11 min read",
+    publishDate: "August 2026",
+    intro: "Forming an LLC does not automatically register you for North Carolina sales and use tax — and not every LLC needs to collect sales tax. The mistake is assuming \"I am an LLC, so I must\" or \"I sell online, so I never need to.\" Nexus, product type, and how you sell decide whether you have a collection and remittance duty. This guide is practical, not a substitute for a CPA or the NC Department of Revenue — but it will keep you from walking past an obvious trap.",
+    sections: [
+      {
+        heading: "Sales Tax Is Not Automatic With LLC Formation",
+        body: "Articles of Organization create the entity. Sales and use tax registration is a separate step with the North Carolina Department of Revenue when you have a legal obligation to collect. Many service businesses never collect sales tax because their services are not taxable. Many product sellers and some hybrid models do.\n\nIf your formation package skipped the \"do you sell taxable goods or services?\" conversation, reopen it before your first invoice."
+      },
+      {
+        heading: "What Nexus Means in Plain English",
+        body: "Nexus is the connection between your business and a state that is strong enough for that state to require tax collection. Physical presence (location, inventory, employees, regular on-site work) is the classic form. Economic nexus can also apply when remote sales into a state cross dollar or transaction thresholds under state law.\n\nFor a brand-new NC LLC selling only inside North Carolina, the question is usually simpler: are you making taxable sales in NC? For multi-state online sellers, nexus analysis gets wider fast."
+      },
+      {
+        heading: "Taxable vs Non-Taxable Reality Checks",
+        body: "North Carolina taxes most retail sales of tangible personal property. Many pure professional services are not taxed the same way as product sales — but bundling products with services, selling software, digital goods, or mixed invoices can change the analysis. Do not guess from a blog post when your offer is hybrid.\n\nRule of thumb: if money changes hands for goods, materials, or certain listed services, verify before you price \"tax included\" incorrectly for a year."
+      },
+      {
+        heading: "Marketplace Facilitators and Platforms",
+        body: "Selling through large marketplaces often means the platform collects and remits sales tax on covered transactions. That does not mean you have zero recordkeeping. It also does not cover every channel you use. Your own site, wholesale, and in-person sales can sit outside marketplace coverage.\n\nMap each channel: who collects, who remits, what you still report."
+      },
+      {
+        heading: "Registration Timing and Cash Flow",
+        body: "Registering late after you should have collected creates clean-up: back collection, penalties, interest, and angry customers if you try to rebill. Collecting when you should not creates refunds and trust issues. The expensive pattern is \"I will fix tax when I am bigger.\"\n\nIf you are pre-revenue, document why you believe you have no collection duty. If you are about to launch product sales, line up registration before the first taxable invoice."
+      },
+      {
+        heading: "How This Ties to Banking, Loans, and Books",
+        body: "Sales tax payable is a liability on your books — money that is not yours. Messy sales tax accounts look like chaos to lenders and partners. Clean monthly bookkeeping that separates tax collected from revenue is part of looking bankable.\n\nIf you are prepping for an SBA or bank package, unresolved tax registrations and liabilities are diligence items. Fix them before the underwriter asks."
+      },
+      {
+        heading: "A Practical Founder Checklist",
+        body: "1) List what you sell (goods, services, digital, mixed). 2) List where customers are (NC only vs multi-state). 3) List channels (own site, marketplace, in person). 4) Confirm with a CPA or DOR guidance whether collection is required. 5) Register if required before taxable sales. 6) Configure invoices and cart tax correctly. 7) Reconcile sales tax payable monthly.\n\nIf any step is \"I am not sure,\" stop and get a professional answer — not a forum thread."
+      }
+    ],
+    faqs: [
+      { q: "Does every NC LLC need a sales tax permit?", a: "No. Only businesses that make taxable sales (or otherwise meet collection requirements) need to register and collect. Many pure service LLCs do not. Confirm for your specific offers." },
+      { q: "I only sell on Amazon / Etsy — am I done?", a: "Marketplace collection often covers platform sales, but not always every channel or every product type. Map all sales channels and keep records." },
+      { q: "Can 617 East Trust file my sales tax returns?", a: "We help founders get structure, books, and process right and will tell you when you need a CPA or tax specialist for filings. We do not replace licensed tax advice for multi-state nexus." },
+      { q: "What if I already sold without collecting?", a: "Do not ignore it. Talk to a CPA about voluntary disclosure or corrective registration. Continuing without a plan usually makes the cleanup worse." }
+    ],
+    ctaHeading: "Formed the LLC — not sure about tax next steps?",
+    ctaBody: "Book a free consultation. We will help you separate entity setup from tax registration, books, and what to fix before the first real invoice or loan package.",
+    relatedService: {
+      href: "/services/llc-formation-north-carolina",
+      label: "LLC Formation in North Carolina",
+    },
+  },
+  {
+    slug: "veteran-owned-business-formation-north-carolina",
+    title: "Veteran-Owned Business Formation in North Carolina",
+    seoTitle: "Veteran-Owned Business Formation NC (2026) | 617 East Trust",
+    metaDescription: "How veterans form LLCs in North Carolina: structure choices, SBA and contracting paths, credit readiness, and what not to rush after separation or PCS.",
+    canonical: "https://617east.com/blog/veteran-owned-business-formation-north-carolina",
+    h1: "Veteran-Owned Business Formation in North Carolina",
+    category: "Business Formation",
+    readTime: "12 min read",
+    publishDate: "August 2026",
+    intro: "Veterans starting companies in North Carolina — especially around Fayetteville, Fort Liberty, and the Sandhills — get pitched certifications, grants, and \"guaranteed\" government contracts before the foundation is solid. Formation is simple. Building an entity banks, lenders, and primes will take seriously is not. This guide prioritizes order of operations: structure, banking, books, credit, then certifications and capital.",
+    sections: [
+      {
+        heading: "Start With the Business Model, Not the Logo",
+        body: "Before Articles of Organization, answer: what do you sell, to whom, and how do you get paid? Side hustle freelancing, subcontracting to primes, retail, and product manufacturing have different insurance, licensing, and tax profiles.\n\nIf the plan is \"get SDVOSB then figure it out,\" reverse the order. Certification without capability, past performance, and clean books is expensive stationery."
+      },
+      {
+        heading: "LLC vs Other Structures for Veteran Founders",
+        body: "Most small veteran-owned startups choose an LLC for liability separation and flexibility. An S-Corp election can make sense later for tax efficiency once profits and reasonable salary rules are clear — not automatically on day one.\n\nMulti-member ownership with family or partners needs an operating agreement that covers death, disability, PCS, and exit. Default state rules are a poor substitute for a written deal."
+      },
+      {
+        heading: "North Carolina Filing Basics",
+        body: "NC LLC formation still requires a unique name, registered agent with a physical NC address, Articles of Organization ($125 state fee as of standard processing), EIN, and — for most companies historically subject to BOI rules — awareness of beneficial ownership reporting status under federal law as it stands when you form.\n\nUse a real NC registered agent address. Do not treat formation as \"done\" until banking and bookkeeping are set so personal and business cash stay separate."
+      },
+      {
+        heading: "Certifications Come After Capability",
+        body: "Veteran-owned and service-disabled veteran-owned paths (federal and state/local programs vary) can open doors — they do not replace capability statements, pricing discipline, or compliance. Premature certification work burns time when you still lack a defined NAICS strategy, accounting system, or capacity to perform.\n\nBuild: entity → bank → books → insurance/licenses → past performance (even commercial) → then certification packages that match the contracts you can actually win."
+      },
+      {
+        heading: "SBA Loans and Veteran Programs — Honest Sequencing",
+        body: "SBA products can help veterans finance equipment, working capital, or real estate when the credit, cash flow, and use of proceeds make sense. Applying because a seminar said \"veterans get approved\" is how denials happen.\n\nGet a lender-style readiness read first: personal credit, business financials or realistic projections, debt schedule, and a use of proceeds that is underwritable. Fix gaps before the formal application."
+      },
+      {
+        heading: "Credit: Personal Still Matters Early",
+        body: "Young companies borrow on the founder. Personal credit errors, unpaid collections, and thin files block financing and sometimes contracting trust. Credit repair — when items are inaccurate or unverifiable — is FCRA work, not score magic.\n\nSeparate personal credit cleanup from business credit building. Both matter; they are different systems."
+      },
+      {
+        heading: "Fayetteville, Sandhills, and Statewide Reality",
+        body: "Local markets near major installations create real opportunities in services, logistics, construction-adjacent trades, and professional services — and real competition. Statewide remote work is normal for consulting, software, and many B2B services.\n\nPick a go-to-market that matches where you can deliver. Do not form an NC LLC for optics while ignoring local licensing if you operate in regulated trades."
+      }
+    ],
+    faqs: [
+      { q: "Should I form my LLC before I leave active duty?", a: "It depends on your plan, ethics rules, and whether you will actively operate. Many founders form near transition once the offer is real. Do not form just to \"have an LLC\" with no banking or activity." },
+      { q: "Do veterans get free LLC formation in North Carolina?", a: "State filing fees still apply unless a specific program says otherwise. Be wary of \"free formation\" upsells that bury registered agent and compliance costs." },
+      { q: "Is SDVOSB required to win work?", a: "No. Many veteran-owned firms win commercial work first. Certification can help in specific set-asides when you can perform. Capability comes first." },
+      { q: "Can you help with SBA readiness and formation together?", a: "Yes. Formation, credit, books, and SBA readiness are the same foundation stack — we will tell you what to sequence and what to skip." }
+    ],
+    ctaHeading: "Forming after service — or scaling a veteran-owned company?",
+    ctaBody: "Free consultation for North Carolina founders. We will map structure, banking, books, credit, and capital — and tell you what not to chase yet. Strong fit for Fayetteville and Sandhills operators.",
+    relatedService: {
+      href: "/services/llc-formation-north-carolina",
+      label: "LLC Formation in North Carolina",
+    },
   }
 ];
 
