@@ -73,14 +73,14 @@ const SERVICES = [
     description: "Clean books, reconciled accounts, and financial clarity. The foundation every business needs before it can grow.",
   },
   {
-    slug: "fractional-cfo",
+    slug: "fractional-cfo-north-carolina",
     label: "Fractional CFO",
     price: "$1,200/mo",
     time: "Ongoing",
     description: "Strategic financial leadership without a full-time hire. Cash flow, forecasting, and the financial decisions that actually matter.",
   },
   {
-    slug: "web-design-seo",
+    slug: "web-design-seo-north-carolina",
     label: "Web Design & SEO",
     price: "From $1,500",
     time: "4–6 weeks",

@@ -250,7 +250,7 @@ export const BLOG_POSTS: BlogPost[] = [
     ctaHeading: "Not sure which financial support your business needs?",
     ctaBody: "Start with a free consultation. We'll assess your current financial infrastructure and tell you exactly what level of support makes sense for your business — and what it will cost.",
     relatedService: {
-      href: "/services/fractional-cfo",
+      href: "/services/fractional-cfo-north-carolina",
       label: "Fractional CFO services",
     },
   },
@@ -465,6 +465,170 @@ export const BLOG_POSTS: BlogPost[] = [
     relatedService: {
       href: "/services/llc-formation-north-carolina",
       label: "LLC Formation in North Carolina",
+    },
+  },
+  // ── Wave 3 priority queue (net-new posts) ───────────────────────────────────
+  {
+    slug: "how-to-open-a-business-bank-account-north-carolina",
+    title: "How to Open a Business Bank Account in North Carolina (2026)",
+    seoTitle: "Open a Business Bank Account in NC (2026 Checklist) | 617 East Trust",
+    metaDescription: "How to open a business bank account in North Carolina: documents banks require, EIN vs SSN, LLC tips, and how to keep your liability shield intact.",
+    canonical: "https://617east.com/blog/how-to-open-a-business-bank-account-north-carolina",
+    h1: "How to Open a Business Bank Account in North Carolina (2026)",
+    category: "Business Formation",
+    readTime: "11 min read",
+    publishDate: "August 2026",
+    intro: "Opening a business bank account in North Carolina is one of the first real steps after formation — and one of the easiest ways new owners accidentally weaken their LLC liability protection. Banks will not open an account on vibes. They need entity paperwork, tax ID information, and identity verification. This guide walks through what you need, what banks actually check, and the mistakes that create problems later with lenders, the IRS, and courts.",
+    sections: [
+      {
+        heading: "Why a Separate Business Account Matters",
+        body: "An LLC only protects you if you treat the business as a separate legal person. Mixing personal and business cash — paying rent from the business account, dumping customer revenue into a personal checking account — is the classic path to \"piercing the corporate veil.\" A dedicated business account is the simplest daily habit that supports your liability shield.\n\nA separate account also makes bookkeeping cleaner, tax time faster, and SBA or bank underwriting less painful. When a lender asks for business bank statements, they mean business statements — not a personal account with \"business-ish\" memo lines."
+      },
+      {
+        heading: "What You Need Before You Walk Into (or Apply Online At) a Bank",
+        body: "Most North Carolina banks and credit unions will ask for some combination of the following:\n\n(1) Articles of Organization (or Articles of Incorporation) filed with the NC Secretary of State — often a certified copy if the bank is strict. (2) Employer Identification Number (EIN) confirmation letter from the IRS. (3) Operating agreement (especially for multi-member LLCs). (4) Government photo ID for each authorized signer. (5) Business address and contact details that match public filings where possible. (6) Initial deposit.\n\nSingle-member LLCs sometimes try to open accounts with a Social Security Number only. Many banks still prefer or require an EIN. Getting an EIN is free from the IRS and takes minutes online — there is little reason to skip it."
+      },
+      {
+        heading: "EIN First: The Free Step People Delay",
+        body: "Apply for an EIN at irs.gov after your LLC exists (or as part of a complete formation package). You receive the number immediately for most online applications. Print or save the CP 575 confirmation letter — banks ask for it constantly.\n\nIf someone else applied for your EIN (formation service, prior CPA), make sure you control the IRS online account associated with that EIN. Losing access becomes a multi-week problem the first time you need to amend a return or respond to a notice."
+      },
+      {
+        heading: "Choosing a Bank in North Carolina",
+        body: "There is no single \"best\" bank for every NC small business. Tradeoffs matter:\n\nNational banks: convenient branch networks, better app tooling, sometimes higher fees and more automated risk reviews. Regional banks and credit unions: relationship-driven underwriting later, sometimes lower fees, sometimes slower digital onboarding. Online-only business banks: fast account opening, excellent software integrations, weaker cash-deposit workflows if you handle cash.\n\nIf you plan to apply for an SBA loan within 12–24 months, start building a clean statement history early. Lenders read 3–12 months of business bank statements carefully — overdrafts, unexplained large transfers, and constant owner draws without documentation raise questions."
+      },
+      {
+        heading: "The Day-of Account Opening Checklist",
+        body: "Bring physical or PDF copies of formation docs, EIN letter, IDs, and your operating agreement. Know who will be authorized signers on day one. Decide whether you need a debit card, checks, remote deposit, and ACH capabilities immediately.\n\nAsk explicitly: monthly fees and how to waive them; wire fees; cash deposit limits; how long holds last on mobile deposits; whether the account is truly a business product (not a personal account with a DBA sticker).\n\nIf the bank rejects the application, ask for the reason in writing if possible. Common causes: mismatched addresses, incomplete formation filings, OFAC/name matches that need manual review, or industry codes the bank will not bank (high-risk merchant categories)."
+      },
+      {
+        heading: "After the Account Opens: Rules That Protect You",
+        body: "Use the business account only for business activity. Pay yourself with documented draws or payroll — not random Venmo chaos. Connect bookkeeping software (QuickBooks Online, Xero, or a clean spreadsheet system) in the first week, not the first tax season.\n\nKeep the registered agent address, principal office address, and bank records aligned enough that a third party can verify you are a real operating business. Update the bank when members, managers, or signers change.\n\nIf you formed through 617 East Trust, your formation package is built so the documents banks request are ready: Articles, EIN, operating agreement, and a post-formation checklist that includes the bank step."
+      },
+      {
+        heading: "Common Mistakes North Carolina Owners Make",
+        body: "Waiting months after formation to open an account while still taking client payments personally. Using a personal account \"just until revenue stabilizes.\" Listing a virtual mailbox as the only address when the bank requires a physical presence. Forgetting beneficial ownership disclosures for multi-owner entities. Opening the account in a trade name that is not registered when the bank requires the legal LLC name.\n\nNone of these are unrecoverable, but each creates cleanup work — and cleanup work shows up later as friction with lenders and tax pros."
+      }
+    ],
+    faqs: [
+      { q: "Do I need an LLC to open a business bank account in NC?", a: "You can open some sole-proprietor accounts without an LLC, but if you formed an LLC for liability protection, you should bank in the LLC's name with an EIN. That is how you keep personal and business finances separate." },
+      { q: "Can I open a North Carolina business bank account online?", a: "Many banks offer online business applications. You will still upload formation documents and complete identity verification. Some institutions still require a branch visit for certain entity types." },
+      { q: "What if I lost my EIN confirmation letter?", a: "You can request an EIN verification letter from the IRS or retrieve it through an IRS online account if you have access. Do not invent a number or reuse a personal SSN as a substitute on entity accounts." },
+      { q: "How soon after forming an LLC should I open the account?", a: "As soon as you have Articles and an EIN. Ideally within days of formation — before the first customer payment lands in a personal account." },
+      { q: "Does 617 East Trust open the bank account for me?", a: "Banks require the owner or authorized signer to complete identity verification. We prepare the document package and checklist so the appointment is straightforward." }
+    ],
+    ctaHeading: "Forming the LLC is step one. Banking is step two.",
+    ctaBody: "We include EIN, operating agreement, and a post-formation checklist with every North Carolina LLC package — so the bank conversation is paperwork, not guesswork.",
+    relatedService: {
+      href: "/services/llc-formation-north-carolina",
+      label: "LLC Formation in North Carolina — $499 total",
+    },
+  },
+  {
+    slug: "when-does-a-small-business-need-a-fractional-cfo-north-carolina",
+    title: "When Does a Small Business Need a Fractional CFO?",
+    seoTitle: "When to Hire a Fractional CFO (NC Small Business Guide) | 617 East Trust",
+    metaDescription: "Signs your North Carolina business needs a fractional CFO: cash flow chaos, growth decisions, lender prep, and the bookkeeper-vs-CFO line. Honest thresholds.",
+    canonical: "https://617east.com/blog/when-does-a-small-business-need-a-fractional-cfo-north-carolina",
+    h1: "When Does a Small Business Need a Fractional CFO?",
+    category: "Fractional CFO",
+    readTime: "12 min read",
+    publishDate: "August 2026",
+    intro: "A fractional CFO is not a fancy bookkeeper and not a full-time executive hire. It is part-time strategic finance leadership — cash flow, forecasting, lender conversations, and the decisions that change the trajectory of the business. The hard part is knowing when you actually need one. Hire too early and you overpay for advice you cannot execute. Hire too late and you make expensive mistakes with incomplete information. This guide is the honest version for North Carolina operators.",
+    sections: [
+      {
+        heading: "What a Fractional CFO Actually Does",
+        body: "Bookkeepers record history. Accountants (and CPAs) close books, prepare statements, and handle tax compliance. A CFO uses those numbers to answer forward-looking questions: Can we afford this hire? What happens to cash if revenue dips 20%? Are we ready for a loan package? Which product line is quietly losing money?\n\nA fractional CFO does that work on a retainer measured in days per month, not a $150,000+ salary. The value is judgment and prioritization — not data entry."
+      },
+      {
+        heading: "Signals You Are Ready (or Overdue)",
+        body: "Common triggers we see in North Carolina small businesses:\n\nRevenue has grown past the point where the owner can track cash in their head — often somewhere in the mid six figures to low seven figures, though complexity matters more than a magic number. Cash feels tight even when sales look fine. You are preparing for an SBA loan, bank line, or investor conversation and your financial package is not lender-ready. You are making pricing, hiring, or expansion decisions without a 90-day cash forecast. Your bookkeeper is excellent at transactions but cannot (and should not) own strategy. You have multiple entities, locations, or product lines and no clean management reporting.\n\nIf three or more of those are true, a fractional CFO conversation is usually justified."
+      },
+      {
+        heading: "Signals You Are Not Ready Yet",
+        body: "If your books are six months behind, start with bookkeeping catch-up — not a CFO. Strategy on bad data is expensive fiction. If revenue is low and decisions are simple, a monthly financial review with a good bookkeeper and CPA may be enough. If you want someone to \"make the numbers look good\" for a loan without fixing operations, that is not CFO work — and we will decline it.\n\nWe routinely tell prospects they need cleaner books first. That is not an upsell delay. It is sequence."
+      },
+      {
+        heading: "Fractional CFO vs Bookkeeper vs Controller",
+        body: "Bookkeeper: transactions, reconciliations, basic reports. Controller: accounting systems, close process, internal controls, more sophisticated reporting. CFO: strategy, capital structure, forecasting, stakeholder communication, risk.\n\nMany NC businesses jump from bookkeeper straight to \"we need a CFO\" when what they actually need is a controller-level close and a simple dashboard. A fractional CFO engagement should define which altitude is required — and price the work accordingly."
+      },
+      {
+        heading: "What Good Engagement Looks Like",
+        body: "A useful fractional CFO relationship has a written scope: meeting cadence, deliverables (forecast model, KPI pack, cash plan), decision rights, and a minimum term long enough for the work to compound — often three months or more.\n\nExpect the first 30 days to include a diagnostic: chart of accounts quality, cash visibility, debt schedule, and the top three financial risks. Months two and three should produce decisions, not just prettier PDFs."
+      },
+      {
+        heading: "Cost Reality in North Carolina",
+        body: "Full-time CFOs are expensive fully loaded. Fractional retainers vary widely by scope. At 617 East Trust, fractional CFO work starts at $1,200/month for a defined strategic package — not unlimited hours, not \"call me whenever\" chaos without boundaries.\n\nIf a quote seems impossibly cheap for true CFO work, read the scope carefully. You may be buying bookkeeping with a loftier title."
+      },
+      {
+        heading: "How This Connects to Loans and Growth",
+        body: "SBA and bank underwriters care about repayment ability, not optimism. A fractional CFO helps you present a coherent story: historical statements, debt schedule, and a forecast that matches how the business actually operates. That is different from a generic business-plan template.\n\nIf loan readiness is your primary goal, say so in the first conversation. The engagement should prioritize package quality and cash controls over vanity metrics."
+      }
+    ],
+    faqs: [
+      { q: "What revenue level needs a fractional CFO?", a: "There is no universal threshold. Complexity, cash volatility, and upcoming capital decisions matter more than a single revenue number. Many engagements start when the owner can no longer manage cash by intuition." },
+      { q: "Can a fractional CFO replace my CPA?", a: "No. CPAs handle tax and often assurance work. CFOs use financial information for decisions. You usually need both relationships, with clear lanes." },
+      { q: "How many hours per month is typical?", a: "It depends on scope. Some clients need a half-day cadence; others need deeper modeling during a financing sprint. Scope should be written before work starts." },
+      { q: "Do you work remotely across North Carolina?", a: "Yes. Most fractional CFO work is remote, with optional in-person sessions for Sandhills-area clients." }
+    ],
+    ctaHeading: "Not sure if you need a CFO — or just cleaner books?",
+    ctaBody: "Start with a free consultation. We will tell you whether the next hire is bookkeeping, controller-level process, or fractional CFO strategy — including if the answer is \"not yet.\"",
+    relatedService: {
+      href: "/services/fractional-cfo-north-carolina",
+      label: "Fractional CFO services in North Carolina",
+    },
+  },
+  {
+    slug: "bookkeeping-vs-accounting-north-carolina",
+    title: "Bookkeeping vs Accounting: What North Carolina Small Businesses Actually Need",
+    seoTitle: "Bookkeeping vs Accounting (NC Small Business) | 617 East Trust",
+    metaDescription: "Bookkeeping vs accounting explained for North Carolina owners: who does what, what it costs, when you need each, and how messy books break loans and taxes.",
+    canonical: "https://617east.com/blog/bookkeeping-vs-accounting-north-carolina",
+    h1: "Bookkeeping vs Accounting: What NC Small Businesses Actually Need",
+    category: "Bookkeeping",
+    readTime: "10 min read",
+    publishDate: "August 2026",
+    intro: "\"Bookkeeping\" and \"accounting\" get used interchangeably until something breaks — a tax notice, a rejected loan, or a year-end scramble. They are related, not identical. Bookkeeping is the operating system that records transactions accurately and on time. Accounting interprets those records for statements, compliance, and decisions. If you mix the roles, you either overpay for the wrong expertise or underpay and get silence until April. This guide draws the line clearly for North Carolina small businesses.",
+    sections: [
+      {
+        heading: "Bookkeeping: The Daily and Monthly System",
+        body: "Bookkeeping captures what happened: sales, expenses, bank activity, bills, invoices, payroll entries, and reconciliations. Done well, every month closes with reconciled accounts and reports you can trust.\n\nDone poorly, you get a shoe box (digital or physical), uncategorized transactions, and a CPA who bills you to clean up eleven months of chaos in three weeks. Cleanup always costs more than steady monthly work."
+      },
+      {
+        heading: "Accounting: Statements, Compliance, and Interpretation",
+        body: "Accounting builds on bookkeeping to produce financial statements, support tax filings, apply accounting standards where relevant, and explain what the numbers mean. Many small businesses hire a CPA for tax and year-end work while a bookkeeper owns the monthly close.\n\nA CPA is not automatically a bookkeeper, and a bookkeeper is not a tax advisor. Confusing those lanes is how owners get surprised."
+      },
+      {
+        heading: "Who You Need at Each Stage",
+        body: "Solo pre-revenue or very early stage: simple bookkeeping habits may be enough — still separate accounts, still categorize monthly. Growing service business: monthly bookkeeping becomes non-negotiable; CPA for taxes. Multi-entity or inventory-heavy: bookkeeping plus stronger accounting controls. Preparing for financing: clean books first, then package-ready statements and forecasts (often with fractional CFO support).\n\nSequence matters. Do not buy strategy on top of unreconciled accounts."
+      },
+      {
+        heading: "What \"Clean Books\" Means in Practice",
+        body: "Clean books mean bank and credit card accounts reconcile to the penny (or documented reconciling items). Revenue is categorized consistently. Owner draws are not buried in random expense accounts. Loan payments split principal and interest correctly. Sales tax, payroll liabilities, and due-to/due-from accounts are not mystery buckets.\n\nIf your P&L changes every time someone \"fixes categories,\" you do not have a reporting problem — you have a process problem."
+      },
+      {
+        heading: "Cost Ranges and What Drives Price",
+        body: "Monthly bookkeeping pricing scales with transaction volume, number of accounts, payroll complexity, inventory, and how messy the catch-up is. At 617 East Trust, ongoing bookkeeping starts at $199/month for straightforward small-business packages; catch-up is scoped separately.\n\nCPA tax work is usually project- or form-based. Comparing a monthly bookkeeping retainer to a once-a-year tax invoice is an apples-to-oranges mistake."
+      },
+      {
+        heading: "How Bad Books Kill Loans and Sleep",
+        body: "Lenders read bank statements against tax returns and financial statements. Large unexplained deposits, constant NSF fees, and \"other income\" dump categories create diligence questions. The IRS and state agencies care about substantiation. You care about knowing whether you can hire, buy equipment, or survive a slow season.\n\nBookkeeping is not clerical vanity. It is operational infrastructure."
+      },
+      {
+        heading: "A Practical Split of Responsibilities",
+        body: "Owner: provides source documents, approves unusual items, does not re-code transactions ad hoc without process. Bookkeeper: records, reconciles, produces monthly reports, flags anomalies. CPA: tax strategy and filings, reviews statements as needed. Fractional CFO (when engaged): forward plan, cash strategy, lender narrative.\n\nWrite the lanes down. Informal \"everyone touches QuickBooks\" is how quality dies."
+      }
+    ],
+    faqs: [
+      { q: "Is bookkeeping required by law in North Carolina?", a: "You must maintain adequate records for tax and legal purposes. You are not required to hire a bookkeeper, but you are required to substantiate income and expenses. Most growing businesses cannot meet that bar without a real system." },
+      { q: "Can my CPA do my bookkeeping?", a: "Some do. Many prefer not to, or charge more than a dedicated bookkeeping process. Ask what is included — monthly reconciliation is different from year-end coding." },
+      { q: "QuickBooks Online vs a bookkeeper?", a: "Software is a tool. A bookkeeper is the process and judgment. Software without reconciliation is just a faster way to be wrong." },
+      { q: "How long does catch-up bookkeeping take?", a: "It depends on months of backlog and transaction volume. We scope catch-up before starting so you know cost and timeline." }
+    ],
+    ctaHeading: "Need books that close every month — not once a year?",
+    ctaBody: "We provide clean monthly bookkeeping for North Carolina small businesses, with catch-up available when the backlog is real. Start with a free consultation.",
+    relatedService: {
+      href: "/services/bookkeeping-north-carolina",
+      label: "Monthly Bookkeeping for NC small businesses",
     },
   }
 ];

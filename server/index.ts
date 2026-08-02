@@ -7,7 +7,7 @@ import {
   injectSeoIntoHtml,
   findRoute,
   normalizePath,
-  serviceRedirectTarget,
+  pathRedirectTarget,
 } from "./seo.js";
 
 const __filename = fileURLToPath(import.meta.url);
@@ -120,8 +120,8 @@ async function startServer() {
 
   // ── Client-side routing with injected SEO + analytics ────────────────────────
   app.get("*", (req, res) => {
-    // Short service slugs → long canonical (avoid duplicate URL sets)
-    const redirectTo = serviceRedirectTarget(req.path);
+    // Short service slugs + legacy paths → canonical (301)
+    const redirectTo = pathRedirectTarget(req.path);
     if (redirectTo) {
       res.redirect(301, redirectTo);
       return;

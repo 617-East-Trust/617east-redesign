@@ -89,16 +89,16 @@ export const ROUTES = [
     canonical: "https://617east.com/services/bookkeeping-north-carolina",
   },
   {
-    path: "/services/fractional-cfo",
+    path: "/services/fractional-cfo-north-carolina",
     title: "Fractional CFO North Carolina | 617 East Trust — Strategic Financial Leadership",
     description: "Fractional CFO services in North Carolina. Cash flow, forecasting, and the financial decisions that actually matter. Starting $1,200/mo.",
-    canonical: "https://617east.com/services/fractional-cfo",
+    canonical: "https://617east.com/services/fractional-cfo-north-carolina",
   },
   {
-    path: "/services/web-design-seo",
+    path: "/services/web-design-seo-north-carolina",
     title: "Web Design & SEO North Carolina | 617 East Trust — Sites That Rank",
     description: "Web design and SEO services in North Carolina. Websites built for search engines and real humans — not just to look good in a screenshot.",
-    canonical: "https://617east.com/services/web-design-seo",
+    canonical: "https://617east.com/services/web-design-seo-north-carolina",
   },
   {
     path: "/about",
@@ -196,13 +196,34 @@ export const ROUTES = [
     canonical: "https://617east.com/blog/north-carolina-business-formation-guide-2026",
     schema: { "@context": "https://schema.org", "@type": "Article", "headline": "NC Business Formation Guide 2026: LLC vs S-Corp vs C-Corp", "author": { "@type": "Person", "name": "Lamont Legrand" }, "publisher": { "@type": "Organization", "name": "617 East Trust" } }
   },
-  // ── Wave 3: New pages ─────────────────────────────────────────────────────────
   {
-    path: "/how-we-work",
-    title: "How We Work | 617 East Trust — Our Process",
+    path: "/blog/how-to-open-a-business-bank-account-north-carolina",
+    title: "Open a Business Bank Account in NC (2026 Checklist) | 617 East Trust",
+    description: "How to open a business bank account in North Carolina: documents banks require, EIN vs SSN, LLC tips, and how to keep your liability shield intact.",
+    canonical: "https://617east.com/blog/how-to-open-a-business-bank-account-north-carolina",
+    schema: { "@context": "https://schema.org", "@type": "Article", "headline": "How to Open a Business Bank Account in North Carolina (2026)", "author": { "@type": "Person", "name": "Lamont Legrand" }, "publisher": { "@type": "Organization", "name": "617 East Trust" } }
+  },
+  {
+    path: "/blog/when-does-a-small-business-need-a-fractional-cfo-north-carolina",
+    title: "When to Hire a Fractional CFO (NC Small Business Guide) | 617 East Trust",
+    description: "Signs your North Carolina business needs a fractional CFO: cash flow chaos, growth decisions, lender prep, and the bookkeeper-vs-CFO line.",
+    canonical: "https://617east.com/blog/when-does-a-small-business-need-a-fractional-cfo-north-carolina",
+    schema: { "@context": "https://schema.org", "@type": "Article", "headline": "When Does a Small Business Need a Fractional CFO?", "author": { "@type": "Person", "name": "Lamont Legrand" }, "publisher": { "@type": "Organization", "name": "617 East Trust" } }
+  },
+  {
+    path: "/blog/bookkeeping-vs-accounting-north-carolina",
+    title: "Bookkeeping vs Accounting (NC Small Business) | 617 East Trust",
+    description: "Bookkeeping vs accounting explained for North Carolina owners: who does what, costs, and when you need each.",
+    canonical: "https://617east.com/blog/bookkeeping-vs-accounting-north-carolina",
+    schema: { "@context": "https://schema.org", "@type": "Article", "headline": "Bookkeeping vs Accounting: What NC Small Businesses Actually Need", "author": { "@type": "Person", "name": "Lamont Legrand" }, "publisher": { "@type": "Organization", "name": "617 East Trust" } }
+  },
+  // ── Wave 3: Process page ──────────────────────────────────────────────────────
+  {
+    path: "/how-it-works",
+    title: "How It Works | 617 East Trust — Our Process",
     description: "How 617 East Trust works with North Carolina business owners. Free consultation, honest assessment, defined engagement, and ongoing partnership. No surprises.",
-    canonical: "https://617east.com/how-we-work",
-    schema: { "@context": "https://schema.org", "@type": "WebPage", "name": "How We Work — 617 East Trust", "url": "https://617east.com/how-we-work" }
+    canonical: "https://617east.com/how-it-works",
+    schema: { "@context": "https://schema.org", "@type": "WebPage", "name": "How It Works — 617 East Trust", "url": "https://617east.com/how-it-works" }
   },
   {
     path: "/consumer-rights",
@@ -321,7 +342,7 @@ async function run() {
     if (p === "/") return "1.0";
     if (p === "/services") return "0.9";
     if (p.startsWith("/services/")) return "0.8";
-    if (p === "/contact" || p === "/about" || p === "/how-we-work") return "0.8";
+    if (p === "/contact" || p === "/about" || p === "/how-it-works") return "0.8";
     if (p === "/blog" || p.startsWith("/blog/")) return "0.7";
     if (p === "/privacy" || p === "/terms" || p === "/consumer-rights") return "0.3";
     return "0.5";

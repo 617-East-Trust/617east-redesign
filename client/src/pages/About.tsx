@@ -115,7 +115,7 @@ export default function About() {
               </div>
               <div className="mt-8 reveal reveal-delay-3">
                 <a
-                  href="/how-we-work"
+                  href="/how-it-works"
                   className="btn-ghost-gold px-6 py-3 rounded-sm text-sm inline-flex items-center gap-2"
                 >
                   See how we work with clients

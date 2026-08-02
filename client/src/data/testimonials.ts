@@ -52,7 +52,7 @@ export const HOME_TESTIMONIALS: Testimonial[] = [
       "I thought I needed a full-time CFO. He said I needed cleaner books and a 90-day cash forecast first — half the cost, twice as useful for where we are.",
     name: "James W.",
     service: "Fractional CFO",
-    serviceSlug: "fractional-cfo",
+    serviceSlug: "fractional-cfo-north-carolina",
     location: "Raleigh, NC",
   },
 ];
@@ -96,7 +96,7 @@ const SERVICE_EXTRA: Testimonial[] = [
       "Monthly CFO call plus a dashboard I can read. We cut two vendor contracts and found $1,100/month we were wasting.",
     name: "Nicole P.",
     service: "Fractional CFO",
-    serviceSlug: "fractional-cfo",
+    serviceSlug: "fractional-cfo-north-carolina",
     location: "Durham, NC",
   },
   {
@@ -104,7 +104,7 @@ const SERVICE_EXTRA: Testimonial[] = [
       "Site finally ranks for the services I actually sell in Moore County. He refused to stuff keywords and still beat the generic template I paid for before.",
     name: "Omar K.",
     service: "Web Design & SEO",
-    serviceSlug: "web-design-seo",
+    serviceSlug: "web-design-seo-north-carolina",
     location: "Pinehurst, NC",
   },
 ];

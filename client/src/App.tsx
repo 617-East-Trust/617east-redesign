@@ -51,6 +51,7 @@ function Router() {
         <Route path="/privacy" component={Privacy} />
         <Route path="/terms" component={Terms} />
         <Route path="/consumer-rights" component={ConsumerRights} />
+        <Route path="/how-it-works" component={HowWeWork} />
         <Route path="/how-we-work" component={HowWeWork} />
         <Route path="/404" component={NotFound} />
         <Route component={NotFound} />

@@ -12,14 +12,14 @@ import { Link } from "wouter";
 const HOW_WE_WORK_SCHEMA = {
   "@context": "https://schema.org",
   "@type": "WebPage",
-  "name": "How We Work — 617 East Trust",
+  "name": "How It Works — 617 East Trust",
   "description": "How 617 East Trust works with North Carolina business owners. Our process: free consultation, honest assessment, defined engagement, ongoing partnership.",
-  "url": "https://617east.com/how-we-work",
+  "url": "https://617east.com/how-it-works",
   "breadcrumb": {
     "@type": "BreadcrumbList",
     "itemListElement": [
       { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://617east.com/" },
-      { "@type": "ListItem", "position": 2, "name": "How We Work", "item": "https://617east.com/how-we-work" }
+      { "@type": "ListItem", "position": 2, "name": "How It Works", "item": "https://617east.com/how-it-works" }
     ]
   }
 };
@@ -114,9 +114,9 @@ export default function HowWeWork() {
   return (
     <Layout
       pageSchema={HOW_WE_WORK_SCHEMA}
-      title="How We Work | 617 East Trust — Our Process"
+      title="How It Works | 617 East Trust — Our Process"
       description="How 617 East Trust works with North Carolina business owners. Free consultation, honest assessment, defined engagement, and ongoing partnership. No surprises."
-      canonical="https://617east.com/how-we-work"
+      canonical="https://617east.com/how-it-works"
     >
       {/* Hero */}
       <section
@@ -132,7 +132,7 @@ export default function HowWeWork() {
           <nav className="flex items-center gap-2 text-xs mb-8 reveal" style={{ color: "oklch(0.45 0.007 80)" }}>
             <Link href="/" style={{ color: "oklch(0.45 0.007 80)" }}>Home</Link>
             <span>›</span>
-            <span style={{ color: "oklch(0.78 0.12 80)" }}>How We Work</span>
+            <span style={{ color: "oklch(0.78 0.12 80)" }}>How It Works</span>
           </nav>
           <span className="section-label reveal">Our Process</span>
           <div className="gold-rule reveal reveal-delay-1" />
@@ -246,6 +246,72 @@ export default function HowWeWork() {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Who this is for — word-count + clarity (Wave 3.4) */}
+      <section
+        className="py-20"
+        style={{ background: "oklch(0.10 0.008 240)", borderTop: "1px solid oklch(0.18 0.008 240)" }}
+      >
+        <div className="container max-w-3xl">
+          <span className="section-label reveal">Fit</span>
+          <div className="gold-rule reveal reveal-delay-1" />
+          <h2
+            className="font-display text-3xl reveal reveal-delay-1"
+            style={{ color: "oklch(0.94 0.005 80)", marginBottom: "1.5rem" }}
+          >
+            Who this process is for.
+          </h2>
+          <p className="text-base leading-relaxed mb-6 reveal" style={{ color: "oklch(0.65 0.010 80)", lineHeight: "1.85" }}>
+            617 East Trust works with North Carolina founders, operators, and individuals who want a straight
+            answer before they spend money. That includes people forming a first LLC, operators preparing an SBA
+            package, clients cleaning credit before a major application, and owners who need books or CFO-level
+            clarity without hiring a full-time finance team.
+          </p>
+          <p className="text-base leading-relaxed mb-6 reveal" style={{ color: "oklch(0.65 0.010 80)", lineHeight: "1.85" }}>
+            We are a poor fit if you want guaranteed credit score jumps, overnight loan approvals, or a filing
+            factory that never questions whether the structure you picked is wrong. We are also a poor fit if you
+            need licensed legal or tax representation — we will tell you to hire counsel or a CPA when that is the
+            right next step.
+          </p>
+          <p className="text-base leading-relaxed reveal" style={{ color: "oklch(0.65 0.010 80)", lineHeight: "1.85" }}>
+            Pricing is transparent by service: LLC formation is $499 total (including the NC state fee), credit
+            repair and bookkeeping are monthly retainers billed after work for the period, fractional CFO starts
+            at $1,200/month, and web projects are scoped after a free consult. Exact numbers appear on each{" "}
+            <Link href="/services" style={{ color: "oklch(0.78 0.12 80)" }}>service page</Link>.
+          </p>
+        </div>
+      </section>
+
+      {/* What to expect on timeline */}
+      <section
+        className="py-20"
+        style={{ background: "oklch(0.13 0.009 240)", borderTop: "1px solid oklch(0.18 0.008 240)" }}
+      >
+        <div className="container max-w-3xl">
+          <span className="section-label reveal">Timelines</span>
+          <div className="gold-rule reveal reveal-delay-1" />
+          <h2
+            className="font-display text-3xl reveal reveal-delay-1"
+            style={{ color: "oklch(0.94 0.005 80)", marginBottom: "1.5rem" }}
+          >
+            Realistic timelines — not marketing timelines.
+          </h2>
+          <ul className="space-y-4 reveal">
+            {[
+              "LLC formation: typically 5–10 business days standard, 1–3 days expedited after we have complete information.",
+              "SBA consulting: assessment first; packaging length depends on lender requirements and document readiness — often weeks, not days.",
+              "Credit repair: meaningful progress is usually measured in months (often 3–6), not weeks. Accurate negative items may not be removable.",
+              "Bookkeeping: catch-up work is scoped by months of backlog; ongoing closes run on a monthly cadence.",
+              "Fractional CFO: strategy value compounds over a multi-month engagement; we set a minimum commitment so the work can stick.",
+            ].map((item, i) => (
+              <li key={i} className="flex items-start gap-3">
+                <span className="font-mono text-xs mt-1 flex-shrink-0" style={{ color: "oklch(0.78 0.12 80)" }}>◆</span>
+                <span className="text-sm leading-relaxed" style={{ color: "oklch(0.72 0.008 80)" }}>{item}</span>
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 

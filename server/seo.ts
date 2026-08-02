@@ -239,14 +239,15 @@ export const ROUTES: RouteMeta[] = [
       "(4) no guaranteed credit score increases or removal of accurate information. Contact: info@617east.com · (910) 315-1800."
   },
   {
-    path: "/how-we-work",
-    title: "How We Work | 617 East Trust — Our Process",
-    description: "How 617 East Trust works with North Carolina business owners. Free consultation, honest assessment, defined engagement, and ongoing partnership.",
-    canonical: `${BASE}/how-we-work`,
-    jsonLd: { "@context": "https://schema.org", "@type": "WebPage", "name": "How We Work — 617 East Trust", "url": `${BASE}/how-we-work` },
-    noscriptH1: "How We Work — 617 East Trust",
+    path: "/how-it-works",
+    title: "How It Works | 617 East Trust — Our Process",
+    description: "How 617 East Trust works with North Carolina business owners. Free consultation, honest assessment, defined engagement, and ongoing partnership. No surprises.",
+    canonical: `${BASE}/how-it-works`,
+    jsonLd: { "@context": "https://schema.org", "@type": "WebPage", "name": "How It Works — 617 East Trust", "url": `${BASE}/how-it-works` },
+    noscriptH1: "How It Works — 617 East Trust",
     noscriptBody:
       "Free consultation, honest assessment of fit, written engagement terms, and clear deliverables. " +
+      "Four-step process: free consultation, honest assessment, defined engagement, ongoing partnership. " +
       "For credit repair: CROA consumer rights disclosure and a 3 business day cancellation right. Call (910) 315-1800."
   }
 ];
@@ -257,8 +258,8 @@ const SERVICE_SLUGS = [
   "sba-loans-north-carolina",
   "credit-repair-north-carolina",
   "bookkeeping-north-carolina",
-  "fractional-cfo",
-  "web-design-seo"
+  "fractional-cfo-north-carolina",
+  "web-design-seo-north-carolina"
 ] as const;
 
 /** Short orphans → long canonical (301 on server; SEO alias resolves meta). */
@@ -266,6 +267,8 @@ export const SERVICE_SLUG_ALIASES: Record<string, string> = {
   "sba-loans": "sba-loans-north-carolina",
   "credit-repair": "credit-repair-north-carolina",
   "bookkeeping": "bookkeeping-north-carolina",
+  "fractional-cfo": "fractional-cfo-north-carolina",
+  "web-design-seo": "web-design-seo-north-carolina",
 };
 
 const CROA_CREDIT_NOSCRIPT =
@@ -298,12 +301,12 @@ const SERVICE_TITLES: Record<string, { title: string; desc: string; serviceName:
     desc: "Monthly bookkeeping for North Carolina small businesses. Clean books, real numbers, no surprises at tax time.",
     serviceName: "Bookkeeping Services",
   },
-  "fractional-cfo": {
+  "fractional-cfo-north-carolina": {
     title: "Fractional CFO Services North Carolina | 617 East Trust",
     desc: "Part-time CFO guidance for NC businesses that need strategy, not just bookkeeping. Cash flow, forecasting, and growth planning.",
     serviceName: "Fractional CFO Services",
   },
-  "web-design-seo": {
+  "web-design-seo-north-carolina": {
     title: "Web Design & SEO North Carolina | 617 East Trust",
     desc: "Conversion-focused web design and SEO for NC small businesses. Built to rank and convert, not just to look pretty.",
     serviceName: "Web Design & SEO",
@@ -406,6 +409,21 @@ const BLOG_ROUTES: Array<{ path: string; title: string; desc: string }> = [
     title: "NC Business Formation 2026: LLC vs S-Corp vs C-Corp | 617 East Trust",
     desc: "North Carolina business formation guide for 2026. Compare LLC, S-Corp, and C-Corp structures, costs, taxes, and liability.",
   },
+  {
+    path: "/blog/how-to-open-a-business-bank-account-north-carolina",
+    title: "Open a Business Bank Account in NC (2026 Checklist) | 617 East Trust",
+    desc: "How to open a business bank account in North Carolina: documents banks require, EIN vs SSN, LLC tips, and how to keep your liability shield intact.",
+  },
+  {
+    path: "/blog/when-does-a-small-business-need-a-fractional-cfo-north-carolina",
+    title: "When to Hire a Fractional CFO (NC Small Business Guide) | 617 East Trust",
+    desc: "Signs your North Carolina business needs a fractional CFO: cash flow chaos, growth decisions, lender prep, and the bookkeeper-vs-CFO line.",
+  },
+  {
+    path: "/blog/bookkeeping-vs-accounting-north-carolina",
+    title: "Bookkeeping vs Accounting (NC Small Business) | 617 East Trust",
+    desc: "Bookkeeping vs accounting explained for North Carolina owners: who does what, costs, and when you need each.",
+  },
 ];
 
 for (const post of BLOG_ROUTES) {
@@ -457,6 +475,19 @@ export function serviceRedirectTarget(pathname: string): string | null {
   const slug = normalized.slice("/services/".length);
   const canonical = SERVICE_SLUG_ALIASES[slug];
   return canonical ? `/services/${canonical}` : null;
+}
+
+/** Non-service permanent redirects (Wave 3: how-we-work → how-it-works). */
+const PATH_REDIRECTS: Record<string, string> = {
+  "/how-we-work": "/how-it-works",
+};
+
+/** Any path that should 301 to a canonical URL. */
+export function pathRedirectTarget(pathname: string): string | null {
+  const service = serviceRedirectTarget(pathname);
+  if (service) return service;
+  const normalized = normalizePath(pathname);
+  return PATH_REDIRECTS[normalized] || null;
 }
 
 function escapeHtml(s: string): string {

@@ -264,12 +264,12 @@ export const SERVICES: ServiceData[] = [
     },
   },
   {
-    slug: "fractional-cfo",
-    title: "Fractional CFO Services",
+    slug: "fractional-cfo-north-carolina",
+    title: "Fractional CFO Services in North Carolina",
     seoTitle: "Fractional CFO North Carolina | 617 East Trust — Strategic Financial Leadership",
     metaDescription: "Fractional CFO services in North Carolina. Strategic financial leadership without a full-time hire. Cash flow, forecasting, and the decisions that matter. $1,200/mo.",
-    canonical: "https://617east.com/services/fractional-cfo",
-    h1: "Fractional CFO Services",
+    canonical: "https://617east.com/services/fractional-cfo-north-carolina",
+    h1: "Fractional CFO Services in North Carolina",
     tagline: "Strategic financial leadership. Without the full-time cost.",
     price: "$1,200/mo",
     priceNote: "Monthly retainer. Scope and hours defined at engagement start.",
@@ -316,12 +316,12 @@ export const SERVICES: ServiceData[] = [
     },
   },
   {
-    slug: "web-design-seo",
-    title: "Web Design & SEO Services",
+    slug: "web-design-seo-north-carolina",
+    title: "Web Design & SEO Services in North Carolina",
     seoTitle: "Web Design & SEO North Carolina | 617 East Trust — Sites That Rank",
     metaDescription: "Web design and SEO services in North Carolina. Sites that rank on Google and convert visitors. From $1,500. Built for search engines and real humans.",
-    canonical: "https://617east.com/services/web-design-seo",
-    h1: "Web Design & SEO Services",
+    canonical: "https://617east.com/services/web-design-seo-north-carolina",
+    h1: "Web Design & SEO Services in North Carolina",
     tagline: "Built for search engines and real humans — not just to look good in a screenshot.",
     price: "From $1,500",
     priceNote: "Project-based pricing. SEO retainers from $500/mo.",
@@ -374,6 +374,8 @@ const SLUG_ALIASES: Record<string, string> = {
   "sba-loans": "sba-loans-north-carolina",
   "credit-repair": "credit-repair-north-carolina",
   "bookkeeping": "bookkeeping-north-carolina",
+  "fractional-cfo": "fractional-cfo-north-carolina",
+  "web-design-seo": "web-design-seo-north-carolina",
 };
 
 export function getServiceBySlug(slug: string): ServiceData | undefined {

@@ -51,6 +51,7 @@ function LogoMark({ size = 36 }: { size?: number }) {
 const NAV_LINKS = [
   { href: "/", label: "Home" },
   { href: "/services", label: "Services" },
+  { href: "/how-it-works", label: "How It Works" },
   { href: "/about", label: "About" },
   { href: "/blog", label: "Resources" },
   { href: "/contact", label: "Contact" },
@@ -61,8 +62,8 @@ const SERVICE_LINKS = [
   { href: "/services/sba-loans-north-carolina", label: "SBA Loans" },
   { href: "/services/credit-repair-north-carolina", label: "Credit Repair" },
   { href: "/services/bookkeeping-north-carolina", label: "Bookkeeping" },
-  { href: "/services/fractional-cfo", label: "Fractional CFO" },
-  { href: "/services/web-design-seo", label: "Web Design & SEO" },
+  { href: "/services/fractional-cfo-north-carolina", label: "Fractional CFO" },
+  { href: "/services/web-design-seo-north-carolina", label: "Web Design & SEO" },
 ];
 
 // Global ProfessionalService schema

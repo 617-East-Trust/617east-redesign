@@ -429,8 +429,8 @@ export default function ServiceDetail() {
               { slug: "sba-loans-north-carolina", label: "SBA Loans" },
               { slug: "credit-repair-north-carolina", label: "Credit Repair" },
               { slug: "bookkeeping-north-carolina", label: "Bookkeeping" },
-              { slug: "fractional-cfo", label: "Fractional CFO" },
-              { slug: "web-design-seo", label: "Web Design & SEO" },
+              { slug: "fractional-cfo-north-carolina", label: "Fractional CFO" },
+              { slug: "web-design-seo-north-carolina", label: "Web Design & SEO" },
             ]
               .filter(s => s.slug !== service.slug)
               .map(s => (

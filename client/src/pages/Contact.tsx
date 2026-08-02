@@ -37,8 +37,8 @@ const SERVICE_OPTIONS = [
   { value: "sba-loans", label: "SBA Loans" },
   { value: "credit-repair", label: "Credit Repair" },
   { value: "bookkeeping", label: "Bookkeeping" },
-  { value: "fractional-cfo", label: "Fractional CFO" },
-  { value: "web-design-seo", label: "Web Design & SEO" },
+  { value: "fractional-cfo-north-carolina", label: "Fractional CFO" },
+  { value: "web-design-seo-north-carolina", label: "Web Design & SEO" },
   { value: "not-sure", label: "Not sure yet" },
 ];
 
