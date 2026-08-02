@@ -1,10 +1,10 @@
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/NotFound";
-import { lazy, Suspense, useEffect } from "react";
+import { lazy, Suspense } from "react";
 import { Route, Switch } from "wouter";
-import { initAnalytics } from "./lib/analytics";
 import CookieConsent from "./components/CookieConsent";
+import EngagementTracker from "./components/EngagementTracker";
 import ErrorBoundary from "./components/ErrorBoundary";
 import HowWeWork from "./pages/HowWeWork";
 import { ThemeProvider } from "./contexts/ThemeContext";
@@ -61,16 +61,13 @@ function Router() {
 }
 
 function App() {
-  useEffect(() => {
-    initAnalytics();
-  }, []);
-
   return (
     <ErrorBoundary>
       <ThemeProvider defaultTheme="dark">
         <TooltipProvider>
           <Toaster />
           <CookieConsent />
+          <EngagementTracker />
           <Router />
         </TooltipProvider>
       </ThemeProvider>

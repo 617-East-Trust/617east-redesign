@@ -52,7 +52,7 @@ export default function Privacy() {
               },
               {
                 title: "Cookies and Consent",
-                body: "This website uses cookies for analytics purposes only (Google Analytics and Microsoft Clarity). A consent banner is displayed on your first visit. If you decline, no analytics cookies are set and no tracking scripts are loaded. Your consent preference is stored in your browser's localStorage and expires when you clear your browser data. You may change your preference at any time by clearing your browser's localStorage for 617east.com."
+                body: "This website uses cookies for analytics purposes only (Google Analytics / Google Tag Manager and Microsoft Clarity). Optional call-tracking scripts (e.g. CallRail) load only after consent when configured. A consent banner is displayed on your first visit. If you decline, no analytics cookies are set and no tracking scripts are loaded. Your consent preference is stored in your browser's localStorage and expires when you clear your browser data. You may change your preference at any time by clearing your browser's localStorage for 617east.com."
               },
               {
                 title: "California Residents (CCPA)",

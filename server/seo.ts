@@ -26,6 +26,10 @@ export type InjectionOptions = {
   analyticsWebsiteId: string;
   ga4Id?: string;
   clarityId?: string;
+  /** Google Tag Manager container ID e.g. GTM-XXXX */
+  gtmId?: string;
+  /** CallRail company swap path segment (consent-gated client load) */
+  callrailSwapId?: string;
 };
 
 const BASE = "https://617east.com";
@@ -591,33 +595,20 @@ export function injectSeoIntoHtml(
     analyticsMarkup,
   );
 
-  // GA4 snippet — only inject when a real GA4_ID is provided
-  const ga4Id = opts?.ga4Id;
-  if (ga4Id) {
-    const ga4Script = `<!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=${escapeHtml(ga4Id)}"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', '${escapeHtml(ga4Id)}');
+  // Measurement IDs only — scripts load after cookie consent (client/lib/analytics.ts).
+  // Do NOT inject live gtag/Clarity/GTM tags here (that bypasses consent).
+  const ga4Id = opts?.ga4Id || "";
+  const clarityId = opts?.clarityId || "";
+  const gtmId = opts?.gtmId || "";
+  const callrail = opts?.callrailSwapId || "";
+  if (ga4Id || clarityId || gtmId || callrail) {
+    const cfg = `    <script>
+      window.__GA_ID__=${JSON.stringify(ga4Id)};
+      window.__CLARITY_ID__=${JSON.stringify(clarityId)};
+      window.__GTM_ID__=${JSON.stringify(gtmId)};
+      window.__CALLRAIL_SWAP__=${JSON.stringify(callrail)};
     </script>`;
-    result = result.replace("</head>", `${ga4Script}
-  </head>`);
-  }
-
-  // Microsoft Clarity snippet — only inject when a real CLARITY_ID is provided
-  const clarityId = opts?.clarityId;
-  if (clarityId) {
-    const clarityScript = `<!-- Microsoft Clarity -->
-    <script type="text/javascript">
-      (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-      })(window, document, "clarity", "script", "${escapeHtml(clarityId)}");
-    </script>`;
-    result = result.replace("</head>", `${clarityScript}
+    result = result.replace("</head>", `${cfg}
   </head>`);
   }
 

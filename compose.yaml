@@ -10,4 +10,10 @@ services:
       - ANALYTICS_ENDPOINT
       - ANALYTICS_WEBSITE_ID
       - N8N_WEBHOOK_URL
+      # Wave 4 measurement (consent-gated client load)
+      - GA4_ID
+      - CLARITY_ID
+      - GTM_ID
+      - CALLRAIL_SWAP_ID
+      - CONSENT_RECORDER_URL
     restart: unless-stopped

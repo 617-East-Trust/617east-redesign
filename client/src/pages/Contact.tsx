@@ -7,6 +7,7 @@
 import Layout from "@/components/Layout";
 import { useReveal } from "@/hooks/useReveal";
 import { useHeroEntrance, heroLabelStyle, heroRuleStyle, heroHeadlineOuter, heroHeadlineInner, heroSubtextStyle } from "@/hooks/useHeroEntrance";
+import { trackLead } from "@/lib/analytics";
 import { useEffect, useState } from "react";
 
 const CALENDLY_URL =
@@ -101,13 +102,7 @@ export default function Contact() {
       });
       if (res.ok) {
         setFormState("success");
-        // GA4 conversion event
-        if (typeof window !== "undefined" && (window as any).gtag) {
-          (window as any).gtag("event", "generate_lead", {
-            form_name: "contact",
-            service_interest: formData.service,
-          });
-        }
+        trackLead("contact", formData.service);
         setFormData({ name: "", email: "", phone: "", service: "", message: "" });
       } else {
         setFormState("error");

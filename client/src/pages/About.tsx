@@ -113,7 +113,7 @@ export default function About() {
                   The name "617 East" reflects the directional nature of the work: we help you find your bearing, understand where you are, and navigate toward where you want to go — without wasting time on paths that will not get you there.
                 </p>
               </div>
-              <div className="mt-8 reveal reveal-delay-3">
+              <div className="mt-8 reveal reveal-delay-3 flex flex-wrap gap-3">
                 <a
                   href="/how-it-works"
                   className="btn-ghost-gold px-6 py-3 rounded-sm text-sm inline-flex items-center gap-2"
@@ -122,6 +122,14 @@ export default function About() {
                   <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
                     <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
+                </a>
+                <a
+                  href="https://www.linkedin.com/company/617-east-trust"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-ghost-gold px-6 py-3 rounded-sm text-sm inline-flex items-center gap-2"
+                >
+                  LinkedIn — 617 East Trust
                 </a>
               </div>
             </div>

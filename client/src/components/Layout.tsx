@@ -9,13 +9,17 @@
 import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { Link, useLocation } from "wouter";
-
-// GA4 click-to-call tracking
-function trackCall() {
-  if (typeof window !== "undefined" && (window as any).gtag) {
-    (window as any).gtag("event", "click_to_call", { phone: "+19103151800" });
-  }
-}
+import { trackCall } from "@/lib/analytics";
+import {
+  BUSINESS_NAME,
+  EMAIL,
+  PHONE_DISPLAY,
+  PHONE_E164,
+  SOCIAL,
+  displayPhone,
+  sameAsList,
+  telHref,
+} from "@/data/nap";
 
 // Compass rose SVG mark — 8-point star, gold
 function CompassMark({ size = 28 }: { size?: number }) {
@@ -66,16 +70,17 @@ const SERVICE_LINKS = [
   { href: "/services/web-design-seo-north-carolina", label: "Web Design & SEO" },
 ];
 
-// Global ProfessionalService schema
+// Global ProfessionalService schema (+ sameAs for authority signals)
 const SCHEMA_ORG = {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
-  "name": "617 East Trust",
+  "name": BUSINESS_NAME,
   "description": "Business formation, SBA loan consulting, credit repair, bookkeeping, fractional CFO, and web design services in North Carolina.",
   "url": "https://617east.com",
-  "telephone": "+19103151800",
-  "email": "info@617east.com",
+  "telephone": PHONE_E164,
+  "email": EMAIL,
   "priceRange": "$$",
+  "sameAs": sameAsList(),
   "openingHoursSpecification": {
     "@type": "OpeningHoursSpecification",
     "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
@@ -118,7 +123,8 @@ const SCHEMA_ORG = {
     "@type": "Person",
     "name": "Lamont Legrand",
     "jobTitle": "Founder & Principal Advisor",
-    "knowsAbout": ["Commercial Banking", "SBA Lending", "Business Formation", "Credit Repair", "Small Business Consulting", "Financial Planning"]
+    "knowsAbout": ["Commercial Banking", "SBA Lending", "Business Formation", "Credit Repair", "Small Business Consulting", "Financial Planning"],
+    ...(SOCIAL.linkedinFounder ? { sameAs: [SOCIAL.linkedinFounder] } : {}),
   }
 };
 
@@ -297,10 +303,10 @@ export default function Layout({ children, pageSchema, title, description, canon
           Schedule a Call
         </a>
         <a
-          href="tel:9103151800"
+          href={telHref()}
           className="btn-ghost-gold px-3 py-2.5 rounded-sm text-sm flex items-center gap-1.5"
-          aria-label="Call 617 East Trust"
-          onClick={trackCall}
+          aria-label={`Call ${BUSINESS_NAME}`}
+          onClick={() => trackCall(PHONE_E164)}
         >
           <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
             <path d="M13.5 10.5c-.8-.8-1.8-1.3-2.8-1.3-.5 0-1 .1-1.4.4L8 10.9C6.6 9.8 5.2 8.4 4.1 7L5.4 5.7c.3-.4.4-.9.4-1.4 0-1-.5-2-1.3-2.8L3.3 1C3 .7 2.6.5 2.2.5 1.3.5.5 1.3.5 2.2c0 7.3 6 13.3 13.3 13.3.9 0 1.7-.8 1.7-1.7 0-.4-.2-.8-.5-1.1l-1.5-1.2z" fill="currentColor"/>
@@ -313,12 +319,12 @@ export default function Layout({ children, pageSchema, title, description, canon
       <footer style={{ background: "oklch(0.08 0.006 240)", borderTop: "1px solid oklch(0.18 0.008 240)" }}>
         <div className="container py-16">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
-            {/* Brand */}
+            {/* Brand + NAP */}
             <div className="md:col-span-1">
               <div className="flex items-center gap-3 mb-5">
                 <img
                   src="/images/logo-seal.svg"
-                  alt="617 East Trust"
+                  alt={BUSINESS_NAME}
                   width={52}
                   height={52}
                   style={{ objectFit: "contain" }}
@@ -328,21 +334,59 @@ export default function Layout({ children, pageSchema, title, description, canon
                 The advisor who tells you what not to do. Serving founders and individuals across North Carolina.
               </p>
               <div className="flex flex-col gap-2">
-              <a
-                href="tel:9103151800"
-                className="text-sm font-medium transition-colors"
-                style={{ color: "oklch(0.78 0.12 80)" }}
-                onClick={trackCall}
-              >
-                (910) 315-1800
-              </a>
+                <p className="text-xs" style={{ color: "oklch(0.45 0.007 80)" }}>
+                  Sandhills Region, NC · By appointment
+                </p>
                 <a
-                  href="mailto:info@617east.com"
+                  href={telHref()}
+                  className="text-sm font-medium transition-colors"
+                  style={{ color: "oklch(0.78 0.12 80)" }}
+                  onClick={() => trackCall(PHONE_E164)}
+                >
+                  {displayPhone() || PHONE_DISPLAY}
+                </a>
+                <a
+                  href={`mailto:${EMAIL}`}
                   className="text-sm transition-colors"
                   style={{ color: "oklch(0.52 0.008 80)" }}
                 >
-                  info@617east.com
+                  {EMAIL}
                 </a>
+                <div className="flex flex-wrap gap-3 mt-3">
+                  {SOCIAL.linkedinCompany && (
+                    <a
+                      href={SOCIAL.linkedinCompany}
+                      target="_blank"
+                      rel="noopener noreferrer me"
+                      className="text-xs"
+                      style={{ color: "oklch(0.78 0.12 80)" }}
+                    >
+                      LinkedIn
+                    </a>
+                  )}
+                  {SOCIAL.linkedinFounder && (
+                    <a
+                      href={SOCIAL.linkedinFounder}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-xs"
+                      style={{ color: "oklch(0.78 0.12 80)" }}
+                    >
+                      Lamont on LinkedIn
+                    </a>
+                  )}
+                  {SOCIAL.googleBusiness && (
+                    <a
+                      href={SOCIAL.googleBusiness}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-xs"
+                      style={{ color: "oklch(0.78 0.12 80)" }}
+                    >
+                      Google reviews
+                    </a>
+                  )}
+                </div>
               </div>
             </div>
 
@@ -370,6 +414,7 @@ export default function Layout({ children, pageSchema, title, description, canon
               <ul className="space-y-3">
                 {[
                   { href: "/about", label: "About Us" },
+                  { href: "/how-it-works", label: "How It Works" },
                   { href: "/blog", label: "Resources" },
                   { href: "/contact", label: "Contact" },
                   { href: "/privacy", label: "Privacy Policy" },

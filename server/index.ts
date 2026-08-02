@@ -18,6 +18,8 @@ const ANALYTICS_ENDPOINT    = process.env.ANALYTICS_ENDPOINT    || "";
 const ANALYTICS_WEBSITE_ID  = process.env.ANALYTICS_WEBSITE_ID  || "";
 const GA4_ID                = process.env.GA4_ID                || "";
 const CLARITY_ID            = process.env.CLARITY_ID            || "";
+const GTM_ID                = process.env.GTM_ID                || "";
+const CALLRAIL_SWAP_ID      = process.env.CALLRAIL_SWAP_ID      || "";
 const CONSENT_RECORDER_URL  = process.env.CONSENT_RECORDER_URL  || "";
 const ANALYTICS_ENABLED     = !!(ANALYTICS_ENDPOINT && ANALYTICS_WEBSITE_ID);
 
@@ -138,6 +140,8 @@ async function startServer() {
       analyticsWebsiteId: ANALYTICS_WEBSITE_ID,
       ga4Id:              GA4_ID,
       clarityId:          CLARITY_ID,
+      gtmId:              GTM_ID,
+      callrailSwapId:     CALLRAIL_SWAP_ID,
     });
     res.type("html").send(html);
   });
@@ -150,8 +154,10 @@ async function startServer() {
     } else {
       console.log("Analytics: disabled (set ANALYTICS_ENDPOINT and ANALYTICS_WEBSITE_ID)");
     }
+    if (GTM_ID)     console.log(`Analytics: GTM     → ${GTM_ID} (consent-gated)`);
     if (GA4_ID)     console.log(`Analytics: GA4 ID  → ${GA4_ID.slice(0, 10)}… (consent-gated)`);
     if (CLARITY_ID) console.log(`Analytics: Clarity → ${CLARITY_ID.slice(0, 10)}… (consent-gated)`);
+    if (CALLRAIL_SWAP_ID) console.log(`Call tracking: CallRail swap configured (consent-gated)`);
     if (CONSENT_RECORDER_URL) console.log(`Consent log: ${CONSENT_RECORDER_URL}`);
   });
 }
