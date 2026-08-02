@@ -338,13 +338,23 @@
   }
 }
 
-/* Floating phone bar */
+/* Sticky mobile CTA bar (Schedule + Call) — reserve footer space */
+@media (max-width: 767px) {
+  main {
+    padding-bottom: 4.5rem;
+  }
+  footer {
+    padding-bottom: 4.5rem;
+  }
+}
+
+/* Legacy single phone-bar (kept for any residual use) */
 .phone-bar {
   position: fixed;
   bottom: 1.5rem;
   right: 1.5rem;
   z-index: 40;
-  display: flex;
+  display: none; /* replaced by Layout sticky dual CTA */
   align-items: center;
   gap: 0.75rem;
   padding: 0.875rem 1.25rem;
@@ -367,6 +377,9 @@
 @media (min-width: 768px) {
   .phone-bar {
     display: none;
+  }
+  .phone-bar-wrap {
+    display: none !important;
   }
 }
 

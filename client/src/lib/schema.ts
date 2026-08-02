@@ -57,7 +57,20 @@ export function professionalServiceSchema() {
     "@context": "https://schema.org",
     ...ORGANIZATION,
     areaServed: AREA_SERVED,
-    openingHours: "Mo-Su 00:00-23:59",
+    // By appointment — not "open 24 hours" (Wave 2.2 alignment with GBP)
+    openingHoursSpecification: {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+      ],
+      opens: "09:00",
+      closes: "17:00",
+      description: "By appointment. Response within 24 hours.",
+    },
     priceRange: "$$",
   };
 }

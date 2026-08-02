@@ -153,9 +153,8 @@ export default function BlogPost() {
             {/* Main content */}
             <article className="md:col-span-3">
               {post.sections.map((section, i) => (
-                <>
+                <div key={section.heading}>
                   <div
-                    key={i}
                     className={`mb-12 reveal reveal-delay-${Math.min(i + 1, 4)}`}
                     style={{ borderTop: i > 0 ? "1px solid oklch(0.18 0.008 240)" : "none", paddingTop: i > 0 ? "2.5rem" : 0 }}
                   >
@@ -172,10 +171,23 @@ export default function BlogPost() {
                         style={{ color: "oklch(0.65 0.010 80)", lineHeight: "1.85" }}
                       >
                         {para}
+                        {/* Contextual in-text service link on first half section */}
+                        {i === 0 && j === 0 && post.relatedService && (
+                          <>
+                            {" "}
+                            <a
+                              href={post.relatedService.href}
+                              style={{ color: "oklch(0.78 0.12 80)", textDecoration: "underline" }}
+                            >
+                              Related service: {post.relatedService.label}
+                            </a>
+                            .
+                          </>
+                        )}
                       </p>
                     ))}
                   </div>
-                  {/* Inline mid-article CTA — renders after the halfway section */}
+                  {/* Inline mid-article CTA (Wave 2.3) — after halfway section */}
                   {i === Math.floor(post.sections.length / 2) - 1 && (
                     <div
                       className="my-10 p-6 rounded-sm reveal"
@@ -193,24 +205,26 @@ export default function BlogPost() {
                       <p className="text-sm leading-relaxed mb-4" style={{ color: "oklch(0.58 0.010 80)" }}>
                         {post.ctaBody}
                       </p>
-                      <div className="flex flex-wrap gap-3">
+                      <div className="flex flex-wrap gap-3 items-center">
                         <a
-                          href="/contact"
+                          href="/contact#schedule"
                           className="btn-gold px-5 py-2.5 rounded-sm text-sm inline-flex items-center gap-2"
                         >
-                          Book Free Consultation
+                          Schedule a Call
                         </a>
-                        <a
-                          href="tel:9103151800"
-                          className="text-sm"
-                          style={{ color: "oklch(0.78 0.12 80)", lineHeight: "2.5rem" }}
-                        >
-                          or call (910) 315-1800
-                        </a>
+                        {post.relatedService && (
+                          <a
+                            href={post.relatedService.href}
+                            className="text-sm"
+                            style={{ color: "oklch(0.78 0.12 80)" }}
+                          >
+                            {post.relatedService.label} →
+                          </a>
+                        )}
                       </div>
                     </div>
                   )}
-                </>
+                </div>
               ))}
 
               {/* FAQ */}

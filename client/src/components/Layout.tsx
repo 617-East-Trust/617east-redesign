@@ -75,6 +75,13 @@ const SCHEMA_ORG = {
   "telephone": "+19103151800",
   "email": "info@617east.com",
   "priceRange": "$$",
+  "openingHoursSpecification": {
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+    "opens": "09:00",
+    "closes": "17:00",
+    "description": "By appointment. Response within 24 hours."
+  },
   "address": {
     "@type": "PostalAddress",
     "addressLocality": "Sandhills",
@@ -206,11 +213,11 @@ export default function Layout({ children, pageSchema, title, description, canon
                 </Link>
               ))}
               <a
-                href="/contact"
+                href="/contact#schedule"
                 className="btn-gold px-5 py-2.5 text-sm rounded-sm"
                 style={{ fontFamily: "'DM Sans', sans-serif" }}
               >
-                Free Consultation
+                Schedule a Call
               </a>
             </nav>
 
@@ -258,10 +265,10 @@ export default function Layout({ children, pageSchema, title, description, canon
                 </Link>
               ))}
               <a
-                href="/contact"
+                href="/contact#schedule"
                 className="btn-gold px-5 py-3 text-sm rounded-sm text-center mt-2"
               >
-                Free Consultation
+                Schedule a Call
               </a>
             </div>
           </div>
@@ -271,13 +278,35 @@ export default function Layout({ children, pageSchema, title, description, canon
       {/* Main content */}
       <main className="flex-1">{children}</main>
 
-      {/* Mobile floating phone CTA */}
-      <a href="tel:9103151800" className="phone-bar md:hidden" aria-label="Call 617 East Trust" onClick={trackCall}>
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-          <path d="M2 2.5A1.5 1.5 0 013.5 1h1.879a1 1 0 01.958.713l.9 3a1 1 0 01-.27 1.02L5.5 7.207a9.03 9.03 0 004.293 4.293l1.474-1.467a1 1 0 011.02-.27l3 .9A1 1 0 0116 11.62V13.5A1.5 1.5 0 0114.5 15C7.044 15 1 8.956 1 1.5A1.5 1.5 0 012.5 0H3" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
-        </svg>
-        (910) 315-1800
-      </a>
+      {/* Sticky mobile CTA: schedule + call (Wave 2.5) */}
+      <div
+        className="fixed bottom-0 left-0 right-0 md:hidden z-40 flex phone-bar-wrap"
+        style={{
+          background: "oklch(0.10 0.008 240 / 0.97)",
+          borderTop: "1px solid oklch(0.22 0.008 240)",
+          backdropFilter: "blur(12px)",
+          padding: "0.65rem 0.85rem",
+          gap: "0.65rem",
+        }}
+      >
+        <a
+          href="/contact#schedule"
+          className="btn-gold flex-1 py-2.5 rounded-sm text-sm text-center font-medium"
+        >
+          Schedule a Call
+        </a>
+        <a
+          href="tel:9103151800"
+          className="btn-ghost-gold px-3 py-2.5 rounded-sm text-sm flex items-center gap-1.5"
+          aria-label="Call 617 East Trust"
+          onClick={trackCall}
+        >
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M13.5 10.5c-.8-.8-1.8-1.3-2.8-1.3-.5 0-1 .1-1.4.4L8 10.9C6.6 9.8 5.2 8.4 4.1 7L5.4 5.7c.3-.4.4-.9.4-1.4 0-1-.5-2-1.3-2.8L3.3 1C3 .7 2.6.5 2.2.5 1.3.5.5 1.3.5 2.2c0 7.3 6 13.3 13.3 13.3.9 0 1.7-.8 1.7-1.7 0-.4-.2-.8-.5-1.1l-1.5-1.2z" fill="currentColor"/>
+          </svg>
+          Call
+        </a>
+      </div>
 
       {/* Footer */}
       <footer style={{ background: "oklch(0.08 0.006 240)", borderTop: "1px solid oklch(0.18 0.008 240)" }}>

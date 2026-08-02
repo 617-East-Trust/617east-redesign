@@ -5,7 +5,9 @@
  */
 
 import Layout from "@/components/Layout";
+import Testimonials from "@/components/Testimonials";
 import { getServiceBySlug } from "@/data/services";
+import { getTestimonialForService } from "@/data/testimonials";
 import { useReveal } from "@/hooks/useReveal";
 import { useParams } from "wouter";
 import NotFound from "./NotFound";
@@ -314,6 +316,20 @@ export default function ServiceDetail() {
           </div>
         </section>
       )}
+
+      {/* Service-specific testimonial (Wave 2.1b) — above FAQ */}
+      {(() => {
+        const t = getTestimonialForService(service.slug);
+        return t ? (
+          <Testimonials
+            items={[t]}
+            label="Client Result"
+            heading={`What a ${service.title.replace(/ in North Carolina$/, "")} client said.`}
+            compact
+            showGoogleCta={false}
+          />
+        ) : null;
+      })()}
 
       {/* FAQ */}
       <section

@@ -7,7 +7,11 @@
 import Layout from "@/components/Layout";
 import { useReveal } from "@/hooks/useReveal";
 import { useHeroEntrance, heroLabelStyle, heroRuleStyle, heroHeadlineOuter, heroHeadlineInner, heroSubtextStyle } from "@/hooks/useHeroEntrance";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+
+const CALENDLY_URL =
+  "https://calendly.com/617easttrust/free-consultation?hide_gdpr_banner=1&background_color=1a1f2e&text_color=d4c9a8&primary_color=c9a84c";
+const CALENDLY_SCRIPT = "https://assets.calendly.com/assets/external/widget.js";
 
 const CONTACT_SCHEMA = {
   "@context": "https://schema.org",
@@ -53,6 +57,34 @@ export default function Contact() {
     service: "",
     message: "",
   });
+
+  // Load Calendly widget script once (React <script> children do not execute reliably)
+  useEffect(() => {
+    if (typeof document === "undefined") return;
+    const existing = document.querySelector(`script[src="${CALENDLY_SCRIPT}"]`);
+    if (existing) {
+      // Re-init if Calendly already loaded (SPA navigation)
+      const w = window as unknown as { Calendly?: { initInlineWidgets?: () => void } };
+      w.Calendly?.initInlineWidgets?.();
+      return;
+    }
+    const script = document.createElement("script");
+    script.src = CALENDLY_SCRIPT;
+    script.async = true;
+    document.body.appendChild(script);
+    return () => {
+      // Keep script cached for return visits; no remove
+    };
+  }, []);
+
+  // Deep-link #schedule scrolls into view
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    if (window.location.hash === "#schedule") {
+      const el = document.getElementById("schedule");
+      el?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -324,9 +356,10 @@ export default function Contact() {
         </div>
       </section>
 
-      {/* Calendly scheduling widget */}
+      {/* Calendly scheduling widget (Wave 2.5) — requires CSP frame-src calendly.com */}
       <section
-        className="py-20"
+        id="schedule"
+        className="py-20 scroll-mt-24"
         style={{ background: "oklch(0.13 0.009 240)", borderTop: "1px solid oklch(0.18 0.008 240)" }}
       >
         <div className="container max-w-4xl">
@@ -339,50 +372,31 @@ export default function Contact() {
             Prefer to pick a time now?
           </h2>
           <p className="text-sm reveal reveal-delay-2" style={{ color: "oklch(0.58 0.010 80)", marginBottom: "2rem" }}>
-            Book directly on the calendar below. Availability is limited to 5 new consultations per week.
+            Book a free consultation on the calendar below. Availability is limited to 5 new consultations per week.
+            Prefer email? Use the form above — we respond within 24 hours.
           </p>
-          {/* Calendly inline embed */}
           <div
             className="calendly-inline-widget reveal reveal-delay-2"
-            data-url="https://calendly.com/617easttrust/free-consultation?hide_gdpr_banner=1&background_color=1a1f2e&text_color=d4c9a8&primary_color=c9a84c"
+            data-url={CALENDLY_URL}
             style={{ minWidth: "320px", height: "700px" }}
+            title="Schedule a free consultation with 617 East Trust"
           />
-          <script
-            type="text/javascript"
-            src="https://assets.calendly.com/assets/external/widget.js"
-            async
-          />
+          <p className="text-xs mt-4 reveal" style={{ color: "oklch(0.40 0.006 80)" }}>
+            Widget not loading?{" "}
+            <a
+              href="https://calendly.com/617easttrust/free-consultation"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ color: "oklch(0.78 0.12 80)", textDecoration: "underline" }}
+            >
+              Open Calendly in a new tab
+            </a>
+            .
+          </p>
         </div>
       </section>
 
-      {/* Sticky mobile CTA bar */}
-      <div
-        className="fixed bottom-0 left-0 right-0 md:hidden z-40 flex"
-        style={{
-          background: "oklch(0.10 0.008 240 / 0.97)",
-          borderTop: "1px solid oklch(0.22 0.008 240)",
-          backdropFilter: "blur(12px)",
-          padding: "0.75rem 1rem",
-          gap: "0.75rem",
-        }}
-      >
-        <a
-          href="/contact"
-          className="btn-gold flex-1 py-3 rounded-sm text-sm text-center font-medium"
-        >
-          Free Consultation
-        </a>
-        <a
-          href="tel:9103151800"
-          className="btn-ghost-gold px-4 py-3 rounded-sm text-sm flex items-center gap-2"
-          aria-label="Call 617 East Trust"
-        >
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-            <path d="M13.5 10.5c-.8-.8-1.8-1.3-2.8-1.3-.5 0-1 .1-1.4.4L8 10.9C6.6 9.8 5.2 8.4 4.1 7L5.4 5.7c.3-.4.4-.9.4-1.4 0-1-.5-2-1.3-2.8L3.3 1C3 .7 2.6.5 2.2.5 1.3.5.5 1.3.5 2.2c0 7.3 6 13.3 13.3 13.3.9 0 1.7-.8 1.7-1.7 0-.4-.2-.8-.5-1.1l-1.5-1.2z" fill="currentColor"/>
-          </svg>
-          Call
-        </a>
-      </div>
+      {/* Sticky mobile CTA lives in Layout (Schedule + Call) */}
     </Layout>
   );
 }

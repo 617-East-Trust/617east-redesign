@@ -29,6 +29,11 @@ export interface BlogPost {
   faqs: BlogFaq[];
   ctaHeading: string;
   ctaBody: string;
+  /** Wave 2.3 — contextual service link for mid-article + end CTAs */
+  relatedService?: {
+    href: string;
+    label: string;
+  };
 }
 
 export const BLOG_POSTS: BlogPost[] = [
@@ -90,7 +95,11 @@ export const BLOG_POSTS: BlogPost[] = [
       { q: "What happens if I don't file my North Carolina LLC annual report?", a: "The Secretary of State will administratively dissolve your LLC — meaning the state considers your LLC to no longer legally exist. You can apply for reinstatement, but it involves additional fees and paperwork. The annual report is due by April 15 each year and costs $200." }
     ],
     ctaHeading: "Ready to form your North Carolina LLC?",
-    ctaBody: "We handle the filing, operating agreement, EIN, BOI report, and registered agent service — and we'll tell you upfront if an LLC is actually the right structure for your situation."
+    ctaBody: "We handle the filing, operating agreement, EIN, BOI report, and registered agent service — and we'll tell you upfront if an LLC is actually the right structure for your situation.",
+    relatedService: {
+      href: "/services/llc-formation-north-carolina",
+      label: "LLC Formation in North Carolina — $499 total",
+    },
   },
   {
     slug: "sba-7a-vs-504-loans-north-carolina",
@@ -137,7 +146,11 @@ export const BLOG_POSTS: BlogPost[] = [
       { q: "Do I need a business plan for an SBA loan?", a: "For most SBA loans, yes. Lenders want to see a business plan with financial projections that demonstrate your ability to repay the loan. The projections need to be realistic and reconcile with your historical financial performance. A business plan that projects 300% revenue growth with no supporting rationale will hurt your application." }
     ],
     ctaHeading: "Not sure if you qualify for an SBA loan?",
-    ctaBody: "Start with an honest assessment. We review your financials, credit, and business profile before recommending you apply for anything — because an unsuccessful application can damage your relationship with lenders."
+    ctaBody: "Start with an honest assessment. We review your financials, credit, and business profile before recommending you apply for anything — because an unsuccessful application can damage your relationship with lenders.",
+    relatedService: {
+      href: "/services/sba-loans-north-carolina",
+      label: "SBA Loan Consulting in North Carolina",
+    },
   },
   {
     slug: "credit-repair-timeline-north-carolina",
@@ -184,7 +197,11 @@ export const BLOG_POSTS: BlogPost[] = [
       { q: "Do I need a credit repair company, or can I dispute items myself?", a: "You can dispute items yourself for free — the process is the same. A credit repair company provides value through experience (knowing which disputes are worth filing and how to escalate), volume (managing multiple disputes across three bureaus simultaneously), and follow-through (monitoring responses and filing second-round disputes). Whether that value is worth the cost depends on your situation." }
     ],
     ctaHeading: "Ready to start the credit repair process?",
-    ctaBody: "We begin with a full review of all three credit reports and tell you exactly what is disputable, what the realistic outcome looks like, and what you need to do on your end. No guarantees — just honest, legal, effective work."
+    ctaBody: "We begin with a full review of all three credit reports and tell you exactly what is disputable, what the realistic outcome looks like, and what you need to do on your end. No guarantees — just honest, legal, effective work.",
+    relatedService: {
+      href: "/services/credit-repair-north-carolina",
+      label: "CROA-compliant Credit Repair in North Carolina",
+    },
   },
   {
     slug: "fractional-cfo-vs-bookkeeper-north-carolina",
@@ -231,7 +248,11 @@ export const BLOG_POSTS: BlogPost[] = [
       { q: "How much does a Fractional CFO cost in North Carolina?", a: "617 East Trust's Fractional CFO engagements start at $1,200 per month. The scope and hours are defined at the start of the engagement. For context, a full-time CFO with comparable experience costs $150,000–$250,000 per year in salary plus benefits." }
     ],
     ctaHeading: "Not sure which financial support your business needs?",
-    ctaBody: "Start with a free consultation. We'll assess your current financial infrastructure and tell you exactly what level of support makes sense for your business — and what it will cost."
+    ctaBody: "Start with a free consultation. We'll assess your current financial infrastructure and tell you exactly what level of support makes sense for your business — and what it will cost.",
+    relatedService: {
+      href: "/services/fractional-cfo",
+      label: "Fractional CFO services",
+    },
   },
   // ── Wave 3 posts ─────────────────────────────────────────────────────────────
   {
@@ -259,7 +280,11 @@ export const BLOG_POSTS: BlogPost[] = [
       { q: "Does 617 East Trust file annual reports for clients?", a: "Yes. For LLCs we have formed, we send annual report reminders and can file on your behalf. Contact us at info@617east.com." }
     ],
     ctaHeading: "Did 617 East Trust form your LLC?",
-    ctaBody: "We send annual report reminders to every LLC we form. If you need help filing your Annual Report or want us to manage it going forward, contact us."
+    ctaBody: "We send annual report reminders to every LLC we form. If you need help filing your Annual Report or want us to manage it going forward, contact us.",
+    relatedService: {
+      href: "/services/llc-formation-north-carolina",
+      label: "LLC Formation & ongoing compliance",
+    },
   },
   {
     slug: "what-is-a-registered-agent-north-carolina",
@@ -285,7 +310,11 @@ export const BLOG_POSTS: BlogPost[] = [
       { q: "What happens if I miss service of process at my registered agent address?", a: "If you miss a legal notice, you may miss the deadline to respond to a lawsuit. This is why reliability and a professional service matter." }
     ],
     ctaHeading: "Need a registered agent for your North Carolina LLC?",
-    ctaBody: "Registered agent service is included in our $499 LLC formation package. If you already have an LLC and need to change your registered agent, we can help with that too."
+    ctaBody: "Registered agent service is included in our $499 LLC formation package. If you already have an LLC and need to change your registered agent, we can help with that too.",
+    relatedService: {
+      href: "/services/llc-formation-north-carolina",
+      label: "LLC Formation (includes Year-1 registered agent)",
+    },
   },
   {
     slug: "sba-loan-requirements-north-carolina-2026",
@@ -311,7 +340,11 @@ export const BLOG_POSTS: BlogPost[] = [
       { q: "What documents do I need for an SBA loan application?", a: "Typically: 3 years of personal and business tax returns, year-to-date financial statements, business bank statements, and a personal financial statement. Requirements vary by lender and loan type." }
     ],
     ctaHeading: "Not sure if you qualify for an SBA loan in NC?",
-    ctaBody: "We assess your eligibility honestly before recommending you apply. An unsuccessful application can damage your relationship with lenders. Start with a free assessment."
+    ctaBody: "We assess your eligibility honestly before recommending you apply. An unsuccessful application can damage your relationship with lenders. Start with a free assessment.",
+    relatedService: {
+      href: "/services/sba-loans-north-carolina",
+      label: "SBA Loan eligibility assessment",
+    },
   },
   {
     slug: "how-to-build-business-credit-north-carolina",
@@ -337,7 +370,11 @@ export const BLOG_POSTS: BlogPost[] = [
       { q: "Do I need an LLC to build business credit?", a: "You need a separate legal entity (LLC or corporation) to build business credit that is truly separate from your personal credit." }
     ],
     ctaHeading: "Ready to start building your business credit?",
-    ctaBody: "We help North Carolina business owners form LLCs, establish their business identity, and build the financial foundation for SBA loan eligibility. Start with a free consultation."
+    ctaBody: "We help North Carolina business owners form LLCs, establish their business identity, and build the financial foundation for SBA loan eligibility. Start with a free consultation.",
+    relatedService: {
+      href: "/services/credit-repair-north-carolina",
+      label: "Credit Repair & business credit foundation",
+    },
   },
   {
     slug: "bookkeeping-mistakes-small-business-north-carolina",
@@ -364,7 +401,11 @@ export const BLOG_POSTS: BlogPost[] = [
       { q: "Can messy bookkeeping prevent me from getting an SBA loan?", a: "Yes. SBA lenders require current financial statements. If your books are inaccurate or incomplete, the lender cannot verify your income and will deny the application." }
     ],
     ctaHeading: "Is your bookkeeping holding your business back?",
-    ctaBody: "We provide clean, accurate monthly bookkeeping for North Carolina small businesses starting at $199/month. Catch-up bookkeeping available for prior periods."
+    ctaBody: "We provide clean, accurate monthly bookkeeping for North Carolina small businesses starting at $199/month. Catch-up bookkeeping available for prior periods.",
+    relatedService: {
+      href: "/services/bookkeeping-north-carolina",
+      label: "Monthly Bookkeeping for NC small businesses",
+    },
   },
   {
     slug: "credit-score-needed-for-sba-loan-north-carolina",
@@ -390,7 +431,11 @@ export const BLOG_POSTS: BlogPost[] = [
       { q: "Does 617 East Trust offer both credit repair and SBA loan consulting?", a: "Yes. We often work with clients on both simultaneously — repairing credit to reach the SBA loan eligibility threshold while preparing the rest of the application." }
     ],
     ctaHeading: "Need to improve your credit score for an SBA loan?",
-    ctaBody: "We offer both credit repair and SBA loan consulting. We'll assess your credit profile and tell you exactly what needs to change to reach your target score — and how long it will realistically take."
+    ctaBody: "We offer both credit repair and SBA loan consulting. We'll assess your credit profile and tell you exactly what needs to change to reach your target score — and how long it will realistically take.",
+    relatedService: {
+      href: "/services/sba-loans-north-carolina",
+      label: "SBA Loan Consulting + credit readiness",
+    },
   },
   {
     slug: "north-carolina-business-formation-guide-2026",
@@ -416,7 +461,11 @@ export const BLOG_POSTS: BlogPost[] = [
       { q: "What is the difference between an LLC and a sole proprietorship in NC?", a: "A sole proprietorship has no liability protection. An LLC provides a legal separation between you and your business." }
     ],
     ctaHeading: "Not sure which business structure is right for you?",
-    ctaBody: "We tell you what structure fits your situation — including if you do not need to form a business entity yet. Start with a free consultation."
+    ctaBody: "We tell you what structure fits your situation — including if you do not need to form a business entity yet. Start with a free consultation.",
+    relatedService: {
+      href: "/services/llc-formation-north-carolina",
+      label: "LLC Formation in North Carolina",
+    },
   }
 ];
 
