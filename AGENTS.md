@@ -22,16 +22,17 @@ Zo workspace  ──edit/commit/push──►  GitHub repo  ──pull/build─�
 - Zo paths: `Projects/617east-site`, `Projects/617east-rebuild`, `Projects/_backup_617east_*`, `Projects/Web/617-trust`
 
 ## Current alignment (verified 2026-08-02)
-- Workspace HEAD = `d3ab238`
-- GitHub `origin/main` = `d3ab238`
-- VPS `/opt/617east-redesign` HEAD = `d3ab238` (code ship `9a784a4` + docs)
+- Workspace HEAD = `dcdecfd` (Wave 6 ship)
+- GitHub `origin/main` = `dcdecfd`
+- VPS `/opt/617east-redesign` HEAD = `dcdecfd`
 - Live: `https://617east.com` → HTTP 200 via Caddy → `617east-web:3000`
 - Wave 1: long service URLs + blogs unique titles; CROA/privacy/cookie curl-visible
 - Wave 2: testimonials, Calendly `#schedule`, blog CTAs, Schedule sticky CTA; CSP allows calendly.com
 - Calendly event URL: `https://calendly.com/617easttrust/30min` (not `/free-consultation` — that 404s)
 - Wave 3: all services geo-slugged; `/how-it-works`; +3 priority posts
 - Wave 4: GTM/GA4/Clarity/CallRail consent-gated hooks; engagement events; NAP + LinkedIn footer; CSP for GTM/CallRail
-- Wave 5: audit claim verification; `/locations` + 5 city landers; skip-link/a11y; blog author bio; Service `Offer` prices; breadcrumbs; sitemap **35** URLs. Ops: `WAVE5-AUDIT-OPS.md` (DMARC done; GBP/citations open). **GBP Business Profile ID:** `8360-7639-2608-2674-046`; review URL `https://g.page/r/CXfFFmoLNC7sEBI/review` → `Projects/Infrastructure/gbp-617east.md`. Wired in `nap.ts` + `testimonials.ts`. **Do not add AggregateRating until real Google reviews exist.**
+- Wave 5: audit claim verification; `/locations` + 5 city landers; skip-link/a11y; blog author bio; Service `Offer` prices; breadcrumbs. Ops: `WAVE5-AUDIT-OPS.md` (DMARC done). **GBP Business Profile ID:** `8360-7639-2608-2674-046`; review URL `https://g.page/r/CXfFFmoLNC7sEBI/review` → `Projects/Infrastructure/gbp-617east.md`. Wired in `nap.ts` + `testimonials.ts`. **Do not add AggregateRating until real Google reviews exist.**
+- Wave 6 (2026-08-02): service→location internal links; blogs NC sales-tax/nexus + veteran-owned formation; sitemap **37** URLs; citations kit `Projects/Infrastructure/citations-617east.md`; GBP automations recreated (weekly post + daily review replies). Live HEAD `dcdecfd`.
 - **Measurement IDs (VPS `.env`, 2026-08-02):** `GTM_ID=GTM-WXLXT7FV`, `CLARITY_ID=xw4guexwib`, `CALLRAIL_SWAP_ID=691070475/f396…` (from CallRail `script_url`). **`GA4_ID` left empty by design (principal: leave GA4 empty for now)** — no direct gtag load; do not set numeric property `543882709` as `GA4_ID` (not a Measurement ID). Optional later: add GA4 Measurement ID (`G-…`) inside GTM UI, not env. CallRail `ctrk_…` is API key (not browser swap id).
 
 VPS-only (not in git): `.env` secrets; local `compose.yaml` pin of `N8N_WEBHOOK_URL` value (repo has the var name only).
