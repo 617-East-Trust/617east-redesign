@@ -129,12 +129,20 @@ function initClarity(clarityId: string) {
 
 function initCallRail(swapId: string) {
   if (!swapId || document.getElementById("callrail-swap")) return;
-  // CallRail dynamic number insertion — only after consent (marketing tag)
+  // CallRail DNI — script_url shape: //cdn.callrail.com/companies/{id}/{token}/12/swap.js
+  // Accept: "691070475/f3963…", full path, or legacy single company id.
+  let cleaned = swapId.trim().replace(/^https?:/, "").replace(/^\/\//, "");
+  cleaned = cleaned.replace(/^cdn\.callrail\.com\//, "").replace(/^companies\//, "");
+  cleaned = cleaned.replace(/\/12\/swap\.js$/i, "").replace(/^\/+|\/+$/g, "");
+  const parts = cleaned.split("/").filter(Boolean);
+  if (parts.length < 1 || parts.length > 2) return;
+  if (!parts.every((p) => /^[A-Za-z0-9]+$/.test(p))) return;
+  const path = parts.map(encodeURIComponent).join("/") + "/12/swap.js";
   const s = document.createElement("script");
   s.id = "callrail-swap";
   s.type = "text/javascript";
   s.async = true;
-  s.src = `https://cdn.callrail.com/companies/${encodeURIComponent(swapId)}/12/swap.js`;
+  s.src = `https://cdn.callrail.com/companies/${path}`;
   document.head.appendChild(s);
 }
 
@@ -165,8 +173,9 @@ export function initAnalytics() {
     initGa4(gaId);
   }
 
-  // Clarity can run alongside GTM if not loaded via container
-  if (clarityId && !gtmId) {
+  // Clarity: load direct when CLARITY_ID is set (works with or without GTM).
+  // Do not also add a Clarity tag inside GTM if CLARITY_ID is set, or sessions double-count.
+  if (clarityId) {
     initClarity(clarityId);
   }
 

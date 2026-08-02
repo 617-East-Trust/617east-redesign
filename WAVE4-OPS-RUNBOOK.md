@@ -19,9 +19,10 @@ Code loads tags only after cookie **Accept**. Configure IDs in VPS `/opt/617east
 ### B. Tags inside GTM (recommended)
 | Tag | Trigger |
 |-----|---------|
-| GA4 Configuration | All Pages (consent already handled by site) |
-| Clarity | All Pages (or Consent Initialization if using Consent Mode later) |
+| GA4 Configuration (Measurement ID `G-…`) | All Pages (consent already handled by site) |
 | Optional: Conversion Linker | All Pages |
+
+**Do not** add Clarity or CallRail as GTM tags if `CLARITY_ID` / `CALLRAIL_SWAP_ID` are set on the server — the site loads those directly after consent.
 
 ### C. Site-fired events (dataLayer / gtag)
 These fire automatically after consent:
@@ -58,10 +59,14 @@ VPS already had `CLARITY_ID` in `.env` but it was **not** passed to the containe
 1. Create company + website source for 617east.com  
 2. Create tracking number pool for NC  
 3. Enable DNI (swap)  
-4. Set `.env` `CALLRAIL_SWAP_ID=` to the company ID used in  
-   `https://cdn.callrail.com/companies/{ID}/12/swap.js`  
+4. From company `script_url`  
+   `//cdn.callrail.com/companies/{COMPANY}/{TOKEN}/12/swap.js`  
+   set `.env` `CALLRAIL_SWAP_ID={COMPANY}/{TOKEN}`  
+   (example live: `691070475/f39631053037308bcb99`)  
 5. Rebuild app; confirm CSP allows `cdn.callrail.com`  
-6. Do **not** put the tracking number as the only GBP number without a coherent dual setup
+6. `ctrk_…` keys are **API keys** — never inject into the browser; use only for CallRail API  
+7. Do **not** put the tracking number as the only GBP number without a coherent dual setup  
+8. Live tracking number (source offline): `(910) 971-2877` → destination `(910) 315-1800`
 
 ### Acceptance
 - Accept cookies → CallRail script in Network  
@@ -131,7 +136,20 @@ Reload: `docker exec n8n-caddy-1 caddy reload --config /etc/caddy/Caddyfile`
 ```bash
 ssh debian@40.160.233.147
 cd /opt/617east-redesign
-# edit .env → GTM_ID=…  GA4_ID=…  (CLARITY_ID already set)
+# edit .env (do not commit):
+#   GTM_ID=GTM-…
+#   CLARITY_ID=…
+#   CALLRAIL_SWAP_ID=companyId/token
+#   GA4_ID=G-…   # optional if GA4 is configured inside GTM
 git pull origin main
 docker compose build --no-cache app && docker compose up -d app
 ```
+
+### Applied credentials (2026-08-02)
+| Env | Value shape | Notes |
+|-----|-------------|--------|
+| `GTM_ID` | `GTM-WXLXT7FV` | Live container |
+| `CLARITY_ID` | `xw4guexwib` | Direct load after consent |
+| `CALLRAIL_SWAP_ID` | `691070475/f396…` | From CallRail company `script_url` |
+| `GA4_ID` | empty | Use GTM → GA4 tag; property ref `543882709` is **not** a Measurement ID |
+| CallRail API | `ctrk_…` | Ops only — not a site env for browser tags |
