@@ -31,15 +31,15 @@ Ensure reverse proxy enforces Bearer + TLS on the collect path (see pipeline `co
 Add (adjust URL to where Vector is reachable from the site container):
 
 ```bash
-# If Vector is on the same host loopback (compose binds 127.0.0.1:8080):
-# site container may need host network or docker host gateway — prefer a
-# docker network alias or public collect URL.
-ANALYTICS_COLLECT_URL=http://172.17.0.1:8080
-# or https://collect.617east.com/collect once Caddy is wired
+# Preferred (co-located on site VPS + shared Docker network):
+ANALYTICS_COLLECT_URL=http://analytics-vector:8080
 ANALYTICS_COLLECT_TOKEN=<same as VECTOR_API_TOKEN>
+# compose.yaml joins 617east-web to external network analytics-pipeline_analytics-net
 ```
 
-**Network note:** `617east-web` cannot reach `127.0.0.1:8080` on the host unless you use `host.docker.internal` / `extra_hosts` / shared network. Prefer putting Vector on the same Docker network or proxying via Caddy on the host and using `https://collect.617east.com/collect` from the app.
+**Network note (verified 2026-08-04):** Do **not** use host `127.0.0.1` from inside `617east-web`. Join the site container to `analytics-pipeline_analytics-net` (see `compose.yaml` `networks.analytics`) and set `ANALYTICS_COLLECT_URL=http://analytics-vector:8080`. Vector stays published only on host loopback (`127.0.0.1:8080`) for local smoke.
+
+**Proxy body format:** Site proxy converts browser JSON arrays → **NDJSON** for Vector 0.41 `http_server` (`framing.method = newline_delimited`).
 
 ### 3. Pull + rebuild site
 
@@ -86,3 +86,8 @@ CSP: same-origin `/__analytics__/collect` needs no CSP change (`connect-src 'sel
 ## Rollback
 
 Unset `ANALYTICS_COLLECT_URL` on VPS and restart app — site measurement falls back to Wave 4 GTM/Clarity only.
+
+
+## Verified co-locate path (2026-08-04)
+
+`ANALYTICS_COLLECT_URL=http://analytics-vector:8080` + external docker network `analytics-pipeline_analytics-net`.

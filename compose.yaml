@@ -19,6 +19,17 @@ services:
       - CALLRAIL_SWAP_ID
       - CONSENT_RECORDER_URL
       # First-party analytics pipeline (server-side proxy; token never in HTML)
+      # Prefer http://analytics-vector:8080 when joined to analytics-pipeline_analytics-net
       - ANALYTICS_COLLECT_URL
       - ANALYTICS_COLLECT_TOKEN
     restart: unless-stopped
+    networks:
+      - default
+      - analytics
+
+networks:
+  # Shared with /opt/analytics-pipeline stack so the collect proxy can reach Vector
+  # without publishing Vector on a public interface.
+  analytics:
+    external: true
+    name: analytics-pipeline_analytics-net

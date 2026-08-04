@@ -143,8 +143,11 @@ async function startServer() {
       req.socket.remoteAddress ||
       "";
 
+    // Vector 0.41 http_server is framed as newline-delimited JSON objects (not a root array).
+    const ndjson = batch.map((e) => JSON.stringify(e)).join("\n") + "\n";
+
     const headers: Record<string, string> = {
-      "Content-Type": "application/json",
+      "Content-Type": "application/x-ndjson",
       "User-Agent": req.headers["user-agent"] || "617east-collect-proxy/1.0",
       "X-Forwarded-For": clientIp,
       "X-Real-IP": clientIp,
@@ -159,7 +162,7 @@ async function startServer() {
       const upstream = await fetch(ANALYTICS_COLLECT_URL, {
         method: "POST",
         headers,
-        body: JSON.stringify(batch),
+        body: ndjson,
         signal: controller.signal,
       });
       clearTimeout(timer);
