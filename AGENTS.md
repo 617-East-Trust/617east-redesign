@@ -33,7 +33,9 @@ Zo workspace  ──edit/commit/push──►  GitHub repo  ──pull/build─�
 - Wave 4: GTM/GA4/Clarity/CallRail consent-gated hooks; engagement events; NAP + LinkedIn footer; CSP for GTM/CallRail
 - Wave 5: audit claim verification; `/locations` + 5 city landers; skip-link/a11y; blog author bio; Service `Offer` prices; breadcrumbs. Ops: `WAVE5-AUDIT-OPS.md` (DMARC done). **GBP Business Profile ID:** `8360-7639-2608-2674-046`; review URL `https://g.page/r/CXfFFmoLNC7sEBI/review` → `Projects/Infrastructure/gbp-617east.md`. Wired in `nap.ts` + `testimonials.ts`. **Do not add AggregateRating until real Google reviews exist.**
 - Wave 6 (2026-08-02): service→location internal links; blogs NC sales-tax/nexus + veteran-owned formation; sitemap **37** URLs; citations kit `Projects/Infrastructure/citations-617east.md`; GBP automations recreated (weekly post + daily review replies). Live HEAD `dcdecfd`.
+- Wave 7 (2026-08-04): first-party analytics pipeline integration — same-origin `POST /__analytics__/collect` proxy; `pipelineClient.ts` dual-writes consent events; banner fingerprint opt-in (off by default); Privacy + cookie static copy updated. Ops: `WAVE7-PIPELINE-OPS.md`. Requires VPS env `ANALYTICS_COLLECT_URL` + `ANALYTICS_COLLECT_TOKEN` pointing at Vector (see analytics-pipeline repo).
 - **Measurement IDs (VPS `.env`, 2026-08-02):** `GTM_ID=GTM-WXLXT7FV`, `CLARITY_ID=xw4guexwib`, `CALLRAIL_SWAP_ID=691070475/f396…` (from CallRail `script_url`). **`GA4_ID` left empty by design (principal: leave GA4 empty for now)** — no direct gtag load; do not set numeric property `543882709` as `GA4_ID` (not a Measurement ID). Optional later: add GA4 Measurement ID (`G-…`) inside GTM UI, not env. CallRail `ctrk_…` is API key (not browser swap id).
+- **Pipeline env (VPS, set at deploy):** `ANALYTICS_COLLECT_URL` (Vector/collect upstream), `ANALYTICS_COLLECT_TOKEN` (Bearer; server-only). When unset, pipeline is off; GTM/Clarity still consent-gated as Wave 4.
 
 VPS-only (not in git): `.env` secrets; local `compose.yaml` pin of `N8N_WEBHOOK_URL` value (repo has the var name only).
 
@@ -70,5 +72,5 @@ Caddyfile host path: `/opt/n8n/Caddyfile`.
 ## Key product notes
 - Narrative: "the advisor who tells you what not to do"
 - Contact webhook: `https://n8n.617east.com/webhook/617east-contact`
-- Analytics: consent-gated GA4 + Clarity (`CookieConsent.tsx`)
+- Analytics: consent-gated GTM/Clarity + first-party pipeline (`CookieConsent.tsx`, `lib/analytics.ts`, `lib/pipelineClient.ts`)
 - www → apex 301 handled in Caddy

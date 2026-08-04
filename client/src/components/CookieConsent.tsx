@@ -1,16 +1,22 @@
 /*
  * 617 EAST TRUST — COOKIE CONSENT BANNER
  * GDPR / CCPA compliant.
- * - Names Google Analytics, Microsoft Clarity, and GTM explicitly.
+ * - Names first-party analytics, GTM/GA, and Microsoft Clarity explicitly.
  * - Measurement scripts fire ONLY after consent (see lib/analytics.ts).
+ * - Optional fingerprint opt-in is OFF by default.
  * - Consent stored in localStorage; banner suppressed on return visits.
  */
 
 import { useEffect, useState } from "react";
-import { getConsent, initAnalytics, type ConsentState } from "@/lib/analytics";
+import {
+  getConsent,
+  initAnalytics,
+  revokeAnalytics,
+  type ConsentState,
+} from "@/lib/analytics";
 
 const CONSENT_KEY = "617east_cookie_consent";
-const CONSENT_VERSION = "1";
+const CONSENT_VERSION = "2";
 
 function saveConsent(state: ConsentState) {
   if (typeof window === "undefined") return;
@@ -20,6 +26,7 @@ function saveConsent(state: ConsentState) {
 export default function CookieConsent() {
   const [consent, setConsent] = useState<ConsentState>(null);
   const [visible, setVisible] = useState(false);
+  const [fingerprint, setFingerprint] = useState(false);
 
   useEffect(() => {
     try {
@@ -43,13 +50,14 @@ export default function CookieConsent() {
     saveConsent("granted");
     setConsent("granted");
     setVisible(false);
-    initAnalytics();
+    initAnalytics({ fingerprint });
   }
 
   function handleDecline() {
     saveConsent("denied");
     setConsent("denied");
     setVisible(false);
+    revokeAnalytics();
   }
 
   if (!visible || consent !== null) return null;
@@ -73,11 +81,11 @@ export default function CookieConsent() {
         boxShadow: "0 8px 32px oklch(0 0 0 / 0.5)",
       }}
     >
-      <p className="text-sm leading-relaxed mb-4" style={{ color: "oklch(0.65 0.010 80)" }}>
+      <p className="text-sm leading-relaxed mb-3" style={{ color: "oklch(0.65 0.010 80)" }}>
         We use{" "}
-        <strong style={{ color: "oklch(0.88 0.008 80)" }}>Google Analytics</strong>
+        <strong style={{ color: "oklch(0.88 0.008 80)" }}>first-party analytics</strong>
         {", "}
-        <strong style={{ color: "oklch(0.88 0.008 80)" }}>Google Tag Manager</strong>
+        <strong style={{ color: "oklch(0.88 0.008 80)" }}>Google Tag Manager / Analytics</strong>
         {", and "}
         <strong style={{ color: "oklch(0.88 0.008 80)" }}>Microsoft Clarity</strong> to understand how
         visitors use this site. No personal data is sold. You can decline and the site will work normally.{" "}
@@ -85,6 +93,21 @@ export default function CookieConsent() {
           Privacy Policy
         </a>
       </p>
+      <label
+        className="flex items-start gap-2 text-xs mb-4 cursor-pointer"
+        style={{ color: "oklch(0.52 0.008 80)" }}
+      >
+        <input
+          type="checkbox"
+          checked={fingerprint}
+          onChange={(e) => setFingerprint(e.target.checked)}
+          style={{ marginTop: "0.15rem" }}
+        />
+        <span>
+          Optional: allow device fingerprint signals (Canvas/WebGL). Off by default — more identifying
+          than page analytics.
+        </span>
+      </label>
       <div className="flex items-center gap-3 flex-wrap">
         <button
           onClick={handleAccept}

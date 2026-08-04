@@ -30,6 +30,11 @@ export type InjectionOptions = {
   gtmId?: string;
   /** CallRail company swap path segment (consent-gated client load) */
   callrailSwapId?: string;
+  /**
+   * When true, inject same-origin first-party collect path for the
+   * self-hosted analytics pipeline (server proxies to Vector).
+   */
+  pipelineCollectEnabled?: boolean;
 };
 
 const BASE = "https://617east.com";
@@ -748,7 +753,7 @@ export function injectSeoIntoHtml(
     // Crawl-visible cookie disclosure (banner UI is still client-side).
     // Ensures legal/audit gates can verify cookie notice without executing JS.
     const cookieStatic = `  <div id="cookie-consent-static" role="region" aria-label="Cookie notice" style="position:relative;z-index:1;padding:0.75rem 1rem;font-size:0.8125rem;line-height:1.5;background:#0f1419;color:#c8c4b8;border-bottom:1px solid #2a2f36;">
-    This site uses cookies for <strong>Google Analytics</strong> and <strong>Microsoft Clarity</strong> only after you consent. See our <a href="/privacy" style="color:#d4a84b;">Privacy Policy</a>. Use Accept/Decline in the consent banner when JavaScript is enabled.
+    This site uses cookies for <strong>first-party analytics</strong>, <strong>Google Tag Manager / Analytics</strong>, and <strong>Microsoft Clarity</strong> only after you consent. See our <a href="/privacy" style="color:#d4a84b;">Privacy Policy</a>. Use Accept/Decline in the consent banner when JavaScript is enabled.
   </div>`;
 
     // Replace title
@@ -781,7 +786,7 @@ export function injectSeoIntoHtml(
     }
   } else {
     // Even without a matched route, keep cookie disclosure crawlable
-    const cookieStatic = `  <div id="cookie-consent-static" role="region" aria-label="Cookie notice">This site uses cookies for Google Analytics and Microsoft Clarity only after you consent. See <a href="/privacy">Privacy Policy</a>.</div>`;
+    const cookieStatic = `  <div id="cookie-consent-static" role="region" aria-label="Cookie notice">This site uses cookies for first-party analytics, Google Analytics, and Microsoft Clarity only after you consent. See <a href="/privacy">Privacy Policy</a>.</div>`;
     result = result.replace(/(<body[^>]*>)/, `$1\n${cookieStatic}`);
   }
 
@@ -797,16 +802,19 @@ export function injectSeoIntoHtml(
 
   // Measurement IDs only — scripts load after cookie consent (client/lib/analytics.ts).
   // Do NOT inject live gtag/Clarity/GTM tags here (that bypasses consent).
+  // Pipeline uses same-origin /__analytics__/collect (token stays server-side).
   const ga4Id = opts?.ga4Id || "";
   const clarityId = opts?.clarityId || "";
   const gtmId = opts?.gtmId || "";
   const callrail = opts?.callrailSwapId || "";
-  if (ga4Id || clarityId || gtmId || callrail) {
+  const pipelineOn = Boolean(opts?.pipelineCollectEnabled);
+  if (ga4Id || clarityId || gtmId || callrail || pipelineOn) {
     const cfg = `    <script>
       window.__GA_ID__=${JSON.stringify(ga4Id)};
       window.__CLARITY_ID__=${JSON.stringify(clarityId)};
       window.__GTM_ID__=${JSON.stringify(gtmId)};
       window.__CALLRAIL_SWAP__=${JSON.stringify(callrail)};
+      window.__PIPELINE_COLLECT__=${JSON.stringify(pipelineOn ? "/__analytics__/collect" : "")};
     </script>`;
     result = result.replace("</head>", `${cfg}
   </head>`);

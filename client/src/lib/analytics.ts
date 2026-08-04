@@ -1,8 +1,11 @@
 /*
- * 617 EAST TRUST — Measurement layer (Wave 4)
+ * 617 EAST TRUST — Measurement layer (Wave 4 + first-party pipeline)
  * Consent-gated. Prefer GTM when __GTM_ID__ is set; else direct GA4 + Clarity.
+ * Dual-writes engagement events to self-hosted pipeline via /__analytics__/collect.
  * Events: generate_lead, click_to_call, scroll_depth, blog_read_complete, outbound_click, schedule_click
  */
+
+import { denyPipeline, initPipeline, trackPipeline } from "./pipelineClient";
 
 declare global {
   interface Window {
@@ -13,6 +16,7 @@ declare global {
     __CLARITY_ID__?: string;
     __GTM_ID__?: string;
     __CALLRAIL_SWAP__?: string;
+    __PIPELINE_COLLECT__?: string;
     gaInitialized?: boolean;
     clarityInitialized?: boolean;
     gtmInitialized?: boolean;
@@ -42,7 +46,7 @@ function pushDataLayer(payload: Record<string, unknown>) {
   window.dataLayer.push(payload);
 }
 
-/** Fire a named conversion / engagement event to GA4 (via gtag) and GTM dataLayer. */
+/** Fire a named conversion / engagement event to GA4 (via gtag), GTM dataLayer, and first-party pipeline. */
 export function trackEvent(eventName: string, properties: Record<string, unknown> = {}) {
   if (typeof window === "undefined") return;
   if (getConsent() !== "granted") return;
@@ -51,6 +55,16 @@ export function trackEvent(eventName: string, properties: Record<string, unknown
 
   if (typeof window.gtag === "function") {
     window.gtag("event", eventName, properties);
+  }
+
+  // First-party pipeline (same-origin collect proxy → Vector → ClickHouse)
+  try {
+    trackPipeline(eventName, {
+      ...properties,
+      page_path: properties.page_path ?? window.location.pathname,
+    });
+  } catch {
+    /* ignore */
   }
 
   // Optional Zo forensic / segment-style bridge
@@ -149,8 +163,9 @@ function initCallRail(swapId: string) {
 /**
  * Load measurement stack after explicit consent.
  * Preference: GTM (hosts GA4/Clarity tags in container) → else direct GA4 + Clarity.
+ * Always starts first-party pipeline when __PIPELINE_COLLECT__ is injected.
  */
-export function initAnalytics() {
+export function initAnalytics(opts?: { fingerprint?: boolean }) {
   if (typeof window === "undefined") return;
   if (getConsent() !== "granted") return;
 
@@ -158,6 +173,13 @@ export function initAnalytics() {
   const gaId = window.__GA_ID__ || "";
   const clarityId = window.__CLARITY_ID__ || "";
   const callrail = window.__CALLRAIL_SWAP__ || "";
+
+  // First-party pipeline before third parties (owns page_view for ClickHouse)
+  try {
+    initPipeline(Boolean(opts?.fingerprint));
+  } catch {
+    /* ignore */
+  }
 
   if (gtmId) {
     initGtm(gtmId);
@@ -183,11 +205,20 @@ export function initAnalytics() {
     initCallRail(callrail);
   }
 
-  // Lightweight first-party page_view for GTM-only setups
+  // Lightweight first-party page_view for GTM-only setups (also dual-writes to pipeline)
   trackEvent("page_view", {
     page_path: window.location.pathname,
     page_title: document.title,
   });
+}
+
+/** Decline first-party pipeline + mark third parties blocked (caller sets localStorage). */
+export function revokeAnalytics() {
+  try {
+    denyPipeline();
+  } catch {
+    /* ignore */
+  }
 }
 
 /** Scroll depth + outbound + blog completion observers (safe to call once per app mount). */
