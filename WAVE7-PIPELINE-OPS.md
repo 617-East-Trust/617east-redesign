@@ -91,3 +91,10 @@ Unset `ANALYTICS_COLLECT_URL` on VPS and restart app — site measurement falls 
 ## Verified co-locate path (2026-08-04)
 
 `ANALYTICS_COLLECT_URL=http://analytics-vector:8080` + external docker network `analytics-pipeline_analytics-net`.
+
+## Grafana (loopback only)
+
+- Host: `127.0.0.1:3001` (SSH tunnel: `ssh -L 3001:127.0.0.1:3001 debian@40.160.233.147`)
+- Provisioned dashboard: **617 East — Traffic & Consent** (`uid: 617east-traffic-consent`)
+- Datasource: ClickHouse Analytics (`uid: clickhouse-analytics`), password from `$CLICKHOUSE_PASSWORD`
+- Repo path: `config/grafana/provisioning/dashboards/json/617east-overview.json`
