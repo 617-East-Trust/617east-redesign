@@ -26,7 +26,6 @@ function saveConsent(state: ConsentState) {
 export default function CookieConsent() {
   const [consent, setConsent] = useState<ConsentState>(null);
   const [visible, setVisible] = useState(false);
-  const [fingerprint, setFingerprint] = useState(false);
 
   useEffect(() => {
     try {
@@ -50,7 +49,7 @@ export default function CookieConsent() {
     saveConsent("granted");
     setConsent("granted");
     setVisible(false);
-    initAnalytics({ fingerprint });
+    initAnalytics();
   }
 
   function handleDecline() {
@@ -88,26 +87,11 @@ export default function CookieConsent() {
         <strong style={{ color: "oklch(0.88 0.008 80)" }}>Google Tag Manager / Analytics</strong>
         {", and "}
         <strong style={{ color: "oklch(0.88 0.008 80)" }}>Microsoft Clarity</strong> to understand how
-        visitors use this site. No personal data is sold. You can decline and the site will work normally.{" "}
+        visitors use this site. This includes device fingerprint signals (Canvas/WebGL). No personal data is sold. You can decline and the site will work normally.{" "}
         <a href="/privacy" style={{ color: "oklch(0.78 0.12 80)", textDecoration: "underline" }}>
           Privacy Policy
         </a>
       </p>
-      <label
-        className="flex items-start gap-2 text-xs mb-4 cursor-pointer"
-        style={{ color: "oklch(0.52 0.008 80)" }}
-      >
-        <input
-          type="checkbox"
-          checked={fingerprint}
-          onChange={(e) => setFingerprint(e.target.checked)}
-          style={{ marginTop: "0.15rem" }}
-        />
-        <span>
-          Optional: allow device fingerprint signals (Canvas/WebGL). Off by default — more identifying
-          than page analytics.
-        </span>
-      </label>
       <div className="flex items-center gap-3 flex-wrap">
         <button
           onClick={handleAccept}

@@ -165,7 +165,7 @@ function initCallRail(swapId: string) {
  * Preference: GTM (hosts GA4/Clarity tags in container) → else direct GA4 + Clarity.
  * Always starts first-party pipeline when __PIPELINE_COLLECT__ is injected.
  */
-export function initAnalytics(opts?: { fingerprint?: boolean }) {
+export function initAnalytics() {
   if (typeof window === "undefined") return;
   if (getConsent() !== "granted") return;
 
@@ -176,7 +176,7 @@ export function initAnalytics(opts?: { fingerprint?: boolean }) {
 
   // First-party pipeline before third parties (owns page_view for ClickHouse)
   try {
-    initPipeline(Boolean(opts?.fingerprint));
+    initPipeline(true);
   } catch {
     /* ignore */
   }

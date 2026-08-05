@@ -49,7 +49,6 @@ const RETRY_MAX = 200;
 const UID_KEY = "analytics_uid";
 const SID_KEY = "analytics_sid";
 const SID_TS_KEY = "analytics_sid_ts";
-const FP_KEY = "617east_fingerprint_optin";
 
 declare global {
   interface Window {
@@ -89,29 +88,14 @@ class PipelineClient {
     return Boolean(this.endpoint);
   }
 
-  grant(categories: PipelineCategory[] = ["analytics", "behavioral"], fingerprint = false) {
+  grant(categories: PipelineCategory[] = ["analytics", "behavioral"]) {
     const cats = new Set<PipelineCategory>(["necessary", ...categories]);
-    if (fingerprint) {
-      cats.add("fingerprint");
-      try {
-        localStorage.setItem(FP_KEY, "1");
-      } catch {
-        /* ignore */
-      }
-    } else {
-      try {
-        localStorage.removeItem(FP_KEY);
-      } catch {
-        /* ignore */
-      }
-    }
+    cats.add("fingerprint");
     this.categories = Array.from(cats);
     this.granted = this.categories.includes("analytics");
     if (this.granted) {
       this.ensureIds();
-      if (this.categories.includes("fingerprint")) this.collectFingerprint();
-      else this.fingerprint = null;
-      // page_view is emitted by initAnalytics → trackEvent (single path, no double fire)
+      this.collectFingerprint();
     }
   }
 
@@ -121,18 +105,9 @@ class PipelineClient {
     this.queue = [];
     this.fingerprint = null;
     try {
-      localStorage.removeItem(FP_KEY);
       localStorage.removeItem(RETRY_KEY);
     } catch {
       /* ignore */
-    }
-  }
-
-  wantsFingerprint(): boolean {
-    try {
-      return localStorage.getItem(FP_KEY) === "1";
-    } catch {
-      return false;
     }
   }
 
@@ -377,16 +352,14 @@ function webglInfo(): { renderer: string; vendor: string } {
 
 const client = new PipelineClient();
 
-/** Call once after consent granted (or on return visit with prior grant). */
-export function initPipeline(fingerprint = false) {
+  /** Call once after consent granted (or on return visit with prior grant). */
+export function initPipeline(fingerprint = true) {
   if (typeof window === "undefined") return;
   const endpoint = window.__PIPELINE_COLLECT__ || "";
   if (!endpoint) return;
   client.init(endpoint);
   window.__pipelineClient = client;
-  // Restore fingerprint preference if previously opted in
-  const fp = fingerprint || client.wantsFingerprint();
-  client.grant(["analytics", "behavioral"], fp);
+  client.grant(["analytics", "behavioral"]);
 }
 
 export function denyPipeline() {
