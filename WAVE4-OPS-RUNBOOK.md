@@ -30,14 +30,18 @@ These fire automatically after consent:
 | Event | When |
 |-------|------|
 | `page_view` | After Accept / return visitor with consent |
-| `generate_lead` | Contact form success |
+| `generate_lead` | Contact form success (incl. `form_name=opportunity_review`) |
 | `click_to_call` | `tel:` clicks |
 | `schedule_click` | `#schedule` or Calendly links |
 | `scroll_depth` | 25 / 50 / 75 / 100% |
 | `blog_read_complete` | ~90% through `<article>` on blog posts |
 | `outbound_click` | External links |
+| `opportunity_review_view` | `/opportunity-review` mount |
+| `opportunity_review_cta_click` | Opportunity Review primary CTA |
+| `opportunity_review_form_start` | First field focus on Opportunity Review form |
 
-In GTM: create Custom Event triggers matching those names → GA4 Event tags.
+In GTM: create Custom Event triggers matching those names → GA4 Event tags.  
+**Full Opportunity Review funnel mapping:** `docs/GTM_OPPORTUNITY_REVIEW_EVENTS.md`.
 
 ### D. Without GTM
 Leave `GTM_ID` empty; set `GA4_ID` + `CLARITY_ID` for direct load after consent.
