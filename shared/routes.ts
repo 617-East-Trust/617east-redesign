@@ -14,6 +14,7 @@ export const PUBLIC_ROUTES = [
   "/how-it-works/",
   "/about/",
   "/contact/",
+  "/opportunity-review/",
   "/locations/",
   "/locations/pinehurst-nc/",
   "/locations/southern-pines-nc/",

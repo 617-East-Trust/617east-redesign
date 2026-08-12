@@ -113,6 +113,12 @@ export const ROUTES = [
     canonical: "https://617east.com/contact",
   },
   {
+    path: "/opportunity-review",
+    title: "Local Growth Opportunity Review | Web Design & Local SEO — 617 East Trust",
+    description: "Book a 20-minute Opportunity Review. See the mobile conversion path for your local business website — clear priorities, no pressure. Sandhills NC.",
+    canonical: "https://617east.com/opportunity-review",
+  },
+  {
     path: "/blog",
     title: "Resources | 617 East Trust — NC Business & Financial Guides",
     description: "Guides, articles, and honest advice for North Carolina business owners. LLC formation, SBA loans, credit repair, bookkeeping, and more.",

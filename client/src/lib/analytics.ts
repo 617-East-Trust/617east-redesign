@@ -93,6 +93,35 @@ export function trackScheduleClick() {
   trackEvent("schedule_click", { event_category: "conversion", event_label: "calendly_or_contact" });
 }
 
+/** Report-funnel lander: Opportunity Review page view (UTM/client context). */
+export function trackOpportunityReviewView(props: {
+  client?: string;
+  city?: string;
+  source?: string;
+  token?: string;
+}) {
+  trackEvent("opportunity_review_view", {
+    event_category: "funnel",
+    client: props.client || "generic",
+    city: props.city || "",
+    source: props.source || "direct",
+    token: props.token || "",
+  });
+}
+
+/** Report-funnel lander: primary CTA (scroll to book / sticky). */
+export function trackOpportunityReviewCta(
+  ctaId: string,
+  props: { client?: string; source?: string } = {},
+) {
+  trackEvent("opportunity_review_cta_click", {
+    event_category: "conversion",
+    cta_id: ctaId,
+    client: props.client || "generic",
+    source: props.source || "direct",
+  });
+}
+
 function loadScript(src: string, id: string) {
   if (document.getElementById(id)) return;
   const s = document.createElement("script");

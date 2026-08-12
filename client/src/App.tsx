@@ -21,6 +21,7 @@ const Terms = lazy(() => import("./pages/Terms"));
 const ConsumerRights = lazy(() => import("./pages/ConsumerRights"));
 const LocationsHub = lazy(() => import("./pages/LocationsHub"));
 const LocationPage = lazy(() => import("./pages/LocationPage"));
+const OpportunityReview = lazy(() => import("./pages/OpportunityReview"));
 
 function PageLoader() {
   return (
@@ -57,6 +58,7 @@ function Router() {
         <Route path="/how-we-work" component={HowWeWork} />
         <Route path="/locations" component={LocationsHub} />
         <Route path="/locations/:slug" component={LocationPage} />
+        <Route path="/opportunity-review" component={OpportunityReview} />
         <Route path="/404" component={NotFound} />
         <Route component={NotFound} />
       </Switch>
