@@ -183,7 +183,16 @@ async function startServer() {
   // ── Static assets ────────────────────────────────────────────────────────────
   // redirect:false — directory routes (e.g. /services/foo/) must NOT 301 before
   // our SEO catch-all; default express.static redirect broke crawlable titles.
-  app.use(express.static(staticPath, { index: false, redirect: false }));
+  app.use(express.static(staticPath, {
+    index: false,
+    redirect: false,
+    setHeaders: (res, assetPath) => {
+      // The bundled mime database does not classify AVIF in this runtime.
+      if (path.extname(assetPath).toLowerCase() === ".avif") {
+        res.type("image/avif");
+      }
+    },
+  }));
 
   // ── Client-side routing with injected SEO + analytics ────────────────────────
   app.get("*", (req, res) => {
