@@ -5,9 +5,9 @@
  */
 
 import { useEffect, useRef, useState } from "react";
+import BrandLogo from "@/components/BrandLogo";
 
 const HERO_IMG = "/images/617east-hero-v2_1ca341a7.jpg";
-const LOGO = "/images/logo-final-B-transparent_bbde9f45.png";
 
 /* ============================================================
    SHARED PIECES
@@ -465,12 +465,10 @@ function Hero04({ active }: { active: boolean }) {
       />
       {/* Mini nav simulation with logo drop */}
       <div className="absolute top-0 left-0 right-0 z-20 flex items-center justify-between px-10 py-4">
-        <img
-          src={LOGO}
+        <BrandLogo
+          size={44}
           alt=""
           style={{
-            height: "44px",
-            width: "auto",
             opacity: started ? 1 : 0,
             transform: started ? "translateY(0)" : "translateY(-24px)",
             transition: "opacity 450ms cubic-bezier(0.34,1.56,0.64,1) 100ms, transform 450ms cubic-bezier(0.34,1.56,0.64,1) 100ms",

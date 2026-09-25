@@ -9,6 +9,7 @@
 import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { Link, useLocation } from "wouter";
+import BrandLogo from "@/components/BrandLogo";
 import { trackCall } from "@/lib/analytics";
 import {
   BUSINESS_NAME,
@@ -20,37 +21,6 @@ import {
   sameAsList,
   telHref,
 } from "@/data/nap";
-
-// Compass rose SVG mark — 8-point star, gold
-function CompassMark({ size = 28 }: { size?: number }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 32 32" fill="none" aria-hidden="true">
-      <path
-        d="M16 2 L17.5 13 L28 16 L17.5 19 L16 30 L14.5 19 L4 16 L14.5 13 Z"
-        fill="oklch(0.78 0.12 80)"
-      />
-      <path
-        d="M16 6 L17 13.5 L22 16 L17 18.5 L16 26 L15 18.5 L10 16 L15 13.5 Z"
-        fill="oklch(0.10 0.008 240)"
-        opacity="0.5"
-      />
-      <circle cx="16" cy="16" r="2" fill="oklch(0.10 0.008 240)" />
-    </svg>
-  );
-}
-// Real 617 East Trust logo mark (circular badge) — for header icon slot
-function LogoMark({ size = 36 }: { size?: number }) {
-  return (
-    <img
-      src="/images/logo-seal.svg"
-      alt=""
-      aria-hidden="true"
-      width={size}
-      height={size}
-      style={{ objectFit: "contain" }}
-    />
-  );
-}
 
 const NAV_LINKS = [
   { href: "/", label: "Home" },
@@ -199,13 +169,7 @@ export default function Layout({ children, pageSchema, title, description, canon
           <div className="flex items-center justify-between h-18" style={{ height: "72px" }}>
             {/* Logo */}
             <Link href="/" className="flex items-center gap-3 group" aria-label="617 East Trust — Home">
-              {/* Full wordmark logo — skyline + pine cone */}
-              <img
-                src="/images/logo-wordmark.svg"
-                alt="617 East Trust"
-                height={52}
-                style={{ height: "52px", width: "auto", objectFit: "contain" }}
-              />
+              <BrandLogo size={56} />
             </Link>
 
             {/* Desktop Nav */}
@@ -340,13 +304,7 @@ export default function Layout({ children, pageSchema, title, description, canon
             {/* Brand + NAP */}
             <div className="md:col-span-1">
               <div className="flex items-center gap-3 mb-5">
-                <img
-                  src="/images/logo-seal.svg"
-                  alt={BUSINESS_NAME}
-                  width={52}
-                  height={52}
-                  style={{ objectFit: "contain" }}
-                />
+                <BrandLogo size={72} alt={BUSINESS_NAME} loading="lazy" />
               </div>
               <p className="text-sm leading-relaxed mb-6" style={{ color: "oklch(0.52 0.008 80)" }}>
                 The advisor who tells you what not to do. Serving founders and individuals across North Carolina.
