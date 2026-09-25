@@ -21,6 +21,7 @@ import {
   sameAsList,
   telHref,
 } from "@/data/nap";
+import { BRAND_PROMISE, FOOTER_DESCRIPTOR, LEGAL_DISCLOSURE } from "@/data/brandCopy";
 
 const NAV_LINKS = [
   { href: "/", label: "Home" },
@@ -307,7 +308,13 @@ export default function Layout({ children, pageSchema, title, description, canon
                 <BrandLogo size={72} alt={BUSINESS_NAME} loading="lazy" />
               </div>
               <p className="text-sm leading-relaxed mb-6" style={{ color: "oklch(0.52 0.008 80)" }}>
-                The advisor who tells you what not to do. Serving founders and individuals across North Carolina.
+                {FOOTER_DESCRIPTOR}
+              </p>
+              <p
+                className="text-xs font-mono mt-0 mb-6"
+                style={{ color: "oklch(0.78 0.12 80)", letterSpacing: "0.08em" }}
+              >
+                {BRAND_PROMISE}
               </p>
               <div className="flex flex-col gap-2">
                 <p className="text-xs" style={{ color: "oklch(0.45 0.007 80)" }}>
@@ -451,7 +458,7 @@ export default function Layout({ children, pageSchema, title, description, canon
               © 2026 617 East Trust. All rights reserved. North Carolina.
             </p>
             <p className="text-xs" style={{ color: "oklch(0.35 0.005 80)" }}>
-              Not a law firm. Not a CPA firm. An advisor who tells you what not to do.
+              {LEGAL_DISCLOSURE}
             </p>
           </div>
         </div>

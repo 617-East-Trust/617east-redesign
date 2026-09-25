@@ -1,12 +1,31 @@
 /*
  * 617 EAST TRUST — HOME PAGE
  * Midnight Ledger design system.
- * Narrative arc: Skepticism → Recognition → Trust → Partnership → Action
+ * Narrative arc: Clarity → Recognition → Trust → Partnership → Action
  * Sections: Hero | Philosophy | Services | Stats | Process | CTA
  */
 
 import Layout from "@/components/Layout";
 import Testimonials from "@/components/Testimonials";
+import {
+  BRAND_PROMISE,
+  BRAND_VALUES,
+  CLOSING_CTA_BODY,
+  CLOSING_CTA_HEADING,
+  CLOSING_CTA_HEADING_EM,
+  CLOSING_CTA_LABEL,
+  FOUNDER_QUOTE,
+  FOUNDER_QUOTE_ATTRIBUTION,
+  HERO_HEADLINE_EM,
+  HERO_HEADLINE_WORDS,
+  HERO_SUPPORTING,
+  HERO_TRUST_INDICATORS,
+  PHILOSOPHY_BODY_1,
+  PHILOSOPHY_BODY_2,
+  PHILOSOPHY_HEADING,
+  PHILOSOPHY_HEADING_EM,
+  READINESS_PROMISE,
+} from "@/data/brandCopy";
 import { getHomepageTestimonials } from "@/data/testimonials";
 import { useReveal } from "@/hooks/useReveal";
 import { Link } from "wouter";
@@ -158,7 +177,7 @@ export default function Home() {
     };
   }, []);
 
-  const heroWords = ["The", "most", "important", "thing", "we", "do", "is", "tell", "you"];
+  const heroWords = HERO_HEADLINE_WORDS;
 
   return (
     <Layout pageSchema={HOME_SCHEMA}>
@@ -244,7 +263,7 @@ export default function Home() {
                   transition: "opacity 750ms cubic-bezier(0.23,1,0.32,1) 1300ms, transform 750ms cubic-bezier(0.23,1,0.32,1) 1300ms",
                 }}
               >
-                what not to do.
+                {HERO_HEADLINE_EM}
               </em>
             </h1>
 
@@ -256,7 +275,7 @@ export default function Home() {
                 transition: "opacity 800ms ease 1750ms",
               }}
             >
-              617 East Trust is a North Carolina advisory firm for founders and individuals who want a partner — not a processor. We handle LLC formation, SBA loans, credit repair, bookkeeping, and more.
+              {HERO_SUPPORTING}
             </p>
 
             {/* CTAs */}
@@ -293,7 +312,7 @@ export default function Home() {
               className="flex flex-wrap gap-6 mt-10"
               style={{ borderTop: "1px solid oklch(0.22 0.008 240)", paddingTop: "1.5rem" }}
             >
-              {["NC Registered", "Banking Background", "No Automated Filers", "Real Advisor"].map((item, i) => (
+              {HERO_TRUST_INDICATORS.map((item, i) => (
                 <div
                   key={item}
                   className="flex items-center gap-2"
@@ -367,15 +386,28 @@ export default function Home() {
                 className="font-display text-4xl md:text-5xl reveal reveal-delay-1"
                 style={{ color: "oklch(0.94 0.005 80)", lineHeight: "1.15", marginBottom: "1.5rem" }}
               >
-                You don't need a filer.{" "}
+                {PHILOSOPHY_HEADING}
                 <br />
-                <em style={{ color: "oklch(0.78 0.12 80)" }}>You need someone who's seen the inside.</em>
+                <em style={{ color: "oklch(0.78 0.12 80)" }}>{PHILOSOPHY_HEADING_EM}</em>
               </h2>
               <p className="text-base leading-relaxed reveal reveal-delay-2" style={{ color: "oklch(0.58 0.010 80)", marginBottom: "1.25rem" }}>
-                Lamont Legrand built 617 East Trust after years inside commercial banking and SBA lending. He has seen the applications that get approved, the ones that don't, and — more importantly — the ones that should never have been submitted.
+                {PHILOSOPHY_BODY_1}
               </p>
-              <p className="text-base leading-relaxed reveal reveal-delay-3" style={{ color: "oklch(0.58 0.010 80)", marginBottom: "2rem" }}>
-                That institutional knowledge is what you're hiring when you work with us. Not a form. Not a chatbot. A person who will tell you the truth about your situation — including when the answer is "not yet."
+              <p
+                className="font-display text-lg reveal reveal-delay-3"
+                style={{
+                  color: "oklch(0.88 0.008 80)",
+                  fontStyle: "italic",
+                  lineHeight: "1.6",
+                  borderLeft: "3px solid oklch(0.78 0.12 80)",
+                  paddingLeft: "1.25rem",
+                  marginBottom: "1.5rem",
+                }}
+              >
+                {READINESS_PROMISE}
+              </p>
+              <p className="text-base leading-relaxed reveal reveal-delay-4" style={{ color: "oklch(0.58 0.010 80)", marginBottom: "2rem" }}>
+                {PHILOSOPHY_BODY_2}
               </p>
               <Link
                 href="/about"
@@ -419,19 +451,18 @@ export default function Home() {
                   className="font-display text-xl"
                   style={{ color: "oklch(0.88 0.008 80)", lineHeight: "1.5", fontStyle: "italic", marginBottom: "0.75rem" }}
                 >
-                  "Most people come to us after they've already made a mistake. Our goal is to become the call they make before they make one."
+                  "{FOUNDER_QUOTE}"
                 </blockquote>
                 <cite className="text-sm not-italic" style={{ color: "oklch(0.58 0.010 80)", fontFamily: "'DM Mono', monospace", letterSpacing: "0.06em" }}>
-                  — Lamont Legrand, Founder
+                  — {FOUNDER_QUOTE_ATTRIBUTION}
                 </cite>
+                <p className="font-mono text-xs mt-3" style={{ color: "oklch(0.78 0.12 80)", letterSpacing: "0.06em" }}>
+                  {BRAND_PROMISE}
+                </p>
               </div>
-              {/* Three pillars */}
+              {/* Four values */}
               <div className="space-y-6">
-                {[
-                  { title: "Accountability", body: "We tell you what we can and can't do. No overpromising." },
-                  { title: "Trust", body: "Built over time, through honest advice — including the advice you didn't want to hear." },
-                  { title: "Transparency", body: "Every fee, every timeline, every limitation — disclosed upfront." },
-                ].map((pillar, i) => (
+                {BRAND_VALUES.map((pillar, i) => (
                   <div key={pillar.title} className={`reveal reveal-delay-${i + 2}`}>
                     <div className="flex items-center gap-3 mb-1">
                       <span className="font-mono text-xs" style={{ color: "oklch(0.78 0.12 80)" }}>0{i + 1}</span>
@@ -610,15 +641,15 @@ export default function Home() {
             className="font-display text-4xl md:text-5xl reveal reveal-delay-1"
             style={{ color: "oklch(0.94 0.005 80)", lineHeight: "1.15", marginBottom: "1.5rem" }}
           >
-            Stop being processed.{" "}
-            <em style={{ color: "oklch(0.78 0.12 80)" }}>Start being partnered with.</em>
+            {CLOSING_CTA_HEADING}
+            <em style={{ color: "oklch(0.78 0.12 80)" }}>{CLOSING_CTA_HEADING_EM}</em>
           </h2>
           <p className="text-base leading-relaxed reveal reveal-delay-2" style={{ color: "oklch(0.58 0.010 80)", marginBottom: "2.5rem" }}>
-            One free consultation. No commitment. We'll tell you exactly what we can do for your situation — and what we can't.
+            {CLOSING_CTA_BODY}
           </p>
           <div className="flex flex-wrap gap-4 justify-center reveal reveal-delay-3">
             <a href="/contact#schedule" className="btn-gold px-8 py-4 rounded-sm text-sm inline-flex items-center gap-2">
-              Book Free Consultation
+              {CLOSING_CTA_LABEL}
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                 <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
@@ -627,7 +658,13 @@ export default function Home() {
               (910) 315-1800
             </a>
           </div>
-          <p className="text-xs mt-6 reveal reveal-delay-4" style={{ color: "oklch(0.40 0.006 80)" }}>
+          <p
+            className="text-xs mt-8 reveal reveal-delay-4"
+            style={{ color: "oklch(0.45 0.007 80)", fontFamily: "'DM Mono', monospace", letterSpacing: "0.08em" }}
+          >
+            {BRAND_PROMISE}
+          </p>
+          <p className="text-xs mt-2 reveal reveal-delay-4" style={{ color: "oklch(0.40 0.006 80)" }}>
             Response within 24 hours. Same-day for inquiries before 3 PM EST.
           </p>
         </div>

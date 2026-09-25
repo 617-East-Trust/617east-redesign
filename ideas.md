@@ -15,7 +15,7 @@ Near-black with burnished gold accents, monospaced numerals, architectural grid 
 
 ## Chosen Direction: Midnight Ledger / Banker's Precision
 
-**Why:** The brand's core truth is "we tell you what not to do" — that is the voice of someone who has seen the inside of institutions and knows where the traps are. The aesthetic of a private bank's annual report communicates exactly that: earned authority, financial literacy, and the confidence to say no. It also directly differentiates from the bright-green, badge-heavy aesthetic of automated filers (ZenBusiness, LegalZoom) who are the primary competitors for attention.
+**Why:** The brand's core truth is "see the full picture before you decide" — the voice of someone who has sat inside the lending process and knows what preparation actually requires. The aesthetic of a private bank's annual report communicates exactly that: earned authority, financial literacy, and the confidence to give a straight answer. It also directly differentiates from the bright-green, badge-heavy aesthetic of automated filers (ZenBusiness, LegalZoom) who are the primary competitors for attention.
 
 ---
 
@@ -64,13 +64,18 @@ Deliberate and unhurried. Hover states reveal rather than transform. Scroll trig
 - **Scale:** 12 / 14 / 16 / 18 / 22 / 28 / 36 / 48 / 64 / 80px
 
 ### Brand Essence
-**617 East Trust: The advisor who tells you what not to do — for founders who want a partner, not a processor.**
+**617 East Trust: See the full picture. Move forward with confidence. — for founders who want a partner, not a processor.**
+Promise line: **Clear advice. Shared decisions. Follow-through.**
 Personality: Authoritative. Candid. Unflappable.
 
 ### Brand Voice
-Headlines sound like a trusted banker speaking plainly. No hype, no urgency theater.
-- "The most important thing we do is tell you what not to do."
-- "You don't need a filer. You need someone who's seen the inside."
+Headlines sound like a trusted banker speaking plainly. No hype, no urgency theater. The client is the decision-maker; the firm owns the quality of its guidance, its transparency, and its follow-through.
+- "See the full picture. Move forward with confidence."
+- "Our job is to help you understand your options, be candid about the tradeoffs, and move forward with confidence."
+
+**Retired (do not reintroduce):** the "tells you what not to do" proposition, "most people come to us after they've already made a mistake," and "most advisors tell you what you want to hear." They framed the prospect's presumed error as the starting point.
+
+Copy lives in `client/src/data/brandCopy.ts` — the founder quote, brand promise, values, and CTA copy must not be duplicated in components.
 
 ### Wordmark & Logo
 A minimal compass rose — 8-point star with alternating long/short points, rendered as a single SVG path in gold. The wordmark is "617 EAST TRUST" in DM Sans 700, tracked wide, with the compass mark to the left.

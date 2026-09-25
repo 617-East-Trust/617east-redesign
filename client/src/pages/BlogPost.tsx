@@ -6,6 +6,7 @@
 
 import Layout from "@/components/Layout";
 import { getBlogPostBySlug } from "@/data/blog";
+import { BLOG_AUTHOR_BIO } from "@/data/brandCopy";
 import { useReveal } from "@/hooks/useReveal";
 import { useParams } from "wouter";
 import NotFound from "./NotFound";
@@ -292,10 +293,7 @@ export default function BlogPost() {
                       FOUNDER &amp; PRINCIPAL ADVISOR · 617 EAST TRUST
                     </p>
                     <p className="text-sm leading-relaxed mb-4" style={{ color: "oklch(0.62 0.010 80)" }}>
-                      Former commercial banking and SBA lending professional. Lamont founded 617 East Trust
-                      to give North Carolina operators an advisor who will tell them what not to do —
-                      formation structure, loan readiness, credit disputes, and financial clarity without
-                      the processing mill.
+                      {BLOG_AUTHOR_BIO}
                     </p>
                     <div className="flex flex-wrap gap-4 text-sm">
                       <a href="/about" style={{ color: "oklch(0.78 0.12 80)" }}>

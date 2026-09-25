@@ -43,7 +43,7 @@ const PROFESSIONAL_SERVICE_SCHEMA = {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
   "name": "617 East Trust",
-  "description": "Business formation, SBA loan consulting, credit repair, bookkeeping, and fractional CFO services in North Carolina. The advisor who tells you what not to do.",
+  "description": "Business formation, SBA loan consulting, credit repair, bookkeeping, and fractional CFO services in North Carolina. Clear guidance for the decisions that shape your business.",
   "url": BASE,
   "telephone": "+19103151800",
   "email": "info@617east.com",
@@ -136,13 +136,13 @@ export const ROUTES: RouteMeta[] = [
   {
     path: "/",
     title: "617 East Trust | Business Formation & SBA Loans — NC",
-    description: "617 East Trust — Business formation, SBA loans, credit repair, bookkeeping, and fractional CFO services in North Carolina. The advisor who tells you what not to do.",
+    description: "617 East Trust — Business formation, SBA loans, credit repair, bookkeeping, and fractional CFO services in North Carolina. Clear guidance for the decisions that shape your business.",
     canonical: `${BASE}/`,
     jsonLd: [PROFESSIONAL_SERVICE_SCHEMA, HOME_FAQ_SCHEMA],
     noscriptH1: "617 East Trust — Business Formation, SBA Loans & Credit Repair in North Carolina",
     noscriptBody:
       "Business formation, SBA loan consulting, credit repair, bookkeeping, and fractional CFO services across the Sandhills region, Charlotte, Fayetteville, Pinehurst, Southern Pines, and Raleigh NC. " +
-      "The advisor who tells you what not to do. Call (910) 315-1800 or email info@617east.com for a free consultation."
+      "Clear guidance for the decisions that shape your business. Call (910) 315-1800 or email info@617east.com for a free consultation."
   },
   {
     path: "/services",
@@ -157,8 +157,8 @@ export const ROUTES: RouteMeta[] = [
   },
   {
     path: "/about",
-    title: "About 617 East Trust — The Advisor Who Tells You What Not To Do",
-    description: "Meet 617 East Trust: business consulting built on candor, not guarantees. Sandhills-rooted, NC-serving, honest-advice first.",
+    title: "About 617 East Trust | Lamont Legrand — NC Business Advisor",
+    description: "617 East Trust was founded by Lamont Legrand, a commercial banking and SBA lending professional. We help North Carolina founders and individuals understand their options, prepare for the next step, and make decisions they can stand behind.",
     canonical: `${BASE}/about`,
     jsonLd: {
       "@context": "https://schema.org",
@@ -174,12 +174,12 @@ export const ROUTES: RouteMeta[] = [
     noscriptH1: "About 617 East Trust",
     noscriptBody:
       "617 East Trust is a North Carolina business consulting practice serving the Sandhills region, Charlotte, Fayetteville, and Raleigh. " +
-      "Founded by Lamont Legrand, the firm's core promise: the advisor who tells you what not to do."
+      "Founded by Lamont Legrand, a commercial banking and SBA lending professional. The firm helps clients understand their options, prepare for the next step, and make decisions they can stand behind."
   },
   {
     path: "/contact",
     title: "Contact 617 East Trust — Free Consultation",
-    description: "Contact 617 East Trust for a free consultation on business formation, SBA loans, credit repair, bookkeeping, or fractional CFO services.",
+    description: "Book a free consultation with 617 East Trust. We will be clear about what we recommend, what it costs, and what happens next. Serving North Carolina.",
     canonical: `${BASE}/contact`,
     jsonLd: [
       {
@@ -267,7 +267,7 @@ export const ROUTES: RouteMeta[] = [
     jsonLd: { "@context": "https://schema.org", "@type": "WebPage", "name": "How It Works — 617 East Trust", "url": `${BASE}/how-it-works` },
     noscriptH1: "How It Works — 617 East Trust",
     noscriptBody:
-      "Free consultation, honest assessment of fit, written engagement terms, and clear deliverables. " +
+      "Free consultation, honest assessment of fit, written engagement terms, and clear deliverables — no surprises, a clear way forward. " +
       "Four-step process: free consultation, honest assessment, defined engagement, ongoing partnership. " +
       "For credit repair: CROA consumer rights disclosure and a 3 business day cancellation right. Call (910) 315-1800."
   }

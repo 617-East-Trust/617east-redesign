@@ -38,7 +38,7 @@ export const ROUTES = [
   {
     path: "/",
     title: "617 East Trust | Business Formation & SBA Loans — NC",
-    description: "617 East Trust — Business formation, SBA loans, credit repair, bookkeeping, and fractional CFO services in North Carolina. The advisor who tells you what not to do.",
+    description: "617 East Trust — Business formation, SBA loans, credit repair, bookkeeping, and fractional CFO services in North Carolina. Clear guidance for the decisions that shape your business.",
     canonical: "https://617east.com/",
     schema: {
       "@context": "https://schema.org",
@@ -103,13 +103,13 @@ export const ROUTES = [
   {
     path: "/about",
     title: "About 617 East Trust | Lamont Legrand — NC Business Advisor",
-    description: "617 East Trust is founded by Lamont Legrand, a former commercial banker and SBA lending professional. The advisor who tells you what not to do.",
+    description: "617 East Trust was founded by Lamont Legrand, a commercial banking and SBA lending professional. We help North Carolina founders and individuals understand their options, prepare for the next step, and make decisions they can stand behind.",
     canonical: "https://617east.com/about",
   },
   {
     path: "/contact",
     title: "Contact 617 East Trust | Free Consultation — (910) 315-1800",
-    description: "Book a free consultation with 617 East Trust. We'll tell you exactly what we can do for your situation — and what we can't. Serving North Carolina.",
+    description: "Book a free consultation with 617 East Trust. We will be clear about what we recommend, what it costs, and what happens next. Serving North Carolina.",
     canonical: "https://617east.com/contact",
   },
   {

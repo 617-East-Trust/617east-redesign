@@ -3,6 +3,8 @@
  * Local SEO hub pages for primary NC markets.
  */
 
+import { PINEHURST_INTRO } from "./brandCopy";
+
 export interface LocationPageData {
   slug: string;
   city: string;
@@ -43,7 +45,7 @@ export const LOCATIONS: LocationPageData[] = [
     canonical: `${BASE}/locations/pinehurst-nc`,
     h1: "Business Consulting in Pinehurst, NC",
     intro:
-      "617 East Trust is based in the Sandhills. If you are forming an LLC, packing an SBA loan, cleaning credit, or getting books under control in Pinehurst, you get a human advisor who will tell you what not to do — not a national filing mill.",
+      PINEHURST_INTRO,
     localNotes: [
       "Home market — same-day response and in-person consultations available by appointment.",
       "Strong mix of professional practices, hospitality, and service businesses around the Village.",
@@ -145,7 +147,7 @@ export const LOCATIONS: LocationPageData[] = [
     canonical: `${BASE}/locations/charlotte-nc`,
     h1: "Business Consulting in Charlotte, NC",
     intro:
-      "Charlotte moves fast. National filers will sell you a checkbox LLC; banks will take a complete SBA package. We sit in the middle as the advisor who tells you what not to file, what not to apply for, and what to fix first.",
+      "Charlotte moves fast. National filers will sell you a checkbox LLC; banks will take a complete SBA package. We sit in the middle — a local advisor who explains what is required, what to sequence, and what to fix before you commit.",
     localNotes: [
       "Remote-first engagement with electronic NC SOS filings and registered agent coverage.",
       "Common work: multi-member LLCs, SBA packaging after bank turndowns, catch-up bookkeeping for growing operators.",

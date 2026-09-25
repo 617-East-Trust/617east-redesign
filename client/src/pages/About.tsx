@@ -7,6 +7,25 @@
 import Layout from "@/components/Layout";
 import { useReveal } from "@/hooks/useReveal";
 import { useHeroEntrance, heroLabelStyle, heroRuleStyle, heroHeadlineOuter, heroHeadlineInner, heroSubtextStyle } from "@/hooks/useHeroEntrance";
+import {
+  ABOUT_CTA_BODY,
+  ABOUT_CTA_HEADING,
+  ABOUT_CTA_HEADING_EM,
+  ABOUT_HERO_HEADING,
+  ABOUT_HERO_HEADING_EM,
+  ABOUT_HERO_SUPPORTING,
+  ABOUT_META_DESCRIPTION,
+  ABOUT_STORY_BODY_1,
+  ABOUT_STORY_BODY_2,
+  ABOUT_STORY_BODY_3,
+  ABOUT_TITLE,
+  BRAND_PROMISE,
+  BRAND_VALUES,
+  BRAND_VALUES_HEADING,
+  CLOSING_CTA_LABEL,
+  FOUNDER_QUOTE,
+  FOUNDER_QUOTE_ATTRIBUTION,
+} from "@/data/brandCopy";
 
 const ABOUT_SCHEMA = {
   "@context": "https://schema.org",
@@ -41,8 +60,8 @@ export default function About() {
   return (
     <Layout
       pageSchema={ABOUT_SCHEMA}
-      title="About 617 East Trust | Lamont Legrand — NC Business Advisor"
-      description="617 East Trust was founded by Lamont Legrand, a commercial banking and SBA lending professional. We tell you what not to do — and why that matters."
+      title={ABOUT_TITLE}
+      description={ABOUT_META_DESCRIPTION}
       canonical="https://617east.com/about"
     >
       {/* Hero */}
@@ -64,8 +83,8 @@ export default function About() {
           >
             <span style={heroHeadlineOuter}>
               <span style={heroHeadlineInner(heroStarted, 500)}>
-                Built by someone who's seen{" "}
-                <em style={{ color: "oklch(0.78 0.12 80)" }}>the inside.</em>
+                {ABOUT_HERO_HEADING}{" "}
+                <em style={{ color: "oklch(0.78 0.12 80)" }}>{ABOUT_HERO_HEADING_EM}</em>
               </span>
             </span>
           </h1>
@@ -73,7 +92,7 @@ export default function About() {
             className="text-lg mt-6"
             style={{ color: "oklch(0.62 0.010 80)", maxWidth: "500px", lineHeight: "1.7", ...heroSubtextStyle(heroStarted) }}
           >
-            617 East Trust exists because the advice most small business owners need is the advice they can't find anywhere else: what not to do.
+            {ABOUT_HERO_SUPPORTING}
           </p>
         </div>
       </section>
@@ -104,13 +123,13 @@ export default function About() {
 
               <div className="space-y-5 reveal reveal-delay-2">
                 <p className="text-base leading-relaxed" style={{ color: "oklch(0.62 0.010 80)" }}>
-                  Lamont Legrand spent years inside commercial banking and SBA lending — reviewing loan applications, underwriting business credit, assessing business viability, and watching founders make the same preventable mistakes over and over. He has sat on both sides of the table: as the person deciding whether to approve a loan, and as the advisor helping clients prepare to ask for one.
+                  {ABOUT_STORY_BODY_1}
                 </p>
                 <p className="text-base leading-relaxed" style={{ color: "oklch(0.62 0.010 80)" }}>
-                  He founded 617 East Trust to be the advisor he wished those founders had access to before they walked into a bank. Someone who could tell them what the lender was actually looking for. What their credit profile said about them. Whether their LLC structure would hold up. What to fix before they applied — and when not to apply at all.
+                  {ABOUT_STORY_BODY_2}
                 </p>
                 <p className="text-base leading-relaxed" style={{ color: "oklch(0.62 0.010 80)" }}>
-                  The name "617 East" reflects the directional nature of the work: we help you find your bearing, understand where you are, and navigate toward where you want to go — without wasting time on paths that will not get you there.
+                  {ABOUT_STORY_BODY_3}
                 </p>
               </div>
               <div className="mt-8 reveal reveal-delay-3 flex flex-wrap gap-3">
@@ -175,18 +194,33 @@ export default function About() {
           {/* Quote + Credentials below the grid */}
           <div className="grid md:grid-cols-2 gap-10 mt-16">
             {/* Quote */}
-            <blockquote
-              className="font-display text-xl reveal reveal-delay-2"
-              style={{
-                color: "oklch(0.78 0.008 80)",
-                fontStyle: "italic",
-                lineHeight: "1.6",
-                borderLeft: "3px solid oklch(0.78 0.12 80)",
-                paddingLeft: "1.5rem",
-              }}
-            >
-              "Most people come to us after they've already made a mistake. Our goal is to become the call they make before they make one."
-            </blockquote>
+            <div className="reveal reveal-delay-2">
+              <blockquote
+                className="font-display text-xl"
+                style={{
+                  color: "oklch(0.78 0.008 80)",
+                  fontStyle: "italic",
+                  lineHeight: "1.6",
+                  borderLeft: "3px solid oklch(0.78 0.12 80)",
+                  paddingLeft: "1.5rem",
+                  margin: 0,
+                }}
+              >
+                "{FOUNDER_QUOTE}"
+              </blockquote>
+              <cite
+                className="text-sm not-italic block mt-4"
+                style={{ color: "oklch(0.58 0.010 80)", fontFamily: "'DM Mono', monospace", letterSpacing: "0.06em" }}
+              >
+                — {FOUNDER_QUOTE_ATTRIBUTION}
+              </cite>
+              <p
+                className="font-mono text-xs mt-5"
+                style={{ color: "oklch(0.78 0.12 80)", letterSpacing: "0.14em" }}
+              >
+                {BRAND_PROMISE}
+              </p>
+            </div>
 
             {/* Credentials */}
             <div
@@ -232,34 +266,18 @@ export default function About() {
             className="text-3xl font-semibold mb-14 reveal reveal-delay-1"
             style={{ color: "oklch(0.94 0.005 80)", maxWidth: "400px" }}
           >
-            Accountability. Trust. Transparency.
+            {BRAND_VALUES_HEADING}
           </h2>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              {
-                n: "01",
-                title: "Accountability",
-                body: "We tell you what we can do, what we can't do, and what the realistic outcome looks like. We don't overpromise. We don't disappear after you pay.",
-              },
-              {
-                n: "02",
-                title: "Trust",
-                body: "Trust is built through honest advice — including the advice you didn't want to hear. We will tell you if your business idea has a fatal flaw. We will tell you if you're not ready for an SBA loan. That honesty is the service.",
-              },
-              {
-                n: "03",
-                title: "Transparency",
-                body: "Every fee, every timeline, every limitation — disclosed upfront. No hidden charges. No surprise scope creep. No vague deliverables.",
-              },
-            ].map((value, i) => (
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {BRAND_VALUES.map((value, i) => (
               <div
-                key={value.n}
-                className={`reveal reveal-delay-${i + 2}`}
+                key={value.title}
+                className={`reveal reveal-delay-${Math.min(i + 1, 5)}`}
                 style={{ borderTop: "1px solid oklch(0.22 0.008 240)", paddingTop: "1.5rem" }}
               >
                 <div className="font-mono text-3xl font-medium mb-4" style={{ color: "oklch(0.78 0.12 80)" }}>
-                  {value.n}
+                  0{i + 1}
                 </div>
                 <h3 className="text-base font-semibold mb-3" style={{ color: "oklch(0.88 0.008 80)" }}>
                   {value.title}
@@ -280,13 +298,14 @@ export default function About() {
       >
         <div className="container max-w-2xl text-center">
           <h2 className="text-3xl font-semibold mb-4" style={{ color: "oklch(0.94 0.005 80)" }}>
-            Ready to work with someone who tells you the truth?
+            {ABOUT_CTA_HEADING}
+            <em style={{ color: "oklch(0.78 0.12 80)" }}>{ABOUT_CTA_HEADING_EM}</em>
           </h2>
           <p className="text-base mb-8" style={{ color: "oklch(0.58 0.010 80)" }}>
-            Start with a free consultation. No commitment. No sales pitch.
+            {ABOUT_CTA_BODY}
           </p>
           <a href="/contact#schedule" className="btn-gold px-8 py-4 rounded-sm text-sm inline-flex items-center gap-2">
-            Schedule Free Consultation
+            {CLOSING_CTA_LABEL}
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
               <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
             </svg>

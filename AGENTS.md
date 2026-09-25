@@ -72,7 +72,7 @@ Host Caddy (`/etc/caddy/Caddyfile`) owns `:80`/`:443`: apex, www, discover, n8n.
 - pnpm lockfile; multi-stage `Dockerfile`
 
 ## Key product notes
-- Narrative: "the advisor who tells you what not to do"
+- Narrative: "See the full picture. Move forward with confidence." — client owns the decision, firm owns clarity and follow-through. Retired: the "tells you what not to do" proposition, the "already made a mistake" line, and the "most advisors" contrast. Copy SoT is `client/src/data/brandCopy.ts`; meta descriptions are duplicated in `client/index.html`, `scripts/ssg.mjs`, and `server/seo.ts` — keep all four in sync.
 - Contact webhook: `https://n8n.617east.com/webhook/617east-contact`
 - Analytics: consent-gated GTM/Clarity + first-party pipeline (`CookieConsent.tsx`, `lib/analytics.ts`, `lib/pipelineClient.ts`)
 - www → apex 301 handled in Caddy

@@ -8,6 +8,11 @@ import Layout from "@/components/Layout";
 import { useReveal } from "@/hooks/useReveal";
 import { useHeroEntrance, heroLabelStyle, heroRuleStyle, heroHeadlineOuter, heroHeadlineInner, heroSubtextStyle } from "@/hooks/useHeroEntrance";
 import { trackLead } from "@/lib/analytics";
+import {
+  CONTACT_HERO_HEADING,
+  CONTACT_HERO_HEADING_EM,
+  CONTACT_HERO_SUPPORTING,
+} from "@/data/brandCopy";
 import { useEffect, useState } from "react";
 
 // Live event slug is `30min` (Calendly "30 Minute Meeting"). `/free-consultation` 404s.
@@ -140,8 +145,8 @@ export default function Contact() {
           >
             <span style={heroHeadlineOuter}>
               <span style={heroHeadlineInner(heroStarted, 500)}>
-                Stop being processed.{" "}
-                <em style={{ color: "oklch(0.78 0.12 80)" }}>Start being partnered with.</em>
+                {CONTACT_HERO_HEADING}{" "}
+                <em style={{ color: "oklch(0.78 0.12 80)" }}>{CONTACT_HERO_HEADING_EM}</em>
               </span>
             </span>
           </h1>
@@ -149,7 +154,7 @@ export default function Contact() {
             className="text-lg mt-6"
             style={{ color: "oklch(0.62 0.010 80)", maxWidth: "460px", lineHeight: "1.7", ...heroSubtextStyle(heroStarted) }}
           >
-            One free consultation. We'll tell you exactly what we can do for your situation — and what we can't.
+            {CONTACT_HERO_SUPPORTING}
           </p>
         </div>
       </section>

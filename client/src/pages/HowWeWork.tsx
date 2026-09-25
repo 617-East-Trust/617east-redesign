@@ -8,6 +8,7 @@
 import Layout from "@/components/Layout";
 import { useReveal } from "@/hooks/useReveal";
 import { Link } from "wouter";
+import { PROCESS_HERO_HEADING, PROCESS_HERO_HEADING_EM, PROCESS_INTRO } from "@/data/brandCopy";
 
 const HOW_WE_WORK_SCHEMA = {
   "@context": "https://schema.org",
@@ -140,15 +141,14 @@ export default function HowWeWork() {
             className="font-display text-4xl md:text-6xl reveal reveal-delay-1"
             style={{ color: "oklch(0.94 0.005 80)", lineHeight: "1.1", marginBottom: "1.5rem" }}
           >
-            No surprises.{" "}
-            <em style={{ color: "oklch(0.78 0.12 80)" }}>No pressure.</em>
+            {PROCESS_HERO_HEADING}{" "}
+            <em style={{ color: "oklch(0.78 0.12 80)" }}>{PROCESS_HERO_HEADING_EM}</em>
           </h1>
           <p
             className="text-lg reveal reveal-delay-2"
             style={{ color: "oklch(0.62 0.010 80)", maxWidth: "520px", lineHeight: "1.7", marginBottom: "2.5rem" }}
           >
-            Most advisors tell you what you want to hear. We tell you what you need to know —
-            including when we are not the right fit. Here is exactly how we work.
+            {PROCESS_INTRO}
           </p>
           <div className="flex flex-wrap gap-4 reveal reveal-delay-3">
             <Link href="/contact#schedule" className="btn-gold px-8 py-4 rounded-sm text-sm inline-flex items-center gap-2">

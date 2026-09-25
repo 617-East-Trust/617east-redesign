@@ -4,6 +4,8 @@
  * Each post includes: SEO metadata, full body sections, FAQ schema.
  */
 
+import { BLOG_CTA_BODY } from "./brandCopy";
+
 export interface BlogSection {
   heading: string;
   body: string; // HTML-safe string, paragraphs separated by \n\n
@@ -733,7 +735,7 @@ export const BLOG_POSTS: BlogPost[] = [
       { q: "Can you help with SBA readiness and formation together?", a: "Yes. Formation, credit, books, and SBA readiness are the same foundation stack — we will tell you what to sequence and what to skip." }
     ],
     ctaHeading: "Forming after service — or scaling a veteran-owned company?",
-    ctaBody: "Free consultation for North Carolina founders. We will map structure, banking, books, credit, and capital — and tell you what not to chase yet. Strong fit for Fayetteville and Sandhills operators.",
+    ctaBody: BLOG_CTA_BODY,
     relatedService: {
       href: "/services/llc-formation-north-carolina",
       label: "LLC Formation in North Carolina",

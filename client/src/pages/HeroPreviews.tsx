@@ -79,7 +79,7 @@ function Hero01({ active }: { active: boolean }) {
     }
   }, [active]);
 
-  const line1Words = ["The", "most", "important", "thing", "we", "do", "is", "tell", "you"];
+  const line1Words = ["See", "the", "full", "picture."];
 
   return (
     <div className="relative w-full h-full overflow-hidden" style={{ background: "oklch(0.10 0.008 240)" }}>
@@ -132,7 +132,7 @@ function Hero01({ active }: { active: boolean }) {
                 transition: "opacity 700ms cubic-bezier(0.23,1,0.32,1) 1250ms, transform 700ms cubic-bezier(0.23,1,0.32,1) 1250ms",
               }}
             >
-              what not to do.
+              Move forward with confidence.
             </em>
           </h1>
           <p
@@ -164,7 +164,7 @@ function Hero02({ active }: { active: boolean }) {
   const bgRef = useRef<HTMLDivElement>(null);
   const [typed, setTyped] = useState("");
   const [showRest, setShowRest] = useState(false);
-  const fullText = "The most important thing we do is tell you";
+  const fullText = "See the full picture";
 
   // Typewriter
   useEffect(() => {
@@ -281,7 +281,7 @@ function Hero02({ active }: { active: boolean }) {
                 transition: "opacity 700ms cubic-bezier(0.23,1,0.32,1), transform 700ms cubic-bezier(0.23,1,0.32,1)",
               }}
             >
-              what not to do.
+              Move forward with confidence.
             </em>
           </h1>
           <p
@@ -367,7 +367,7 @@ function Hero03({ active }: { active: boolean }) {
                 transition: "opacity 600ms cubic-bezier(0.23,1,0.32,1), transform 600ms cubic-bezier(0.23,1,0.32,1)",
               }}
             >
-              The most important
+              See the full
             </span>
             <span
               className="block"
@@ -377,7 +377,7 @@ function Hero03({ active }: { active: boolean }) {
                 transition: "opacity 600ms cubic-bezier(0.23,1,0.32,1), transform 600ms cubic-bezier(0.23,1,0.32,1)",
               }}
             >
-              thing we do is tell you
+              picture.
             </span>
             <em
               className="block mt-1"
@@ -389,7 +389,7 @@ function Hero03({ active }: { active: boolean }) {
                 transition: "opacity 700ms cubic-bezier(0.23,1,0.32,1), transform 700ms cubic-bezier(0.23,1,0.32,1)",
               }}
             >
-              what not to do.
+              Move forward with confidence.
             </em>
           </h1>
           <p
@@ -520,7 +520,7 @@ function Hero04({ active }: { active: boolean }) {
                   transition: "opacity 650ms cubic-bezier(0.23,1,0.32,1) 900ms, transform 650ms cubic-bezier(0.23,1,0.32,1) 900ms",
                 }}
               >
-                The most important
+                See the full
               </span>
             </span>
             <span className="block overflow-hidden">
@@ -532,7 +532,7 @@ function Hero04({ active }: { active: boolean }) {
                   transition: "opacity 650ms cubic-bezier(0.23,1,0.32,1) 1100ms, transform 650ms cubic-bezier(0.23,1,0.32,1) 1100ms",
                 }}
               >
-                thing we do is tell you
+                picture.
               </span>
             </span>
             <span className="block overflow-hidden">
@@ -546,7 +546,7 @@ function Hero04({ active }: { active: boolean }) {
                   transition: "opacity 700ms cubic-bezier(0.23,1,0.32,1) 1350ms, transform 700ms cubic-bezier(0.23,1,0.32,1) 1350ms",
                 }}
               >
-                what not to do.
+                Move forward with confidence.
               </em>
             </span>
           </h1>
