@@ -183,13 +183,38 @@ async function startServer() {
   // ── Static assets ────────────────────────────────────────────────────────────
   // redirect:false — directory routes (e.g. /services/foo/) must NOT 301 before
   // our SEO catch-all; default express.static redirect broke crawlable titles.
+  app.use("/.well-known/openpgpkey", (req, res, next) => {
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader("Access-Control-Allow-Methods", "GET, HEAD, OPTIONS");
+    if (req.method === "OPTIONS") {
+      res.status(204).end();
+      return;
+    }
+    next();
+  });
   app.use(express.static(staticPath, {
     index: false,
     redirect: false,
     setHeaders: (res, assetPath) => {
+      const ext = path.extname(assetPath).toLowerCase();
+      const posix = assetPath.replace(/\\/g, "/");
       // The bundled mime database does not classify AVIF in this runtime.
-      if (path.extname(assetPath).toLowerCase() === ".avif") {
+      if (ext === ".avif") {
         res.type("image/avif");
+      }
+      if (ext === ".asc") {
+        res.setHeader("Content-Type", "application/pgp-keys; charset=utf-8");
+      }
+      if (posix.endsWith("/.well-known/security.txt")) {
+        res.setHeader("Content-Type", "text/plain; charset=utf-8");
+      }
+      if (posix.includes("/.well-known/openpgpkey/")) {
+        res.setHeader("Access-Control-Allow-Origin", "*");
+        if (path.basename(assetPath) === "policy") {
+          res.setHeader("Content-Type", "text/plain; charset=utf-8");
+        } else {
+          res.setHeader("Content-Type", "application/octet-stream");
+        }
       }
     },
   }));

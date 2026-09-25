@@ -76,3 +76,4 @@ Host Caddy (`/etc/caddy/Caddyfile`) owns `:80`/`:443`: apex, www, discover, n8n.
 - Contact webhook: `https://n8n.617east.com/webhook/617east-contact`
 - Analytics: consent-gated GTM/Clarity + first-party pipeline (`CookieConsent.tsx`, `lib/analytics.ts`, `lib/pipelineClient.ts`)
 - www → apex 301 handled in Caddy
+- Disclosure: `/.well-known/security.txt` + `/pgp.asc` (hello@617east.com, Ed25519, expires 2028-09-07). Direct WKD at `/.well-known/openpgpkey/` (CORS `*`).

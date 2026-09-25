@@ -432,6 +432,16 @@ ${urls}
   } catch { /* optional */ }
   console.log(`✅ sitemap.xml → ${sitemapPath} (${ROUTES.length} URLs)`);
 
+  const publicRoot = path.resolve(__dirname, "../client/public");
+  for (const rel of ["pgp.asc", ".well-known"]) {
+    const src = path.join(publicRoot, rel);
+    const dest = path.join(DIST, rel);
+    if (fs.existsSync(src)) {
+      fs.cpSync(src, dest, { recursive: true });
+      console.log(`✅ ${rel} → ${dest}`);
+    }
+  }
+
   console.log(`\n🎉 SSG complete — ${count} routes pre-rendered.`);
   console.log(`\nVerification:\n  curl -s http://localhost:3000/services/llc-formation-north-carolina | grep "<title>"`);
 }
