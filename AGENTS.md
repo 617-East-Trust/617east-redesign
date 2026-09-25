@@ -22,10 +22,11 @@ Zo workspace  ──edit/commit/push──►  GitHub repo  ──pull/build─�
 - Zo paths: `Projects/617east-site`, `Projects/617east-rebuild`, `Projects/_backup_617east_*`, `Projects/Web/617-trust`
 
 ## Current alignment (verified 2026-09-25)
-- Workspace HEAD = `fce802a` (approved seal + AVIF MIME)
-- GitHub `origin/main` = `fce802a`
-- VPS `/opt/617east-redesign` HEAD = `fce802a`
+- Workspace HEAD = `015a418` (messaging shift: correction → preparation)
+- GitHub `origin/main` = `015a418`
+- VPS `/opt/617east-redesign` HEAD = `015a418`
 - Live: `https://617east.com` → HTTP 200 via Caddy → `617east-web:3000`
+- **Messaging (2026-09-25):** the "what not to do" proposition, the "already made a mistake" line, and the "most advisors" contrast are retired platform-wide. Master message: *See the full picture. Move forward with confidence.* Brand promise: *Clear advice. Shared decisions. Follow-through.* Copy SoT is `client/src/data/brandCopy.ts` — edit copy there, not in the page files. Handoff: workspace `Records/617east_messaging_preparation_shift_20260925.md`.
 - Brand (2026-09-25): header + footer use `BrandLogo` (`/images/617east-trust-seal.{avif,webp,png}`). Express `setHeaders` serves AVIF as `image/avif`. Favicon/`icon-192` regenerated from the 1920px master. Handoff: workspace `Records/617east_brand_seal_live_20260925_043700.md`.
 - Wave 1: long service URLs + blogs unique titles; CROA/privacy/cookie curl-visible
 - Wave 2: testimonials, Calendly `#schedule`, blog CTAs, Schedule sticky CTA; CSP allows calendly.com
