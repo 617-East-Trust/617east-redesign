@@ -1,11 +1,11 @@
 /*
- * 617 EAST TRUST — HOME PAGE
- * Midnight Ledger design system.
- * Narrative arc: Clarity → Recognition → Trust → Partnership → Action
- * Sections: Hero | Philosophy | Services | Stats | Process | CTA
+ * 617 EAST TRUST — HOME
+ * Blacklight Ledger: a signal-rich, editorial experience that turns the
+ * approved promise into a visual system without changing brand copy.
  */
 
 import Layout from "@/components/Layout";
+import BrandLogo from "@/components/BrandLogo";
 import Testimonials from "@/components/Testimonials";
 import {
   BRAND_PROMISE,
@@ -26,522 +26,421 @@ import {
   PHILOSOPHY_HEADING_EM,
   READINESS_PROMISE,
 } from "@/data/brandCopy";
+import { SERVICES } from "@/data/services";
 import { getHomepageTestimonials } from "@/data/testimonials";
 import { useReveal } from "@/hooks/useReveal";
 import { Link } from "wouter";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
 const HOME_SCHEMA = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  "mainEntity": [
+  mainEntity: [
     {
       "@type": "Question",
-      "name": "Do I qualify for an SBA loan?",
-      "acceptedAnswer": {
+      name: "Do I qualify for an SBA loan?",
+      acceptedAnswer: {
         "@type": "Answer",
-        "text": "SBA loan eligibility depends on your business size, time in operation, credit history, and the specific loan program. We assess your situation honestly and tell you upfront whether you qualify — and if not, what needs to change first."
-      }
+        text: "SBA loan eligibility depends on your business size, time in operation, credit history, and the specific loan program. We assess your situation honestly and tell you upfront whether you qualify — and if not, what needs to change first.",
+      },
     },
     {
       "@type": "Question",
-      "name": "How long does credit repair take in North Carolina?",
-      "acceptedAnswer": {
+      name: "How long does credit repair take in North Carolina?",
+      acceptedAnswer: {
         "@type": "Answer",
-        "text": "Most clients see meaningful improvement within 3–6 months. The timeline depends on the number and type of negative items. We do not make guarantees — we make honest assessments."
-      }
+        text: "Most clients see meaningful improvement within 3–6 months. The timeline depends on the number and type of negative items. We do not make guarantees — we make honest assessments.",
+      },
     },
     {
       "@type": "Question",
-      "name": "Can you guarantee results from credit repair?",
-      "acceptedAnswer": {
+      name: "Can you guarantee results from credit repair?",
+      acceptedAnswer: {
         "@type": "Answer",
-        "text": "No. Anyone who guarantees specific credit score increases is misleading you. We can tell you what is legally disputable, what the process looks like, and what realistic outcomes are. That honesty is what distinguishes us."
-      }
-    }
-  ]
+        text: "No. Anyone who guarantees specific credit score increases is misleading you. We can tell you what is legally disputable, what the process looks like, and what realistic outcomes are. That honesty is what distinguishes us.",
+      },
+    },
+  ],
 };
 
-const SERVICES = [
+const PROCESS = [
   {
-    slug: "llc-formation-north-carolina",
-    label: "LLC Formation",
-    price: "$499",
-    time: "5–10 days",
-    description: "North Carolina LLC formation with registered agent, operating agreement, and EIN. We tell you what structure actually fits your situation.",
+    step: "01",
+    title: "Start with context",
+    body: "You explain where you are, what you want to accomplish, and what is already in motion.",
   },
   {
-    slug: "sba-loans-north-carolina",
-    label: "SBA Loans",
-    price: "Consulting",
-    time: "Assessment first",
-    description: "SBA 7(a) and 504 loan consulting from someone who has worked inside the lending process. We tell you if you qualify before you waste time applying.",
+    step: "02",
+    title: "See the options",
+    body: "We map the requirements, tradeoffs, and practical paths so there is a full picture to work from.",
   },
   {
-    slug: "credit-repair-north-carolina",
-    label: "Credit Repair",
-    price: "Starting $199/mo",
-    time: "3–6 months",
-    description: "Dispute inaccurate items, build positive history, and understand your credit profile. No guarantees — just honest, legal, effective work.",
+    step: "03",
+    title: "Define the engagement",
+    body: "If we proceed, the scope, fees, timeline, and realistic next steps are clear before work begins.",
   },
   {
-    slug: "bookkeeping-north-carolina",
-    label: "Bookkeeping",
-    price: "$199/mo",
-    time: "Monthly",
-    description: "Clean books, reconciled accounts, and financial clarity. The foundation every business needs before it can grow.",
-  },
-  {
-    slug: "fractional-cfo-north-carolina",
-    label: "Fractional CFO",
-    price: "$1,200/mo",
-    time: "Ongoing",
-    description: "Strategic financial leadership without a full-time hire. Cash flow, forecasting, and the financial decisions that actually matter.",
-  },
-  {
-    slug: "web-design-seo-north-carolina",
-    label: "Web Design & SEO",
-    price: "From $1,500",
-    time: "4–6 weeks",
-    description: "Websites that rank and convert. Built for search engines and real humans — not just to look good in a screenshot.",
+    step: "04",
+    title: "Move with support",
+    body: "You have an advisor who stays available as the next decision comes into view.",
   },
 ];
 
-const STATS = [
-  { value: "$125", label: "NC State Filing Fee", note: "We charge $499 total" },
-  { value: "5–10", label: "Business Days to Form", note: "Or $200 to expedite" },
-  { value: "3–6", label: "Months for Credit Repair", note: "Realistic, not promised" },
-  { value: "6", label: "Services Under One Roof", note: "Formation to funding" },
-];
+function ArrowIcon({ size = 16 }: { size?: number }) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 16 16"
+      fill="none"
+      aria-hidden="true"
+    >
+      <path
+        d="M3 8h9M8.5 3.5 13 8l-4.5 4.5"
+        stroke="currentColor"
+        strokeWidth="1.3"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
 
 export default function Home() {
   const heroRef = useReveal(0.1);
-  const philosophyRef = useReveal(0.15);
+  const philosophyRef = useReveal(0.12);
   const servicesRef = useReveal(0.1);
-  const statsRef = useReveal(0.15);
   const processRef = useReveal(0.1);
-  const ctaRef = useReveal(0.15);
-
-  // ── Hybrid hero animation (Concepts 01 + 03) ──
+  const ctaRef = useReveal(0.1);
   const [heroStarted, setHeroStarted] = useState(false);
-  const heroSectionRef = useRef<HTMLElement>(null);
-  const heroBgRef = useRef<HTMLDivElement>(null);
-  const heroContentRef = useRef<HTMLDivElement>(null);
-  const scrollHintRef = useRef<HTMLButtonElement>(null);
 
-  // Entrance sequence on load (Concept 01)
   useEffect(() => {
-    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const reduced = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
     if (reduced) {
       setHeroStarted(true);
       return;
     }
-    const t = setTimeout(() => setHeroStarted(true), 120);
-    return () => clearTimeout(t);
+    const timer = window.setTimeout(() => setHeroStarted(true), 120);
+    return () => window.clearTimeout(timer);
   }, []);
-
-  // Scroll-linked parallax + fade (Concept 03)
-  useEffect(() => {
-    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduced) return;
-    let raf = 0;
-    const onScroll = () => {
-      cancelAnimationFrame(raf);
-      raf = requestAnimationFrame(() => {
-        const section = heroSectionRef.current;
-        const bg = heroBgRef.current;
-        const content = heroContentRef.current;
-        if (!section || !bg || !content) return;
-        const rect = section.getBoundingClientRect();
-        const h = rect.height || 1;
-        // progress: 0 when hero top at viewport top, 1 when hero fully scrolled past
-        const p = Math.min(Math.max(-rect.top / h, 0), 1);
-        // Background parallax: drifts up slower than scroll + slight zoom continues
-        bg.style.transform = `translateY(${p * 60}px) scale(${1.0 + p * 0.04})`;
-        // Content: drifts up faster + fades as user scrolls away
-        content.style.transform = `translateY(${p * -40}px)`;
-        content.style.opacity = String(1 - p * 1.4);
-        // Scroll hint: dissolves quickly once the user starts scrolling
-        const hint = scrollHintRef.current;
-        if (hint) {
-          hint.style.opacity = p > 0.02 ? "0" : "";
-          hint.style.pointerEvents = p > 0.02 ? "none" : "";
-        }
-      });
-    };
-    window.addEventListener("scroll", onScroll, { passive: true });
-    onScroll();
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      cancelAnimationFrame(raf);
-    };
-  }, []);
-
-  const heroWords = HERO_HEADLINE_WORDS;
 
   return (
     <Layout pageSchema={HOME_SCHEMA}>
-      {/* ── HERO ────────────────────────────────────────────── */}
-      <section
-        ref={heroSectionRef}
-        className="relative min-h-screen flex items-center overflow-hidden"
-        style={{ paddingTop: "72px" }}
-      >
-        {/* Background image */}
-        <div
-          ref={heroBgRef}
-          className="absolute inset-0"
-          style={{
-            backgroundImage: `url('/images/617east-hero-v2_1ca341a7.jpg')`,
-            backgroundSize: "cover",
-            backgroundPosition: "center right",
-            backgroundRepeat: "no-repeat",
-            animation: heroStarted ? "kenburns-drift 24s cubic-bezier(0.23, 1, 0.32, 1) forwards" : "none",
-            willChange: "transform",
-          }}
-        />
-        {/* Gradient overlay — left-heavy for text legibility */}
-        <div
-          className="absolute inset-0"
-          style={{
-            background: "linear-gradient(105deg, oklch(0.10 0.008 240 / 0.97) 0%, oklch(0.10 0.008 240 / 0.92) 45%, oklch(0.10 0.008 240 / 0.55) 75%, oklch(0.10 0.008 240 / 0.35) 100%)",
-          }}
-        />
+      <section className="relative flex min-h-[100dvh] items-center overflow-hidden pt-24">
+        <div className="signal-grid pointer-events-none absolute inset-0 opacity-80" />
+        <div className="pointer-events-none absolute -right-40 top-16 h-[34rem] w-[34rem] rounded-full bg-[oklch(0.46_0.15_293/0.18)] blur-3xl" />
+        <div className="pointer-events-none absolute -left-48 bottom-0 h-[28rem] w-[28rem] rounded-full bg-[oklch(0.45_0.12_208/0.12)] blur-3xl" />
 
-        <div className="container relative z-10 py-24" ref={heroContentRef} style={{ willChange: "transform, opacity" }}>
-          <div className="max-w-2xl" ref={heroRef as React.RefObject<HTMLDivElement>}>
-            {/* Section label */}
-            <span
-              className="section-label"
-              style={{
-                opacity: heroStarted ? 1 : 0,
-                transition: "opacity 600ms ease 200ms",
-              }}
-            >
-              Business Formation & Financial Advisory — North Carolina
-            </span>
-            <div
-              className="gold-rule"
-              style={{
-                width: heroStarted ? undefined : "0px",
-                transition: "width 600ms cubic-bezier(0.23,1,0.32,1) 400ms",
-              }}
-            />
-
-            {/* Hero headline — display font */}
-            <h1
-              className="font-display"
-              style={{
-                fontSize: "clamp(2.8rem, 6vw, 5rem)",
-                lineHeight: "1.08",
-                color: "oklch(0.94 0.005 80)",
-                fontWeight: 600,
-                marginBottom: "1.75rem",
-                letterSpacing: "-0.01em",
-              }}
-            >
-              {heroWords.map((w, i) => (
-                <span
-                  key={i}
-                  className="inline-block mr-[0.26em]"
-                  style={{
-                    opacity: heroStarted ? 1 : 0,
-                    transform: heroStarted ? "translateY(0)" : "translateY(16px)",
-                    transition: `opacity 550ms cubic-bezier(0.23,1,0.32,1) ${450 + i * 65}ms, transform 550ms cubic-bezier(0.23,1,0.32,1) ${450 + i * 65}ms`,
-                  }}
-                >
-                  {w}
-                </span>
-              ))}
-              <em
-                className="block mt-1"
+        <div
+          className="container relative z-10 py-20 lg:py-28"
+          ref={heroRef as React.RefObject<HTMLDivElement>}
+        >
+          <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-8">
+            <div className="lg:col-span-7 xl:col-span-6">
+              <span
+                className="section-label"
                 style={{
-                  color: "oklch(0.78 0.12 80)",
-                  fontStyle: "italic",
                   opacity: heroStarted ? 1 : 0,
-                  transform: heroStarted ? "translateY(0)" : "translateY(20px)",
-                  transition: "opacity 750ms cubic-bezier(0.23,1,0.32,1) 1300ms, transform 750ms cubic-bezier(0.23,1,0.32,1) 1300ms",
+                  transition: "opacity 700ms cubic-bezier(0.16,1,0.3,1) 160ms",
                 }}
               >
-                {HERO_HEADLINE_EM}
-              </em>
-            </h1>
-
-            <p
-              className="text-lg leading-relaxed"
-              style={{
-                color: "oklch(0.72 0.008 80)", maxWidth: "520px", marginBottom: "2.5rem",
-                opacity: heroStarted ? 1 : 0,
-                transition: "opacity 800ms ease 1750ms",
-              }}
-            >
-              {HERO_SUPPORTING}
-            </p>
-
-            {/* CTAs */}
-            <div
-              className="flex flex-wrap gap-4"
-              style={{
-                opacity: heroStarted ? 1 : 0,
-                transform: heroStarted ? "scale(1)" : "scale(0.96)",
-                transition: "opacity 500ms cubic-bezier(0.23,1,0.32,1) 2050ms, transform 500ms cubic-bezier(0.23,1,0.32,1) 2050ms",
-              }}
-            >
-              <a
-                href="/contact#schedule"
-                className="btn-gold px-7 py-3.5 rounded-sm text-sm inline-flex items-center gap-2"
-              >
-                Book a Free Consultation
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                  <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </a>
-              <a
-                href="tel:9103151800"
-                className="btn-ghost-gold px-7 py-3.5 rounded-sm text-sm inline-flex items-center gap-2"
-              >
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                  <path d="M2 2.5A1.5 1.5 0 013.5 1h1.879a1 1 0 01.958.713l.9 3a1 1 0 01-.27 1.02L5.5 7.207a9.03 9.03 0 004.293 4.293l1.474-1.467a1 1 0 011.02-.27l3 .9A1 1 0 0116 11.62V13.5A1.5 1.5 0 0114.5 15C7.044 15 1 8.956 1 1.5A1.5 1.5 0 012.5 0H3" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
-                </svg>
-                (910) 315-1800 — We answer.
-              </a>
-            </div>
-
-            {/* Trust indicators */}
-            <div
-              className="flex flex-wrap gap-6 mt-10"
-              style={{ borderTop: "1px solid oklch(0.22 0.008 240)", paddingTop: "1.5rem" }}
-            >
-              {HERO_TRUST_INDICATORS.map((item, i) => (
-                <div
-                  key={item}
-                  className="flex items-center gap-2"
+                Business Formation &amp; Financial Advisory — North Carolina
+              </span>
+              <div
+                className="gold-rule"
+                style={{
+                  transform: heroStarted ? "scaleX(1)" : "scaleX(0)",
+                  transformOrigin: "left",
+                  transition:
+                    "transform 850ms cubic-bezier(0.16,1,0.3,1) 320ms",
+                }}
+              />
+              <h1 className="font-display max-w-4xl text-[clamp(4rem,9vw,8.5rem)] leading-[0.84] tracking-[-0.055em] text-[oklch(0.95_0.01_85)]">
+                {HERO_HEADLINE_WORDS.map((word, index) => (
+                  <span
+                    key={word}
+                    className="mr-[0.19em] inline-block"
+                    style={{
+                      opacity: heroStarted ? 1 : 0,
+                      transform: heroStarted
+                        ? "translateY(0)"
+                        : "translateY(42px)",
+                      transition: `opacity 900ms cubic-bezier(0.16,1,0.3,1) ${440 + index * 90}ms, transform 900ms cubic-bezier(0.16,1,0.3,1) ${440 + index * 90}ms`,
+                    }}
+                  >
+                    {word}
+                  </span>
+                ))}
+                <em
+                  className="mt-4 block pr-4 text-[clamp(2.8rem,6.5vw,6.5rem)] leading-[0.92] text-[oklch(0.8_0.12_80)]"
                   style={{
                     opacity: heroStarted ? 1 : 0,
-                    transform: heroStarted ? "translateX(0)" : "translateX(-14px)",
-                    transition: `opacity 500ms cubic-bezier(0.23,1,0.32,1) ${2300 + i * 90}ms, transform 500ms cubic-bezier(0.23,1,0.32,1) ${2300 + i * 90}ms`,
+                    transform: heroStarted
+                      ? "translateY(0)"
+                      : "translateY(36px)",
+                    transition:
+                      "opacity 1000ms cubic-bezier(0.16,1,0.3,1) 860ms, transform 1000ms cubic-bezier(0.16,1,0.3,1) 860ms",
                   }}
                 >
-                  <span style={{ color: "oklch(0.78 0.12 80)", fontSize: "0.7rem" }}>◆</span>
-                  <span className="text-xs tracking-wide" style={{ color: "oklch(0.58 0.010 80)" }}>
-                    {item}
-                  </span>
+                  {HERO_HEADLINE_EM}
+                </em>
+              </h1>
+              <p
+                className="mt-8 max-w-xl text-base leading-8 text-[oklch(0.74_0.03_85)] md:text-lg"
+                style={{
+                  opacity: heroStarted ? 1 : 0,
+                  transform: heroStarted ? "translateY(0)" : "translateY(22px)",
+                  transition:
+                    "opacity 900ms cubic-bezier(0.16,1,0.3,1) 1120ms, transform 900ms cubic-bezier(0.16,1,0.3,1) 1120ms",
+                }}
+              >
+                {HERO_SUPPORTING}
+              </p>
+              <div
+                className="mt-9 flex flex-wrap gap-3"
+                style={{
+                  opacity: heroStarted ? 1 : 0,
+                  transform: heroStarted ? "translateY(0)" : "translateY(18px)",
+                  transition:
+                    "opacity 800ms cubic-bezier(0.16,1,0.3,1) 1280ms, transform 800ms cubic-bezier(0.16,1,0.3,1) 1280ms",
+                }}
+              >
+                <a
+                  href="/contact#schedule"
+                  className="btn-gold px-6 py-3.5 text-sm"
+                >
+                  Book a free consultation
+                  <ArrowIcon />
+                </a>
+                <a
+                  href="tel:9103151800"
+                  className="btn-ghost-gold px-6 py-3.5 text-sm"
+                >
+                  (910) 315-1800
+                  <ArrowIcon />
+                </a>
+              </div>
+              <p className="mt-8 font-mono text-[0.65rem] tracking-[0.14em] text-[oklch(0.66_0.075_208)]">
+                {BRAND_PROMISE}
+              </p>
+            </div>
+
+            <div
+              className="lg:col-span-5 xl:col-span-6"
+              style={{
+                opacity: heroStarted ? 1 : 0,
+                transform: heroStarted
+                  ? "translateY(0) rotate(0deg)"
+                  : "translateY(28px) rotate(1.5deg)",
+                transition:
+                  "opacity 1100ms cubic-bezier(0.16,1,0.3,1) 760ms, transform 1100ms cubic-bezier(0.16,1,0.3,1) 760ms",
+              }}
+            >
+              <div className="blacklight-shell mx-auto max-w-xl">
+                <div className="blacklight-core relative min-h-[31rem] overflow-hidden p-5 sm:p-7">
+                  <div className="signal-grid absolute inset-0 opacity-50" />
+                  <div className="relative flex items-center justify-between border-b border-[oklch(0.48_0.055_285/0.48)] pb-4">
+                    <div>
+                      <p className="font-mono text-[0.58rem] tracking-[0.18em] text-[oklch(0.7_0.09_210)]">
+                        THE DECISION ROOM
+                      </p>
+                      <p className="mt-1 text-xs text-[oklch(0.63_0.025_85)]">
+                        A clearer view before the next move.
+                      </p>
+                    </div>
+                    <span className="data-chip flex items-center gap-2 px-3 py-1.5 font-mono text-[0.58rem] tracking-[0.12em] text-[oklch(0.76_0.13_210)]">
+                      <span className="h-1.5 w-1.5 rounded-full bg-[oklch(0.76_0.13_210)] shadow-[0_0_11px_oklch(0.76_0.13_210/0.8)]" />
+                      READY TO REVIEW
+                    </span>
+                  </div>
+
+                  <div className="signal-orbit relative mx-auto mt-5 flex aspect-square w-full max-w-[19rem] items-center justify-center">
+                    <div className="absolute inset-[2%] rounded-full border border-[oklch(0.78_0.12_80/0.18)]" />
+                    <div className="absolute inset-[13%] rounded-full border border-dashed border-[oklch(0.76_0.13_210/0.24)]" />
+                    <div className="relative z-10 rounded-full border border-[oklch(0.8_0.12_80/0.25)] bg-[oklch(0.12_0.025_284/0.8)] p-5 shadow-[inset_0_1px_0_oklch(1_0_0/0.1),0_0_56px_oklch(0.42_0.13_293/0.24)]">
+                      <BrandLogo
+                        size={142}
+                        animated
+                        className="brand-logo--hero"
+                      />
+                    </div>
+                    <span className="absolute left-0 top-[18%] data-chip px-3 py-2 font-mono text-[0.55rem] tracking-[0.12em] text-[oklch(0.8_0.12_80)]">
+                      CONTEXT
+                    </span>
+                    <span className="absolute bottom-[16%] right-[-2%] data-chip px-3 py-2 font-mono text-[0.55rem] tracking-[0.12em] text-[oklch(0.76_0.13_210)]">
+                      OPTIONS
+                    </span>
+                  </div>
+
+                  <div className="relative mt-4 grid grid-cols-2 gap-3">
+                    {HERO_TRUST_INDICATORS.map((indicator, index) => (
+                      <div
+                        key={indicator}
+                        className="rounded-2xl border border-[oklch(0.48_0.055_285/0.42)] bg-[oklch(0.11_0.022_284/0.76)] p-3 shadow-[inset_0_1px_0_oklch(1_0_0/0.06)]"
+                      >
+                        <span className="font-mono text-[0.55rem] tracking-[0.12em] text-[oklch(0.7_0.09_210)]">
+                          0{index + 1}
+                        </span>
+                        <p className="mt-1.5 text-xs leading-5 text-[oklch(0.8_0.018_85)]">
+                          {indicator}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
                 </div>
-              ))}
+              </div>
             </div>
           </div>
         </div>
-
-        {/* Animated scroll-down arrow */}
-        <button
-          ref={scrollHintRef}
-          onClick={() => {
-            const section = heroSectionRef.current;
-            if (section) {
-              window.scrollTo({ top: section.offsetHeight - 60, behavior: "smooth" });
-            }
-          }}
-          aria-label="Scroll down to explore"
-          className="absolute bottom-7 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-10"
-          style={{
-            background: "transparent",
-            border: "none",
-            color: "oklch(0.52 0.010 80)",
-            opacity: heroStarted ? 1 : 0,
-            transition: "opacity 900ms ease 2800ms",
-          }}
-        >
-          <span
-            className="text-xs tracking-widest"
-            style={{ fontSize: "0.6rem", letterSpacing: "0.24em" }}
-          >
-            SCROLL
-          </span>
-          <span className="scroll-arrow-bob flex flex-col items-center">
-            <svg width="18" height="26" viewBox="0 0 18 26" fill="none" aria-hidden="true">
-              <path
-                d="M9 2v18M3 15l6 6 6-6"
-                stroke="oklch(0.78 0.12 80)"
-                strokeWidth="1.4"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </span>
-        </button>
       </section>
 
-      {/* ── PHILOSOPHY ──────────────────────────────────────── */}
       <section
-        className="py-24"
-        style={{ background: "oklch(0.13 0.009 240)" }}
+        className="relative py-28 lg:py-36"
         ref={philosophyRef as React.RefObject<HTMLElement>}
       >
         <div className="container">
-          <div className="grid md:grid-cols-2 gap-16 items-center">
-            <div>
-              <span className="section-label reveal">Our Philosophy</span>
+          <div className="grid items-start gap-10 lg:grid-cols-12 lg:gap-16">
+            <div className="lg:col-span-7">
+              <span className="section-label reveal">
+                The advantage of a full picture
+              </span>
               <div className="gold-rule reveal reveal-delay-1" />
-              <h2
-                className="font-display text-4xl md:text-5xl reveal reveal-delay-1"
-                style={{ color: "oklch(0.94 0.005 80)", lineHeight: "1.15", marginBottom: "1.5rem" }}
-              >
+              <h2 className="font-display max-w-3xl text-5xl leading-[0.98] tracking-[-0.04em] text-[oklch(0.95_0.01_85)] md:text-6xl lg:text-7xl reveal reveal-delay-1">
                 {PHILOSOPHY_HEADING}
                 <br />
-                <em style={{ color: "oklch(0.78 0.12 80)" }}>{PHILOSOPHY_HEADING_EM}</em>
+                <em className="text-[oklch(0.76_0.13_210)]">
+                  {PHILOSOPHY_HEADING_EM}
+                </em>
               </h2>
-              <p className="text-base leading-relaxed reveal reveal-delay-2" style={{ color: "oklch(0.58 0.010 80)", marginBottom: "1.25rem" }}>
-                {PHILOSOPHY_BODY_1}
-              </p>
-              <p
-                className="font-display text-lg reveal reveal-delay-3"
-                style={{
-                  color: "oklch(0.88 0.008 80)",
-                  fontStyle: "italic",
-                  lineHeight: "1.6",
-                  borderLeft: "3px solid oklch(0.78 0.12 80)",
-                  paddingLeft: "1.25rem",
-                  marginBottom: "1.5rem",
-                }}
-              >
-                {READINESS_PROMISE}
-              </p>
-              <p className="text-base leading-relaxed reveal reveal-delay-4" style={{ color: "oklch(0.58 0.010 80)", marginBottom: "2rem" }}>
+              <div className="mt-10 grid gap-8 md:grid-cols-[1.1fr_0.9fr]">
+                <p className="text-base leading-8 text-[oklch(0.7_0.03_85)] reveal reveal-delay-2">
+                  {PHILOSOPHY_BODY_1}
+                </p>
+                <p className="border-l border-[oklch(0.76_0.13_210/0.55)] pl-6 font-display text-2xl leading-9 italic text-[oklch(0.87_0.018_85)] reveal reveal-delay-3">
+                  {READINESS_PROMISE}
+                </p>
+              </div>
+              <p className="mt-8 max-w-2xl text-base leading-8 text-[oklch(0.65_0.025_85)] reveal reveal-delay-3">
                 {PHILOSOPHY_BODY_2}
               </p>
               <Link
                 href="/about"
-                className="btn-ghost-gold px-6 py-3 rounded-sm text-sm inline-flex items-center gap-2 reveal reveal-delay-4"
+                className="btn-ghost-gold mt-9 px-6 py-3 text-sm reveal reveal-delay-4"
               >
-                Meet Lamont Legrand
-                <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
-                  <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
+                Meet Lamont Legrand <ArrowIcon />
               </Link>
             </div>
 
-            {/* Right: founder portrait + quote */}
-            <div className="reveal reveal-delay-2">
-              {/* Portrait */}
-              <div className="relative mb-8">
-                <div
-                  className="absolute -top-2 -right-2 w-full h-full"
-                  style={{ border: "1px solid oklch(0.78 0.12 80 / 0.25)", borderRadius: "2px", zIndex: 0 }}
-                />
-                <div className="relative" style={{ zIndex: 1 }}>
-                  <img
-                    src="/images/lamont-legrand-founder_d88b26c8.jpg"
-                    alt="Lamont Legrand, Founder of 617 East Trust — commercial banking and SBA lending professional"
-                    className="w-full object-cover"
-                    style={{ maxHeight: "320px", objectPosition: "top center", filter: "contrast(1.03) brightness(0.96)" }}
-                  />
-                  <div
-                    className="absolute bottom-0 left-0 right-0 px-5 py-4"
-                    style={{ background: "linear-gradient(to top, oklch(0.10 0.008 240 / 0.92) 0%, transparent 100%)" }}
-                  >
-                    <p className="font-mono text-xs" style={{ color: "oklch(0.78 0.12 80)", letterSpacing: "0.08em" }}>
-                      LAMONT LEGRAND — FOUNDER & PRINCIPAL ADVISOR
-                    </p>
+            <div className="lg:col-span-5 reveal reveal-delay-2">
+              <div className="blacklight-shell">
+                <div className="blacklight-core overflow-hidden p-3">
+                  <div className="relative overflow-hidden rounded-[1.5rem]">
+                    <img
+                      src="/images/lamont-legrand-founder_d88b26c8.jpg"
+                      alt="Lamont Legrand, Founder of 617 East Trust — commercial banking and SBA lending professional"
+                      className="h-[28rem] w-full object-cover object-top sm:h-[34rem]"
+                      style={{
+                        filter:
+                          "contrast(1.04) saturate(0.82) brightness(0.82)",
+                      }}
+                    />
+                    <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[oklch(0.09_0.02_284/0.98)] via-[oklch(0.09_0.02_284/0.56)] to-transparent p-6 pt-24">
+                      <p className="font-mono text-[0.6rem] tracking-[0.15em] text-[oklch(0.76_0.13_210)]">
+                        FOUNDER &amp; PRINCIPAL ADVISOR
+                      </p>
+                      <p className="mt-2 font-display text-3xl text-[oklch(0.95_0.01_85)]">
+                        Lamont Legrand
+                      </p>
+                    </div>
                   </div>
+                  <blockquote className="p-6 font-display text-2xl leading-9 italic text-[oklch(0.84_0.02_85)]">
+                    “{FOUNDER_QUOTE}”
+                    <cite className="mt-4 block font-mono text-[0.58rem] not-italic tracking-[0.12em] text-[oklch(0.76_0.13_210)]">
+                      — {FOUNDER_QUOTE_ATTRIBUTION}
+                    </cite>
+                  </blockquote>
                 </div>
               </div>
-              {/* Quote */}
-              <div style={{ borderLeft: "3px solid oklch(0.78 0.12 80)", paddingLeft: "1.5rem", marginBottom: "2.5rem" }}>
-                <blockquote
-                  className="font-display text-xl"
-                  style={{ color: "oklch(0.88 0.008 80)", lineHeight: "1.5", fontStyle: "italic", marginBottom: "0.75rem" }}
-                >
-                  "{FOUNDER_QUOTE}"
-                </blockquote>
-                <cite className="text-sm not-italic" style={{ color: "oklch(0.58 0.010 80)", fontFamily: "'DM Mono', monospace", letterSpacing: "0.06em" }}>
-                  — {FOUNDER_QUOTE_ATTRIBUTION}
-                </cite>
-                <p className="font-mono text-xs mt-3" style={{ color: "oklch(0.78 0.12 80)", letterSpacing: "0.06em" }}>
-                  {BRAND_PROMISE}
-                </p>
-              </div>
-              {/* Four values */}
-              <div className="space-y-6">
-                {BRAND_VALUES.map((pillar, i) => (
-                  <div key={pillar.title} className={`reveal reveal-delay-${i + 2}`}>
-                    <div className="flex items-center gap-3 mb-1">
-                      <span className="font-mono text-xs" style={{ color: "oklch(0.78 0.12 80)" }}>0{i + 1}</span>
-                      <span className="text-sm font-semibold" style={{ color: "oklch(0.88 0.008 80)" }}>{pillar.title}</span>
-                    </div>
-                    <p className="text-sm leading-relaxed pl-8" style={{ color: "oklch(0.52 0.008 80)" }}>{pillar.body}</p>
-                  </div>
-                ))}
-              </div>
             </div>
+          </div>
+
+          <div className="mt-16 grid gap-3 md:grid-cols-4">
+            {BRAND_VALUES.map((value, index) => (
+              <div
+                key={value.title}
+                className={`blacklight-shell reveal reveal-delay-${Math.min(index + 1, 4)}`}
+              >
+                <div className="blacklight-core p-6">
+                  <span className="font-mono text-xs tracking-[0.14em] text-[oklch(0.76_0.13_210)]">
+                    0{index + 1}
+                  </span>
+                  <h3 className="mt-8 text-lg font-semibold text-[oklch(0.94_0.01_85)]">
+                    {value.title}
+                  </h3>
+                  <p className="mt-3 text-sm leading-6 text-[oklch(0.63_0.025_85)]">
+                    {value.body}
+                  </p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* ── SERVICES ────────────────────────────────────────── */}
       <section
-        className="py-24"
-        style={{ background: "oklch(0.10 0.008 240)" }}
+        className="relative overflow-hidden py-28 lg:py-36"
         ref={servicesRef as React.RefObject<HTMLElement>}
       >
-        <div className="container">
-          <div className="mb-14">
-            <span className="section-label reveal">What We Do</span>
-            <div className="gold-rule reveal reveal-delay-1" />
-            <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
-              <h2
-                className="text-3xl md:text-4xl font-semibold reveal reveal-delay-1"
-                style={{ color: "oklch(0.94 0.005 80)", maxWidth: "480px", lineHeight: "1.2" }}
-              >
-                Six services. One advisor. No handoffs.
+        <div className="pointer-events-none absolute right-0 top-12 h-80 w-80 rounded-full bg-[oklch(0.42_0.13_293/0.12)] blur-3xl" />
+        <div className="container relative">
+          <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
+            <div>
+              <span className="section-label reveal">
+                A connected advisory system
+              </span>
+              <div className="gold-rule reveal reveal-delay-1" />
+              <h2 className="max-w-2xl text-4xl font-semibold leading-tight text-[oklch(0.95_0.01_85)] md:text-5xl reveal reveal-delay-1">
+                Six ways to build a more prepared next step.
               </h2>
-              <Link
-                href="/services"
-                className="text-sm reveal reveal-delay-2 inline-flex items-center gap-2"
-                style={{ color: "oklch(0.78 0.12 80)" }}
-              >
-                View all services
-                <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
-                  <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </Link>
             </div>
+            <Link
+              href="/services"
+              className="btn-ghost-gold w-fit px-5 py-3 text-sm reveal reveal-delay-2"
+            >
+              Explore all services <ArrowIcon />
+            </Link>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-px" style={{ background: "oklch(0.22 0.008 240)" }}>
-            {SERVICES.map((service, i) => (
+          <div className="mt-14 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            {SERVICES.map((service, index) => (
               <Link
                 key={service.slug}
                 href={`/services/${service.slug}`}
-                className={`service-card p-8 block reveal reveal-delay-${Math.min(i + 1, 5)}`}
-                style={{ background: "oklch(0.10 0.008 240)" }}
+                className={`service-card block p-7 sm:p-8 reveal reveal-delay-${Math.min(index + 1, 5)} ${index === 0 || index === 4 ? "lg:col-span-2" : ""}`}
               >
-                <div className="flex items-start justify-between mb-4">
-                  <span className="font-mono text-xs" style={{ color: "oklch(0.78 0.12 80)" }}>
-                    0{i + 1}
+                <div className="flex items-start justify-between gap-4 pr-5">
+                  <span className="font-mono text-[0.6rem] tracking-[0.14em] text-[oklch(0.76_0.13_210)]">
+                    0{index + 1} / 06
                   </span>
-                  <span
-                    className="font-mono text-xs"
-                    style={{ color: "oklch(0.40 0.006 80)" }}
-                  >
-                    {service.time}
-                  </span>
-                </div>
-                <h3
-                  className="text-lg font-semibold mb-3"
-                  style={{ color: "oklch(0.94 0.005 80)" }}
-                >
-                  {service.label}
-                </h3>
-                <p className="text-sm leading-relaxed mb-5" style={{ color: "oklch(0.52 0.008 80)" }}>
-                  {service.description}
-                </p>
-                <div className="flex items-center justify-between">
-                  <span className="font-mono text-sm" style={{ color: "oklch(0.78 0.12 80)" }}>
+                  <span className="font-mono text-xs text-[oklch(0.8_0.12_80)]">
                     {service.price}
                   </span>
-                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style={{ color: "oklch(0.40 0.006 80)" }}>
-                    <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
+                </div>
+                <h3 className="mt-12 max-w-md text-2xl font-semibold text-[oklch(0.95_0.01_85)]">
+                  {service.title}
+                </h3>
+                <p className="mt-3 max-w-xl text-sm leading-6 text-[oklch(0.65_0.025_85)]">
+                  {service.tagline}
+                </p>
+                <div className="mt-8 flex items-center justify-between border-t border-[oklch(0.48_0.055_285/0.42)] pt-4">
+                  <span className="font-mono text-[0.6rem] tracking-[0.1em] text-[oklch(0.56_0.03_85)]">
+                    {service.timeline}
+                  </span>
+                  <span className="flex items-center gap-2 text-xs font-medium text-[oklch(0.76_0.13_210)]">
+                    VIEW SERVICE <ArrowIcon size={14} />
+                  </span>
                 </div>
               </Link>
             ))}
@@ -549,124 +448,99 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── STATS ───────────────────────────────────────────── */}
       <section
-        className="py-20"
-        style={{ background: "oklch(0.13 0.009 240)", borderTop: "1px solid oklch(0.18 0.008 240)", borderBottom: "1px solid oklch(0.18 0.008 240)" }}
-        ref={statsRef as React.RefObject<HTMLElement>}
-      >
-        <div className="container">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {STATS.map((stat, i) => (
-              <div key={stat.label} className={`reveal reveal-delay-${i + 1}`}>
-                <div className="stat-number mb-2">{stat.value}</div>
-                <div className="text-sm font-medium mb-1" style={{ color: "oklch(0.88 0.008 80)" }}>
-                  {stat.label}
-                </div>
-                <div className="text-xs" style={{ color: "oklch(0.45 0.007 80)" }}>
-                  {stat.note}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── PROCESS ─────────────────────────────────────────── */}
-      <section
-        className="py-24"
-        style={{ background: "oklch(0.10 0.008 240)" }}
+        className="py-28 lg:py-36"
         ref={processRef as React.RefObject<HTMLElement>}
       >
         <div className="container">
-          <div className="mb-14">
-            <span className="section-label reveal">How It Works</span>
-            <div className="gold-rule reveal reveal-delay-1" />
-            <h2
-              className="text-3xl md:text-4xl font-semibold reveal reveal-delay-1"
-              style={{ color: "oklch(0.94 0.005 80)", maxWidth: "480px", lineHeight: "1.2" }}
-            >
-              We start with an honest assessment.
-            </h2>
-          </div>
-
-          <div className="grid md:grid-cols-4 gap-8">
-            {[
-              { step: "01", title: "Free Consultation", body: "We talk. You explain your situation. We tell you what's realistic — including if we're not the right fit." },
-              { step: "02", title: "Honest Assessment", body: "We review your financials, credit, or business structure and give you a clear picture. No upsells, no pressure." },
-              { step: "03", title: "Defined Engagement", body: "If we proceed, you know exactly what we're doing, what it costs, and what the realistic outcome looks like." },
-              { step: "04", title: "Ongoing Partnership", body: "Most clients stay for multiple services. We become the advisor you call before you make a decision." },
-            ].map((step, i) => (
-              <div
-                key={step.step}
-                className={`reveal reveal-delay-${i + 1}`}
-                style={{
-                  borderTop: "1px solid oklch(0.22 0.008 240)",
-                  paddingTop: "1.5rem",
-                }}
-              >
-                <div className="font-mono text-3xl font-medium mb-4" style={{ color: "oklch(0.78 0.12 80)" }}>
-                  {step.step}
-                </div>
-                <h3 className="text-base font-semibold mb-3" style={{ color: "oklch(0.88 0.008 80)" }}>
-                  {step.title}
-                </h3>
-                <p className="text-sm leading-relaxed" style={{ color: "oklch(0.52 0.008 80)" }}>
-                  {step.body}
-                </p>
-              </div>
-            ))}
+          <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
+            <div className="lg:col-span-5">
+              <span className="section-label reveal">How we work together</span>
+              <div className="gold-rule reveal reveal-delay-1" />
+              <h2 className="font-display text-5xl leading-[0.96] tracking-[-0.04em] text-[oklch(0.95_0.01_85)] md:text-6xl reveal reveal-delay-1">
+                Careful from the first conversation.{" "}
+                <em className="text-[oklch(0.8_0.12_80)]">
+                  Clear at every turn.
+                </em>
+              </h2>
+              <p className="mt-7 max-w-md text-base leading-8 text-[oklch(0.66_0.025_85)] reveal reveal-delay-2">
+                There is no black box. The work moves in visible stages so you
+                know what is being considered and what is coming next.
+              </p>
+            </div>
+            <div className="grid gap-4 md:grid-cols-2 lg:col-span-7">
+              {PROCESS.map((item, index) => (
+                <article
+                  key={item.step}
+                  className={`blacklight-shell reveal reveal-delay-${Math.min(index + 1, 4)}`}
+                >
+                  <div className="blacklight-core min-h-56 p-7 sm:p-8">
+                    <div className="flex items-start justify-between">
+                      <span className="font-mono text-xl tracking-[-0.06em] text-[oklch(0.8_0.12_80)]">
+                        {item.step}
+                      </span>
+                      <span className="h-2 w-2 rounded-full bg-[oklch(0.76_0.13_210)] shadow-[0_0_14px_oklch(0.76_0.13_210/0.7)]" />
+                    </div>
+                    <h3 className="mt-14 text-xl font-semibold text-[oklch(0.94_0.01_85)]">
+                      {item.title}
+                    </h3>
+                    <p className="mt-3 text-sm leading-6 text-[oklch(0.65_0.025_85)]">
+                      {item.body}
+                    </p>
+                  </div>
+                </article>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
-      {/* ── Testimonials (Wave 2.1a) — between How It Works and final CTA ── */}
       <Testimonials items={getHomepageTestimonials(3)} />
 
-      {/* ── CTA ─────────────────────────────────────────────── */}
       <section
-        className="py-24 relative overflow-hidden"
-        style={{ background: "oklch(0.13 0.009 240)" }}
+        className="relative overflow-hidden py-28 lg:py-36"
         ref={ctaRef as React.RefObject<HTMLElement>}
       >
-        {/* Subtle gold glow */}
-        <div
-          className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-px"
-          style={{ background: "linear-gradient(90deg, transparent, oklch(0.78 0.12 80 / 0.6), transparent)" }}
-        />
-        <div className="container max-w-3xl text-center">
-          <span className="section-label reveal">Ready to Begin</span>
-          <div className="gold-rule mx-auto reveal reveal-delay-1" />
-          <h2
-            className="font-display text-4xl md:text-5xl reveal reveal-delay-1"
-            style={{ color: "oklch(0.94 0.005 80)", lineHeight: "1.15", marginBottom: "1.5rem" }}
-          >
-            {CLOSING_CTA_HEADING}
-            <em style={{ color: "oklch(0.78 0.12 80)" }}>{CLOSING_CTA_HEADING_EM}</em>
-          </h2>
-          <p className="text-base leading-relaxed reveal reveal-delay-2" style={{ color: "oklch(0.58 0.010 80)", marginBottom: "2.5rem" }}>
-            {CLOSING_CTA_BODY}
-          </p>
-          <div className="flex flex-wrap gap-4 justify-center reveal reveal-delay-3">
-            <a href="/contact#schedule" className="btn-gold px-8 py-4 rounded-sm text-sm inline-flex items-center gap-2">
-              {CLOSING_CTA_LABEL}
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </a>
-            <a href="tel:9103151800" className="btn-ghost-gold px-8 py-4 rounded-sm text-sm inline-flex items-center gap-2">
-              (910) 315-1800
-            </a>
+        <div className="pointer-events-none absolute inset-x-1/4 top-0 h-px bg-gradient-to-r from-transparent via-[oklch(0.76_0.13_210/0.8)] to-transparent" />
+        <div className="container max-w-5xl">
+          <div className="blacklight-shell reveal">
+            <div className="blacklight-core relative overflow-hidden px-6 py-16 text-center sm:px-12 lg:px-20 lg:py-24">
+              <div className="pointer-events-none absolute left-1/2 top-0 h-64 w-64 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[oklch(0.48_0.14_293/0.24)] blur-3xl" />
+              <div className="relative">
+                <span className="section-label mx-auto w-fit reveal reveal-delay-1">
+                  Ready when you are
+                </span>
+                <div className="gold-rule mx-auto reveal reveal-delay-1" />
+                <h2 className="font-display text-5xl leading-[0.98] tracking-[-0.04em] text-[oklch(0.95_0.01_85)] md:text-6xl reveal reveal-delay-2">
+                  {CLOSING_CTA_HEADING}
+                  <em className="text-[oklch(0.76_0.13_210)]">
+                    {CLOSING_CTA_HEADING_EM}
+                  </em>
+                </h2>
+                <p className="mx-auto mt-7 max-w-2xl text-base leading-8 text-[oklch(0.68_0.025_85)] reveal reveal-delay-3">
+                  {CLOSING_CTA_BODY}
+                </p>
+                <div className="mt-10 flex flex-wrap justify-center gap-3 reveal reveal-delay-4">
+                  <a
+                    href="/contact#schedule"
+                    className="btn-gold px-7 py-4 text-sm"
+                  >
+                    {CLOSING_CTA_LABEL} <ArrowIcon />
+                  </a>
+                  <a
+                    href="tel:9103151800"
+                    className="btn-ghost-gold px-7 py-4 text-sm"
+                  >
+                    (910) 315-1800 <ArrowIcon />
+                  </a>
+                </div>
+                <p className="mt-8 font-mono text-[0.6rem] tracking-[0.14em] text-[oklch(0.62_0.06_208)] reveal reveal-delay-4">
+                  Response within 24 hours. Same-day for inquiries before 3 PM
+                  EST.
+                </p>
+              </div>
+            </div>
           </div>
-          <p
-            className="text-xs mt-8 reveal reveal-delay-4"
-            style={{ color: "oklch(0.45 0.007 80)", fontFamily: "'DM Mono', monospace", letterSpacing: "0.08em" }}
-          >
-            {BRAND_PROMISE}
-          </p>
-          <p className="text-xs mt-2 reveal reveal-delay-4" style={{ color: "oklch(0.40 0.006 80)" }}>
-            Response within 24 hours. Same-day for inquiries before 3 PM EST.
-          </p>
         </div>
       </section>
     </Layout>

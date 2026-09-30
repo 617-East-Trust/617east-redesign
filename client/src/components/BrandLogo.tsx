@@ -6,6 +6,8 @@ interface BrandLogoProps {
   className?: string;
   style?: CSSProperties;
   loading?: "eager" | "lazy";
+  /** Applies the Blacklight seal-arrival choreography in motion-enabled environments. */
+  animated?: boolean;
 }
 
 /**
@@ -13,6 +15,7 @@ interface BrandLogoProps {
  *
  * The supplied master stays unmodified in brand-assets; this component uses
  * responsive AVIF/WebP exports with a PNG fallback for reliable browser support.
+ * The optional motion class animates the approved mark only — it never alters it.
  */
 export default function BrandLogo({
   size = 56,
@@ -20,10 +23,19 @@ export default function BrandLogo({
   className,
   style,
   loading = "eager",
+  animated = false,
 }: BrandLogoProps) {
+  const classes = [
+    "brand-logo--signal",
+    animated ? "brand-logo--animated" : "",
+    className,
+  ]
+    .filter(Boolean)
+    .join(" ");
+
   return (
     <picture
-      className={className}
+      className={classes}
       style={{
         display: "block",
         width: size,
@@ -43,7 +55,12 @@ export default function BrandLogo({
         height={size}
         loading={loading}
         decoding="async"
-        style={{ display: "block", width: "100%", height: "100%", objectFit: "contain" }}
+        style={{
+          display: "block",
+          width: "100%",
+          height: "100%",
+          objectFit: "contain",
+        }}
       />
     </picture>
   );

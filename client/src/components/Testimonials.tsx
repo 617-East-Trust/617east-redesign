@@ -1,17 +1,14 @@
-/*
- * Reusable testimonial cards — homepage + service pages.
- */
+/* Reusable testimonial cards — homepage + service pages. */
 
 import type { Testimonial } from "@/data/testimonials";
 import { GOOGLE_REVIEW_URL } from "@/data/testimonials";
+import { useReveal } from "@/hooks/useReveal";
 
 interface TestimonialsProps {
   items: Testimonial[];
-  /** Section eyebrow label */
   label?: string;
   heading?: string;
   showGoogleCta?: boolean;
-  /** Compact single-card layout for service pages */
   compact?: boolean;
 }
 
@@ -22,80 +19,71 @@ export default function Testimonials({
   showGoogleCta = true,
   compact = false,
 }: TestimonialsProps) {
+  const sectionRef = useReveal(0.1);
   if (!items.length) return null;
 
   return (
     <section
-      className={compact ? "py-16" : "py-24"}
-      style={{
-        background: "oklch(0.10 0.008 240)",
-        borderTop: "1px solid oklch(0.18 0.008 240)",
-      }}
+      className={compact ? "py-20" : "py-28 lg:py-36"}
+      ref={sectionRef as React.RefObject<HTMLElement>}
       aria-label="Client testimonials"
     >
       <div className={compact ? "container max-w-3xl" : "container"}>
-        <span className="section-label reveal">{label}</span>
-        <div className="gold-rule reveal reveal-delay-1" />
-        <h2
-          className={`font-display reveal reveal-delay-1 ${compact ? "text-2xl" : "text-3xl md:text-4xl"}`}
-          style={{ color: "oklch(0.94 0.005 80)", marginBottom: compact ? "1.5rem" : "3rem" }}
-        >
-          {heading}
-        </h2>
-
-        <div className={compact ? "grid gap-6" : "grid md:grid-cols-3 gap-6"}>
-          {items.map((t, i) => (
-            <div
-              key={`${t.name}-${t.serviceSlug}`}
-              className={`reveal reveal-delay-${Math.min(i + 1, 4)} p-8 rounded-sm flex flex-col`}
-              style={{
-                background: "oklch(0.13 0.009 240)",
-                border: "1px solid oklch(0.22 0.008 240)",
-              }}
+        <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
+          <div>
+            <span className="section-label reveal">{label}</span>
+            <div className="gold-rule reveal reveal-delay-1" />
+            <h2
+              className={`font-display leading-[1] tracking-[-0.035em] text-[oklch(0.95_0.01_85)] reveal reveal-delay-1 ${compact ? "text-4xl" : "max-w-2xl text-5xl md:text-6xl"}`}
             >
-              <span
-                className="font-display text-4xl leading-none mb-4"
-                style={{ color: "oklch(0.78 0.12 80)", opacity: 0.7 }}
-                aria-hidden="true"
+              {heading}
+            </h2>
+          </div>
+          {showGoogleCta && (
+            <p className="max-w-xs text-sm leading-6 text-[oklch(0.6_0.025_85)] reveal reveal-delay-2 md:text-right">
+              <a
+                href={GOOGLE_REVIEW_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[oklch(0.76_0.13_210)] underline decoration-[oklch(0.76_0.13_210/0.5)] underline-offset-4"
               >
-                &#8220;
-              </span>
-              <p
-                className="text-sm leading-relaxed flex-1 mb-6"
-                style={{ color: "oklch(0.72 0.008 80)" }}
-              >
-                {t.quote}
-              </p>
-              <div style={{ borderTop: "1px solid oklch(0.22 0.008 240)", paddingTop: "1rem" }}>
-                <p className="text-sm font-medium" style={{ color: "oklch(0.88 0.008 80)" }}>
-                  {t.name}
-                </p>
-                <p className="text-xs mt-0.5" style={{ color: "oklch(0.78 0.12 80)" }}>
-                  {t.service}
-                </p>
-                <p className="text-xs mt-0.5" style={{ color: "oklch(0.45 0.007 80)" }}>
-                  {t.location}
-                </p>
-              </div>
-            </div>
-          ))}
+                Leave a Google review
+              </a>{" "}
+              to help other North Carolina business owners find clear advice.
+            </p>
+          )}
         </div>
 
-        {showGoogleCta && (
-          <p className="text-xs text-center mt-10 reveal" style={{ color: "oklch(0.40 0.006 80)" }}>
-            Leave us a review on{" "}
-            <a
-              href={GOOGLE_REVIEW_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{ color: "oklch(0.78 0.12 80)", textDecoration: "underline" }}
+        <div
+          className={`mt-12 grid gap-4 ${compact ? "grid-cols-1" : "md:grid-cols-3"}`}
+        >
+          {items.map((testimonial, index) => (
+            <article
+              key={`${testimonial.name}-${testimonial.serviceSlug}`}
+              className={`blacklight-shell reveal reveal-delay-${Math.min(index + 1, 4)}`}
             >
-              Google
-            </a>
-            {" "}
-            — it helps other North Carolina business owners find honest advice.
-          </p>
-        )}
+              <div className="blacklight-core flex min-h-[22rem] flex-col p-7 sm:p-8">
+                <span className="font-display text-6xl leading-none text-[oklch(0.8_0.12_80)]">
+                  “
+                </span>
+                <p className="mt-5 flex-1 text-sm leading-7 text-[oklch(0.76_0.025_85)]">
+                  {testimonial.quote}
+                </p>
+                <div className="mt-8 border-t border-[oklch(0.48_0.055_285/0.42)] pt-5">
+                  <p className="text-sm font-medium text-[oklch(0.92_0.01_85)]">
+                    {testimonial.name}
+                  </p>
+                  <p className="mt-1 text-xs text-[oklch(0.76_0.13_210)]">
+                    {testimonial.service}
+                  </p>
+                  <p className="mt-1 text-xs text-[oklch(0.51_0.022_85)]">
+                    {testimonial.location}
+                  </p>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
       </div>
     </section>
   );
